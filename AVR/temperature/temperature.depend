@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1461311844 source:/home/jura/embedded/AVR/temperature/ds18b20.c
+	"ds18b20.h"
+
+1461329091 /home/jura/embedded/AVR/temperature/ds18b20.h
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+	<stdio.h>
+
+1550010325 source:/home/jura/embedded/AVR/temperature/fuse.c
+	<avr/io.h>
+
+1461752252 source:/home/jura/embedded/AVR/temperature/periph_ini.c
+	"periph_ini.h"
+
+1461752252 /home/jura/embedded/AVR/temperature/periph_ini.h
+	<avr/io.h>
+
+1461752252 source:/home/jura/embedded/AVR/temperature/uart.c
+	"uart.h"
+
+1461752252 /home/jura/embedded/AVR/temperature/uart.h
+	<stdio.h>
+	<avr/sfr_defs.h>
+	<avr/io.h>
+	<util/setbaud.h>
+
+1550010715 source:/home/jura/embedded/AVR/temperature/main.c
+	<stdlib.h>
+	<stdio.h>
+	"ds18b20.h"
+	"uart.h"
+	"periph_ini.h"
+

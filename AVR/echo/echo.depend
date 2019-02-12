@@ -1,0 +1,4 @@
+# depslib dependency file v1.0
+1550005960 source:/home/jura/embedded/AVR/echo/fuse.c
+	<avr/io.h>
+
