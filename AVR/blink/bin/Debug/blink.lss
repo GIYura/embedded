@@ -3,27 +3,27 @@ bin/Debug/blink.elf:     формат файла elf32-avr
 
 Разделы:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000008a  00000000  00000000  00000094  2**1
+  0 .text         00000090  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  0000008a  0000011e  2**0
+  1 .data         00000000  00800060  00000090  00000124  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .fuse         00000002  00820000  00820000  0000011e  2**0
+  2 .fuse         00000002  00820000  00820000  00000124  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  3 .stab         000007d4  00000000  00000000  00000120  2**2
+  3 .stab         000007d4  00000000  00000000  00000128  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00000c99  00000000  00000000  000008f4  2**0
+  4 .stabstr      00000c9f  00000000  00000000  000008fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .comment      00000011  00000000  00000000  0000158d  2**0
+  5 .comment      00000011  00000000  00000000  0000159b  2**0
                   CONTENTS, READONLY
-  6 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000015a0  2**2
+  6 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000015ac  2**2
                   CONTENTS, READONLY
-  7 .debug_info   000004e6  00000000  00000000  000015dc  2**0
+  7 .debug_info   000004e6  00000000  00000000  000015e8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 000004a3  00000000  00000000  00001ac2  2**0
+  8 .debug_abbrev 000004a3  00000000  00000000  00001ace  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   0000001a  00000000  00000000  00001f65  2**0
+  9 .debug_line   0000001a  00000000  00000000  00001f71  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000196  00000000  00000000  00001f7f  2**0
+ 10 .debug_str    00000196  00000000  00000000  00001f8b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Дизассемблирование раздела .text:
@@ -59,7 +59,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
   5c:	de bf       	out	0x3e, r29	; 62
   5e:	cd bf       	out	0x3d, r28	; 61
   60:	0e 94 36 00 	call	0x6c	; 0x6c <main>
-  64:	0c 94 43 00 	jmp	0x86	; 0x86 <_exit>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <_exit>
 
 00000068 <__bad_interrupt>:
   68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -72,6 +72,7 @@ int main(void)
     DDRB = 1;
   6c:	81 e0       	ldi	r24, 0x01	; 1
   6e:	87 bb       	out	0x17, r24	; 23
+
     while(1)
     {
         PORTB ^= 1;
@@ -85,16 +86,19 @@ int main(void)
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  78:	eb e7       	ldi	r30, 0x7B	; 123
-  7a:	f2 e9       	ldi	r31, 0x92	; 146
-  7c:	31 97       	sbiw	r30, 0x01	; 1
-  7e:	f1 f7       	brne	.-4      	; 0x7c <main+0x10>
-  80:	00 c0       	rjmp	.+0      	; 0x82 <main+0x16>
-  82:	00 00       	nop
-  84:	f6 cf       	rjmp	.-20     	; 0x72 <main+0x6>
+  78:	2f e5       	ldi	r18, 0x5F	; 95
+  7a:	3a ee       	ldi	r19, 0xEA	; 234
+  7c:	80 e0       	ldi	r24, 0x00	; 0
+  7e:	21 50       	subi	r18, 0x01	; 1
+  80:	30 40       	sbci	r19, 0x00	; 0
+  82:	80 40       	sbci	r24, 0x00	; 0
+  84:	e1 f7       	brne	.-8      	; 0x7e <main+0x12>
+  86:	00 c0       	rjmp	.+0      	; 0x88 <main+0x1c>
+  88:	00 00       	nop
+  8a:	f3 cf       	rjmp	.-26     	; 0x72 <main+0x6>
 
-00000086 <_exit>:
-  86:	f8 94       	cli
+0000008c <_exit>:
+  8c:	f8 94       	cli
 
-00000088 <__stop_program>:
-  88:	ff cf       	rjmp	.-2      	; 0x88 <__stop_program>
+0000008e <__stop_program>:
+  8e:	ff cf       	rjmp	.-2      	; 0x8e <__stop_program>
