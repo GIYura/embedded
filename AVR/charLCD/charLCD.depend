@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1550179389 source:/home/jura/embedded/AVR/charLCD/fuse.c
+	<avr/io.h>
+
+1462305895 source:/home/jura/embedded/AVR/charLCD/lcd.c
+	"defines.h"
+	<stdbool.h>
+	<stdint.h>
+	<stdio.h>
+	<avr/io.h>
+	<util/delay.h>
+	"hd44780.h"
+	"lcd.h"
+
+1462302700 /home/jura/embedded/AVR/charLCD/defines.h
+
+1462302704 /home/jura/embedded/AVR/charLCD/hd44780.h
+
+1462302713 /home/jura/embedded/AVR/charLCD/lcd.h
+
+1550179415 source:/home/jura/embedded/AVR/charLCD/main.c
+	<stdio.h>
+	<avr/io.h>
+	"lcd.h"
+
+1462302708 source:/home/jura/embedded/AVR/charLCD/hd44780.c
+	"defines.h"
+	<stdbool.h>
+	<stdint.h>
+	<avr/io.h>
+	<util/delay.h>
+	"hd44780.h"
+
