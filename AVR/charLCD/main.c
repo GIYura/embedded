@@ -8,7 +8,7 @@ int main(void)
 {
     lcd_init();
 	stderr = &lcd_str;
-	fprintf(stderr, "AVR\n");
+	fprintf(stderr, "HELLO AVR\n");
 
 	DDRB = 1;
 	while(1)

@@ -343,7 +343,7 @@ END GROUP
  *(.fini0)
                 0x000000000000034a                _etext = .
 
-.data           0x0000000000800060       0x14 load address 0x000000000000034a
+.data           0x0000000000800060       0x1a load address 0x000000000000034a
                 0x0000000000800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800060        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega32.o
@@ -363,41 +363,41 @@ END GROUP
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x000000000080006e        0x5 obj/Debug/main.o
+                0x000000000080006e        0xb obj/Debug/main.o
  *(.gnu.linkonce.d*)
-                0x0000000000800074                . = ALIGN (0x2)
- *fill*         0x0000000000800073        0x1 
-                0x0000000000800074                _edata = .
-                0x0000000000800074                PROVIDE (__data_end, .)
+                0x000000000080007a                . = ALIGN (0x2)
+ *fill*         0x0000000000800079        0x1 
+                0x000000000080007a                _edata = .
+                0x000000000080007a                PROVIDE (__data_end, .)
 
-.bss            0x0000000000800074        0x7
-                0x0000000000800074                PROVIDE (__bss_start, .)
+.bss            0x000000000080007a        0x7
+                0x000000000080007a                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x0000000000800074        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega32.o
- .bss           0x0000000000800074        0x0 obj/Debug/fuse.o
- .bss           0x0000000000800074        0x0 obj/Debug/hd44780.o
- .bss           0x0000000000800074        0x1 obj/Debug/lcd.o
- .bss           0x0000000000800075        0x0 obj/Debug/main.o
- .bss           0x0000000000800075        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
- .bss           0x0000000000800075        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
- .bss           0x0000000000800075        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_clear_bss.o)
- .bss           0x0000000000800075        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(fwrite.o)
- .bss           0x0000000000800075        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(iob.o)
- .bss           0x0000000000800075        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_prologue.o)
- .bss           0x0000000000800075        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_epilogue.o)
+ .bss           0x000000000080007a        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega32.o
+ .bss           0x000000000080007a        0x0 obj/Debug/fuse.o
+ .bss           0x000000000080007a        0x0 obj/Debug/hd44780.o
+ .bss           0x000000000080007a        0x1 obj/Debug/lcd.o
+ .bss           0x000000000080007b        0x0 obj/Debug/main.o
+ .bss           0x000000000080007b        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+ .bss           0x000000000080007b        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+ .bss           0x000000000080007b        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_clear_bss.o)
+ .bss           0x000000000080007b        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(fwrite.o)
+ .bss           0x000000000080007b        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(iob.o)
+ .bss           0x000000000080007b        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_prologue.o)
+ .bss           0x000000000080007b        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_epilogue.o)
  *(.bss*)
  *(COMMON)
- COMMON         0x0000000000800075        0x6 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(iob.o)
-                0x0000000000800075                __iob
-                0x000000000080007b                PROVIDE (__bss_end, .)
+ COMMON         0x000000000080007b        0x6 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(iob.o)
+                0x000000000080007b                __iob
+                0x0000000000800081                PROVIDE (__bss_end, .)
                 0x000000000000034a                __data_load_start = LOADADDR (.data)
-                0x000000000000035e                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000000000000364                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x000000000080007b        0x0
+.noinit         0x0000000000800081        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                        PROVIDE (__noinit_end, .)
-                0x000000000080007b                _end = .
+                0x0000000000800081                _end = .
                 [!provide]                        PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0

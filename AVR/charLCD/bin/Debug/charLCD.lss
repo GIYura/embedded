@@ -5,27 +5,27 @@ bin/Debug/charLCD.elf:     формат файла elf32-avr
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .text         0000034a  00000000  00000000  000000b4  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000014  00800060  0000034a  000003fe  2**0
+  1 .data         0000001a  00800060  0000034a  000003fe  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000007  00800074  00800074  00000412  2**0
+  2 .bss          00000007  0080007a  0080007a  00000418  2**0
                   ALLOC
-  3 .fuse         00000002  00820000  00820000  00000412  2**0
+  3 .fuse         00000002  00820000  00820000  00000418  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  4 .stab         00001470  00000000  00000000  00000414  2**2
+  4 .stab         00001470  00000000  00000000  0000041c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  5 .stabstr      00000f9f  00000000  00000000  00001884  2**0
+  5 .stabstr      00000f9f  00000000  00000000  0000188c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .comment      00000011  00000000  00000000  00002823  2**0
+  6 .comment      00000011  00000000  00000000  0000282b  2**0
                   CONTENTS, READONLY
-  7 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00002834  2**2
+  7 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000283c  2**2
                   CONTENTS, READONLY
-  8 .debug_info   000004e6  00000000  00000000  00002870  2**0
+  8 .debug_info   000004e6  00000000  00000000  00002878  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_abbrev 000004a3  00000000  00000000  00002d56  2**0
+  9 .debug_abbrev 000004a3  00000000  00000000  00002d5e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_line   0000001a  00000000  00000000  000031f9  2**0
+ 10 .debug_line   0000001a  00000000  00000000  00003201  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    00000196  00000000  00000000  00003213  2**0
+ 11 .debug_str    00000196  00000000  00000000  0000321b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Дизассемблирование раздела .text:
@@ -70,13 +70,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
   6e:	0d 92       	st	X+, r0
-  70:	a4 37       	cpi	r26, 0x74	; 116
+  70:	aa 37       	cpi	r26, 0x7A	; 122
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
 
 00000076 <__do_clear_bss>:
   76:	20 e0       	ldi	r18, 0x00	; 0
-  78:	a4 e7       	ldi	r26, 0x74	; 116
+  78:	aa e7       	ldi	r26, 0x7A	; 122
   7a:	b0 e0       	ldi	r27, 0x00	; 0
   7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
 
@@ -84,7 +84,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
   7e:	1d 92       	st	X+, r1
 
 00000080 <.do_clear_bss_start>:
-  80:	ab 37       	cpi	r26, 0x7B	; 123
+  80:	a1 38       	cpi	r26, 0x81	; 129
   82:	b2 07       	cpc	r27, r18
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
   86:	0e 94 1a 01 	call	0x234	; 0x234 <main>
@@ -429,7 +429,7 @@ lcd_putchar(char c, FILE *unused)
   static bool nl_seen;
 
   if (nl_seen && c != '\n')
- 1d6:	80 91 74 00 	lds	r24, 0x0074	; 0x800074 <__data_end>
+ 1d6:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__data_end>
  1da:	88 23       	and	r24, r24
  1dc:	d1 f0       	breq	.+52     	; 0x212 <lcd_putchar+0x40>
  1de:	ca 30       	cpi	r28, 0x0A	; 10
@@ -461,7 +461,7 @@ lcd_putchar(char c, FILE *unused)
  208:	0e 94 69 00 	call	0xd2	; 0xd2 <hd44780_outbyte>
 
       nl_seen = false;
- 20c:	10 92 74 00 	sts	0x0074, r1	; 0x800074 <__data_end>
+ 20c:	10 92 7a 00 	sts	0x007A, r1	; 0x80007a <__data_end>
  210:	06 c0       	rjmp	.+12     	; 0x21e <lcd_putchar+0x4c>
     }
   if (c == '\n')
@@ -470,7 +470,7 @@ lcd_putchar(char c, FILE *unused)
     {
       nl_seen = true;
  216:	81 e0       	ldi	r24, 0x01	; 1
- 218:	80 93 74 00 	sts	0x0074, r24	; 0x800074 <__data_end>
+ 218:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__data_end>
  21c:	07 c0       	rjmp	.+14     	; 0x22c <lcd_putchar+0x5a>
     }
   else
@@ -502,11 +502,11 @@ int main(void)
 	stderr = &lcd_str;
  238:	80 e6       	ldi	r24, 0x60	; 96
  23a:	90 e0       	ldi	r25, 0x00	; 0
- 23c:	90 93 7a 00 	sts	0x007A, r25	; 0x80007a <__iob+0x5>
- 240:	80 93 79 00 	sts	0x0079, r24	; 0x800079 <__iob+0x4>
-	fprintf(stderr, "AVR\n");
+ 23c:	90 93 80 00 	sts	0x0080, r25	; 0x800080 <__iob+0x5>
+ 240:	80 93 7f 00 	sts	0x007F, r24	; 0x80007f <__iob+0x4>
+	fprintf(stderr, "HELLO AVR\n");
  244:	9c 01       	movw	r18, r24
- 246:	44 e0       	ldi	r20, 0x04	; 4
+ 246:	4a e0       	ldi	r20, 0x0A	; 10
  248:	50 e0       	ldi	r21, 0x00	; 0
  24a:	61 e0       	ldi	r22, 0x01	; 1
  24c:	70 e0       	ldi	r23, 0x00	; 0
