@@ -78,12 +78,14 @@ typedef enum {
   EXIT
 } Tsection;
 
+void relayOn(void); 
+void relayOff(void);
 void (*pFunc[])(void) = {relayOn, relayOff};
 void setRelayState(RELAY_STATE newState);
 RELAY_STATE getRelayState(void);
 void fsmInit(void);
 void fsmRun(void);
-/*
+/*  
 */
 inline SW_TIMER_IDX &operator++(SW_TIMER_IDX &swTimer){
    return swTimer = SW_TIMER_IDX(swTimer + 1);
@@ -104,7 +106,7 @@ void setup() {
 //                                LOOP                                  //
 //======================================================================//
 void loop() {
-   enableSwTimer(SW_TIMER1, 1);                                      //20ms
+   enableSwTimer(SW_TIMER1, 1);
    if (SW_TIMER_EXPIRED == isSwTimeout(SW_TIMER1)) {
      disableSwTimer(SW_TIMER1);
      enableSwTimer(SW_TIMER1, 1);
@@ -112,12 +114,15 @@ void loop() {
   }
 }
 
+/************************************************************************
+                              FUNCTIONS
+*************************************************************************/
 //======================================================================//
 //                              GPIO INIT                               //
 //======================================================================//
 void gpioInit(void) {
   pinMode(RELAY_IN_1, OUTPUT);
-  pinMode(RELAY_IN_2, OUTPUT);
+  pinMode(RELAY_IN_2, OUTPUT);  
 }
 
 //======================================================================//
@@ -308,7 +313,9 @@ void relayOff(void) {
 //
 //======================================================================//
 void setRelayState(RELAY_STATE newState) {
-  relayState = newState;
+  if(newState < RELAY_STATE_NUMBER){
+    relayState = newState; 
+  }
 }
 
 //======================================================================//
