@@ -57,7 +57,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="84" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" selected="1" top="74" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="84" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" selected="0" top="74" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="625" useTextEdit="1" useBinaryEdit="0" left="0" path="cmsis/inc/stm32l1xx.h" selected="0" top="602" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1531" useTextEdit="1" useBinaryEdit="0" left="0" path="cmsis/inc/core_cm3.h" selected="0" top="1511" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="91" useTextEdit="1" useBinaryEdit="0" left="0" path="Cortex_M_Startup.s" selected="0" top="69" codecName="Default"/>
