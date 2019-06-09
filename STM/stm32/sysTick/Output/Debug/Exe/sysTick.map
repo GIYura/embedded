@@ -27,7 +27,7 @@ Command line:
   -EL
   -mcpu=cortex-m3
   --gc-sections
-  -T/home/jura/projects/stm32/sysTick/SEGGER_Flash.icf
+  -T/home/jura/embedded/STM/stm32/sysTick/SEGGER_Flash.icf
   -Map
   Output/Debug/Exe/sysTick.map
   -u_vectors
@@ -61,7 +61,7 @@ Command line:
 ***                                                                                 ***
 ***************************************************************************************
 
-Read linker script from '/home/jura/projects/stm32/sysTick/SEGGER_Flash.icf':
+Read linker script from '/home/jura/embedded/STM/stm32/sysTick/SEGGER_Flash.icf':
   
   // **********************************************************************
   // *                    SEGGER Microcontroller GmbH                     *

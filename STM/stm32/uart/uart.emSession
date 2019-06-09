@@ -64,13 +64,16 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="34" y="77" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" selected="1" top="57" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="166" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" selected="1" top="158" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1145" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/src/stm32l1xx_rcc.c" selected="0" top="1121" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="15" y="929" useTextEdit="1" useBinaryEdit="0" left="0" path="cmsis/inc/stm32l1xx.h" selected="0" top="913" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="123" y="57" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/inc/stm32l1xx_usart.h" selected="0" top="35" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="548" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/src/stm32l1xx_usart.c" selected="0" top="525" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="709" useTextEdit="1" useBinaryEdit="0" left="0" path="cmsis/inc/stm32l1xx.h" selected="0" top="690" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="57" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/inc/stm32l1xx_usart.h" selected="0" top="40" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="548" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/src/stm32l1xx_usart.c" selected="0" top="539" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="65" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/inc/stm32l1xx_gpio.h" selected="0" top="45" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="546" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/src/stm32l1xx_gpio.c" selected="0" top="528" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1531" useTextEdit="1" useBinaryEdit="0" left="0" path="cmsis/inc/core_cm3.h" selected="0" top="1511" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="176" useTextEdit="1" useBinaryEdit="0" left="0" path="cmsis/src/system_stm32l1xx.c" selected="0" top="156" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="348" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/inc/stm32l1xx_rcc.h" selected="0" top="334" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="uart" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="/home/jura/embedded/STM/stm32/uart/spl/src" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="uart" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="/home/jura/embedded/STM/stm32/uart/spl/src" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

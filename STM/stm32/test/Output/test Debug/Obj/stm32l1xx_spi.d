@@ -1,10 +1,10 @@
 Output/test\ Debug/Obj/stm32l1xx_spi.o: \
- /home/jura/projects/stm32/test/STM32L1xx_StdPeriph_Driver/src/stm32l1xx_spi.c \
- /home/jura/projects/stm32/test/STM32L1xx_StdPeriph_Driver/inc/stm32l1xx_spi.h \
- /home/jura/projects/stm32/test/CMSIS/Device/ST/STM32L1xx/Include/stm32l1xx.h \
- /home/jura/projects/stm32/test/CMSIS/Device/ST/STM32L1xx/Include/core_cm3.h \
+ /home/jura/embedded/STM/stm32/test/STM32L1xx_StdPeriph_Driver/src/stm32l1xx_spi.c \
+ /home/jura/embedded/STM/stm32/test/STM32L1xx_StdPeriph_Driver/inc/stm32l1xx_spi.h \
+ /home/jura/embedded/STM/stm32/test/CMSIS/Device/ST/STM32L1xx/Include/stm32l1xx.h \
+ /home/jura/embedded/STM/stm32/test/CMSIS/Device/ST/STM32L1xx/Include/core_cm3.h \
  /usr/share/segger_embedded_studio_for_arm_4.16/include/stdint.h \
- /home/jura/projects/stm32/test/CMSIS/Device/ST/STM32L1xx/Include/core_cmInstr.h \
- /home/jura/projects/stm32/test/CMSIS/Device/ST/STM32L1xx/Include/core_cmFunc.h \
- /home/jura/projects/stm32/test/CMSIS/Device/ST/STM32L1xx/Include/system_stm32l1xx.h \
- /home/jura/projects/stm32/test/STM32L1xx_StdPeriph_Driver/inc/stm32l1xx_rcc.h
+ /home/jura/embedded/STM/stm32/test/CMSIS/Device/ST/STM32L1xx/Include/core_cmInstr.h \
+ /home/jura/embedded/STM/stm32/test/CMSIS/Device/ST/STM32L1xx/Include/core_cmFunc.h \
+ /home/jura/embedded/STM/stm32/test/CMSIS/Device/ST/STM32L1xx/Include/system_stm32l1xx.h \
+ /home/jura/embedded/STM/stm32/test/STM32L1xx_StdPeriph_Driver/inc/stm32l1xx_rcc.h

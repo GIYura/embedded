@@ -56,9 +56,9 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="16" y="115" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" selected="1" top="79" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="317" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/src/stm32l1xx_gpio.c" selected="0" top="291" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="35" y="168" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/inc/stm32l1xx_gpio.h" selected="0" top="159" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="115" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" selected="1" top="18" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="317" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/src/stm32l1xx_gpio.c" selected="0" top="307" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="168" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/inc/stm32l1xx_gpio.h" selected="0" top="159" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="button" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="/home/jura/projects/stm32/button/spl/src" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="button" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="/home/jura/projects/stm32/button/spl/src" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>
