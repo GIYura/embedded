@@ -47,5 +47,5 @@
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="636" useTextEdit="1" useBinaryEdit="0" left="0" path="cmsis/inc/stm32l1xx.h" selected="0" top="627" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="82" useTextEdit="1" useBinaryEdit="0" left="0" path="cmsis/inc/stm32l1xx_conf.h" selected="0" top="73" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="blinky" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="/home/jura/projects/stm32/blinky/stdPeriphiral/src" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="blinky" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="/home/jura/projects/stm32/blinky/stdPeriphiral/src" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>
