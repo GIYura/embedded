@@ -56,8 +56,9 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="29" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" selected="1" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="44" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" selected="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2969" useTextEdit="1" useBinaryEdit="0" left="0" path="cmsis/inc/stm32l1xx.h" selected="0" top="2948" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../????????/FreeRTOSv9.0.0_SystemView/FreeRTOS/Demo/CORTEX_M4_GENERIC_EmbeddedStudio/RTOSDemo.emProject" selected="1" top="174" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="lesson_1" fileDialogDefaultFilter="*.asm;*.s;*.inc" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="/home/jura/embedded/STM/stm32/lessons/lesson_1" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="lesson_1" fileDialogDefaultFilter="*.emProject" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="/home/jura/????????/FreeRTOSv9.0.0_SystemView/FreeRTOS/Demo/CORTEX_M4_GENERIC_EmbeddedStudio" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

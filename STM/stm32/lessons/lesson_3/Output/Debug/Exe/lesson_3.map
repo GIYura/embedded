@@ -1,0 +1,412 @@
+
+
+***************************************************************************************
+***                                                                                 ***
+***                                LINK INFORMATION                                 ***
+***                                                                                 ***
+***************************************************************************************
+
+Copyright (c) 2017-2019 SEGGER Microcontroller GmbH    www.segger.com
+SEGGER Linker 2.30a compiled Mar 28 2019 14:49:26
+
+Command line:
+  --add-region
+  FLASH=0x00040000@0x08000000
+  --add-region
+  RAM=0x00004000@0x20000000
+  --defsym=__STACKSIZE__=1024
+  --defsym=__STACKSIZE_PROCESS__=0
+  --defsym=__HEAPSIZE__=1024
+  --full-section-headers
+  -ereset_handler
+  --defsym=__vfprintf=__vfprintf_int_nwp
+  --defsym=__vfscanf=__vfscanf_int
+  --silent
+  --list-all-undefineds
+  --fatal-warnings
+  -EL
+  -mcpu=cortex-m3
+  --gc-sections
+  -T/home/jura/embedded/STM/stm32/lessons/lesson_3/SEGGER_Flash.icf
+  -Map
+  Output/Debug/Exe/lesson_3.map
+  -u_vectors
+  -o
+  Output/Debug/Exe/lesson_3.elf
+  --emit-relocs
+  --start-group
+  Output/lesson_3 Debug/Obj/main.o
+  Output/lesson_3 Debug/Obj/Cortex_M_Startup.o
+  Output/lesson_3 Debug/Obj/SEGGER_THUMB_Startup.o
+  Output/lesson_3 Debug/Obj/system_stm32l1xx.o
+  Output/lesson_3 Debug/Obj/croutine.o
+  Output/lesson_3 Debug/Obj/event_groups.o
+  Output/lesson_3 Debug/Obj/list.o
+  Output/lesson_3 Debug/Obj/port.o
+  Output/lesson_3 Debug/Obj/queue.o
+  Output/lesson_3 Debug/Obj/tasks.o
+  Output/lesson_3 Debug/Obj/timers.o
+  Output/lesson_3 Debug/Obj/heap_1.o
+  /usr/share/segger_embedded_studio_for_arm_4.16/lib/libdebugio_mempoll_v7m_t_le_eabi.a
+  /usr/share/segger_embedded_studio_for_arm_4.16/lib/libm_v7m_t_le_eabi.a
+  /usr/share/segger_embedded_studio_for_arm_4.16/lib/libc_v7m_t_le_eabi.a
+  /usr/share/segger_embedded_studio_for_arm_4.16/lib/libcpp_v7m_t_le_eabi.a
+  /usr/share/segger_embedded_studio_for_arm_4.16/lib/libdebugio_v7m_t_le_eabi.a
+  /usr/share/segger_embedded_studio_for_arm_4.16/lib/libvfprintf_v7m_t_le_eabi.o
+  /usr/share/segger_embedded_studio_for_arm_4.16/lib/libvfscanf_v7m_t_le_eabi.o
+  --end-group
+
+
+***************************************************************************************
+***                                                                                 ***
+***                                  LINKER SCRIPT                                  ***
+***                                                                                 ***
+***************************************************************************************
+
+Read linker script from '/home/jura/embedded/STM/stm32/lessons/lesson_3/SEGGER_Flash.icf':
+  
+  // **********************************************************************
+  // *                    SEGGER Microcontroller GmbH                     *
+  // *                        The Embedded Experts                        *
+  // **********************************************************************
+  // *                                                                    *
+  // *            (c) 2014 - 2019 SEGGER Microcontroller GmbH             *
+  // *            (c) 2001 - 2019 Rowley Associates Limited               *
+  // *                                                                    *
+  // *           www.segger.com     Support: support@segger.com           *
+  // *                                                                    *
+  // **********************************************************************
+  // *                                                                    *
+  // * All rights reserved.                                               *
+  // *                                                                    *
+  // * Redistribution and use in source and binary forms, with or         *
+  // * without modification, are permitted provided that the following    *
+  // * conditions are met:                                                *
+  // *                                                                    *
+  // * - Redistributions of source code must retain the above copyright   *
+  // *   notice, this list of conditions and the following disclaimer.    *
+  // *                                                                    *
+  // * - Neither the name of SEGGER Microcontroller GmbH                  *
+  // *   nor the names of its contributors may be used to endorse or      *
+  // *   promote products derived from this software without specific     *
+  // *   prior written permission.                                        *
+  // *                                                                    *
+  // * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND             *
+  // * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,        *
+  // * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF           *
+  // * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE           *
+  // * DISCLAIMED.                                                        *
+  // * IN NO EVENT SHALL SEGGER Microcontroller GmbH BE LIABLE FOR        *
+  // * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR           *
+  // * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT  *
+  // * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;    *
+  // * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF      *
+  // * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT          *
+  // * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE  *
+  // * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH   *
+  // * DAMAGE.                                                            *
+  // *                                                                    *
+  // **********************************************************************
+  
+  define memory with size = 4G;
+  //
+  // Block definitions
+  //
+  define block ctors { section .ctors, section .ctors.*, block with alphabetical order { init_array } };
+  define block dtors { section .dtors, section .dtors.*, block with reverse alphabetical order { fini_array } };
+  define block exidx { section .ARM.exidx, section .ARM.exidx.* };
+  define block tbss  { section .tbss,  section .tbss.*  };
+  define block tdata { section .tdata, section .tdata.* };
+  define block tls   { block tbss, block tdata };
+  define block tdata_load { copy of block tdata };
+  define block heap  with size = __HEAPSIZE__,  alignment = 8, /* fill =0x00, */ readwrite access { };
+  define block stack with size = __STACKSIZE__, alignment = 8, /* fill =0xCD, */ readwrite access { };
+  //
+  // Explicit initialization settings for sections
+  //
+  do not initialize                           { section .non_init, section .non_init.* };
+  initialize by copy /* with packing=auto */  { section .data, section .data.* };
+  initialize by copy /* with packing=auto */  { section .fast, section .fast.* };
+  //
+  // ROM Placement
+  //
+  place at start of FLASH                 { 
+                                             section .vectors                         // Vector table section
+                                          };
+  place in FLASH with minimum size order  { 
+                                             section .init, section .init.*,          // Init code section
+                                             section .text, section .text.*,          // Code section
+                                             section .rodata, section .rodata.*,      // Read-only data section
+                                             section .segger.*,                       // Auto-generated initialization
+                                             block exidx,                             // ARM exception unwinding block
+                                             block ctors,                             // Constructors block
+                                             block dtors                              // Destructors block
+                                           };
+  place in FLASH                           { 
+                                             block tdata_load                       // Thread-local-storage load image
+                                           };
+  //                                      
+  // RAM Placement                        
+  //                                      
+  place in RAM                             {                                          // Special sections
+                                             section .non_init, section .non_init.*,  // No initialization section
+                                             block tls                                // Thread-local-storage block
+                                           };
+  place in RAM with auto order             {                                          // Initialized sections
+                                             section .fast, section .fast.*,          // "ramfunc" section
+                                             section .data, section .data.*,          // Initialized data section
+                                             section .bss, section .bss.*             // Static data section
+                                           };
+  place in RAM                             { 
+                                             /* expandable */ block heap              // Heap reserved block
+                                           };
+  place at end of RAM                      { 
+                                             block stack                              // Stack reserved block at the end
+                                           };
+
+
+***************************************************************************************
+***                                                                                 ***
+***                                PLACEMENT SUMMARY                                ***
+***                                                                                 ***
+***************************************************************************************
+
+place at 0x08000000
+
+  Section                  Type  Address       Size  Align  Object
+  -------                  ----  -------       ----  -----  ------
+  .vectors                 Code  08000000      0xc0      2  Cortex_M_Startup.o
+
+place at 0x20004000
+
+  Section                  Type  Address       Size  Align  Object
+  -------                  ----  -------       ----  -----  ------
+
+place in [0x08000000 to 0x0803ffff] with maximum packing
+
+  Section                  Type  Address       Size  Align  Object
+  -------                  ----  -------       ----  -----  ------
+  .init                    Code  080000c0      0x64      4  Cortex_M_Startup.o
+  .init                    Code  08000124      0x64      4  SEGGER_THUMB_Startup.o
+  .text.main               Code  08000188      0x30      4  main.o
+  .text.initGpio           Code  080001b8      0x2c      4  main.o
+  .text.initClock          Code  080001e4      0x14      4  main.o
+  .text.vTaskToggle        Code  080001f8      0x5c      4  main.o
+  .text.SystemInit         Code  08000254      0x64      4  system_stm32l1xx.o
+  .text.SetSysClock        Code  080002b8     0x118      4  system_stm32l1xx.o
+  .text.pxPortInitialiseStack
+                           Code  080003d0      0x50      4  port.o
+  .text.prvPortStartFirstTask
+                           Code  08000420      0x20      4  port.o
+  .text.xPortStartScheduler
+                           Code  08000440      0x3c      4  port.o
+  .text.vPortEnterCritical
+                           Code  0800047c      0x28      4  port.o
+  .text.vPortExitCritical  Code  080004a4      0x28      4  port.o
+  .text.vPortSetupTimerInterrupt
+                           Code  080004cc      0x1c      4  port.o
+  .text.xQueueGenericReset
+                           Code  080004e8      0xb4      4  queue.o
+  .text.xQueueGenericSend  Code  0800059c     0x150      4  queue.o
+  .text.xQueueGenericReceive
+                           Code  080006ec     0x1ac      4  queue.o
+  .text.vQueueAddToRegistry
+                           Code  08000898      0x48      4  queue.o
+  .text.prvAddNewTaskToReadyList
+                           Code  080008e0      0xdc      4  tasks.o
+  .text.vTaskStartScheduler
+                           Code  080009bc      0x78      4  tasks.o
+  .text.vTaskSuspendAll    Code  08000a34      0x14      4  tasks.o
+  .text.xTaskResumeAll     Code  08000a48     0x11c      4  tasks.o
+  .text.xTaskGetTickCount  Code  08000b64      0x14      4  tasks.o
+  .text.xTaskIncrementTick
+                           Code  08000b78     0x14c      4  tasks.o
+  .text.vTaskPlaceOnEventList
+                           Code  08000cc4      0x2c      4  tasks.o
+  .text.vTaskPlaceOnEventListRestricted
+                           Code  08000cf0      0x38      4  tasks.o
+  .text.xTaskRemoveFromEventList
+                           Code  08000d28      0xa8      4  tasks.o
+  .text.vTaskSetTimeOutState
+                           Code  08000dd0      0x24      4  tasks.o
+  .text.xTaskCheckForTimeOut
+                           Code  08000df4      0x88      4  tasks.o
+  .text.vTaskMissedYield   Code  08000e7c      0x10      4  tasks.o
+  .text.prvIdleTask        Code  08000e8c      0x2c      4  tasks.o
+  .text.prvInitialiseTaskLists
+                           Code  08000eb8      0x7c      4  tasks.o
+  .text.prvCheckTasksWaitingTermination
+                           Code  08000f34      0x74      4  tasks.o
+  .text.prvResetNextTaskUnblockTime
+                           Code  08000fa8      0x40      4  tasks.o
+  .text.xTaskGetSchedulerState
+                           Code  08000fe8      0x34      4  tasks.o
+  .text.vTaskPriorityInherit
+                           Code  0800101c      0xbc      4  tasks.o
+  .text.xTaskPriorityDisinherit
+                           Code  080010d8      0x98      4  tasks.o
+  .text.pvTaskIncrementMutexHeldCount
+                           Code  08001170      0x20      4  tasks.o
+  .text.prvAddCurrentTaskToDelayedList
+                           Code  08001190      0xa8      4  tasks.o
+  .text.xTimerCreateTimerTask
+                           Code  08001238      0x44      4  timers.o
+  .text.xTimerGenericCommand
+                           Code  0800127c      0x78      4  timers.o
+  .text.prvProcessExpiredTimer
+                           Code  080012f4      0x64      4  timers.o
+  .text.prvProcessTimerOrBlockTask
+                           Code  08001358      0x98      4  timers.o
+  .text.prvGetNextExpireTime
+                           Code  080013f0      0x40      4  timers.o
+  .text.prvSampleTimeNow   Code  08001430      0x3c      4  timers.o
+  .text.prvInsertTimerInActiveList
+                           Code  0800146c      0x84      4  timers.o
+  .text.prvProcessReceivedCommands
+                           Code  080014f0      0xe8      4  timers.o
+  .text.prvSwitchTimerLists
+                           Code  080015d8      0xa4      4  timers.o
+  .text.prvCheckForValidListAndQueue
+                           Code  0800167c      0x6c      4  timers.o
+  .text.pvPortMalloc       Code  080016e8      0x88      4  heap_1.o
+  .rodata                  Cnst  08001770       0x4      4  main.o
+  .rodata                  Cnst  08001774       0xd      4  timers.o
+  .text.delay              Code  08001782      0x16      2  main.o
+  .rodata                  Cnst  08001798      0x17      4  tasks.o
+  .text.vListInitialise    Code  080017b0      0x36      2  list.o
+  .text.vListInsertEnd     Code  080017e6      0x3e      2  list.o
+  .text.uxListRemove       Code  08001824      0x4a      2  list.o
+  .text.prvTaskExitError   Code  0800186e      0x16      2  port.o
+  .text.xQueueGenericCreate
+                           Code  08001884      0x5a      2  queue.o
+  .text.prvCopyDataToQueue
+                           Code  080018de      0xd2      2  queue.o
+  .text.prvCopyDataFromQueue
+                           Code  080019b0      0x4a      2  queue.o
+  .text.prvUnlockQueue     Code  080019fa      0xae      2  queue.o
+  .text.prvIsQueueEmpty    Code  08001aa8      0x2a      2  queue.o
+  .text.prvIsQueueFull     Code  08001ad2      0x2e      2  queue.o
+  .text.vQueueWaitForMessageRestricted
+                           Code  08001b00      0x66      2  queue.o
+  .text.xTaskCreate        Code  08001b66      0x86      2  tasks.o
+  .text.prvDeleteTCB       Code  08001bec      0x1e      2  tasks.o
+  .text.vPortFree          Code  08001c0a       0xa      2  heap_1.o
+  .text.libc.memcpy        Code  08001c14      0x52      2  libc2_asm.o (libc_v7m_t_le_eabi.a)
+  .text.libc.memset        Code  08001c66      0x66      2  libc2_asm.o (libc_v7m_t_le_eabi.a)
+  .text.vApplicationTickHook
+                           Code  08001ccc       0x4      2  main.o
+  .text.vListInitialiseItem
+                           Code  08001cd0      0x10      2  list.o
+  .text.vListInsert        Code  08001ce0      0x68      2  list.o
+  .text.prvInitialiseNewQueue
+                           Code  08001d48      0x48      2  queue.o
+  .text.xQueueGenericSendFromISR
+                           Code  08001d90      0xb0      2  queue.o
+  .text.prvInitialiseNewTask
+                           Code  08001e40     0x10c      2  tasks.o
+  .text.prvTimerTask       Code  08001f4c      0x20      2  timers.o
+
+place in [0x08000000 to 0x0803ffff] with auto order
+
+  Section                  Type  Address       Size  Align  Object
+  -------                  ----  -------       ----  -----  ------
+
+place in [0x20000000 to 0x20003fff] with auto order
+
+  Section                  Type  Address       Size  Align  Object
+  -------                  ----  -------       ----  -----  ------
+
+place in [0x20000000 to 0x20003fff] with auto order
+
+  Section                  Type  Address       Size  Align  Object
+  -------                  ----  -------       ----  -----  ------
+  .data.uxCriticalNesting  Data  20000000       0x4      4  port.o
+  .bss.pxReadyTasksLists   Data  20000004      0x64      4  tasks.o
+  .bss.xQueueRegistry      Data  20000068      0x50      4  queue.o
+  .bss.xDelayedTaskList1   Data  200000b8      0x14      4  tasks.o
+  .bss.xDelayedTaskList2   Data  200000cc      0x14      4  tasks.o
+  .bss.xPendingReadyList   Data  200000e0      0x14      4  tasks.o
+  .bss.xTasksWaitingTermination
+                           Data  200000f4      0x14      4  tasks.o
+  .bss.xSuspendedTaskList  Data  20000108      0x14      4  tasks.o
+  .bss.xActiveTimerList1   Data  2000011c      0x14      4  timers.o
+  .bss.xActiveTimerList2   Data  20000130      0x14      4  timers.o
+  .bss.pxCurrentTCB        Data  20000144       0x4      4  tasks.o
+  .bss.pxDelayedTaskList   Data  20000148       0x4      4  tasks.o
+  .bss.pxOverflowDelayedTaskList
+                           Data  2000014c       0x4      4  tasks.o
+  .bss.uxDeletedTasksWaitingCleanUp
+                           Data  20000150       0x4      4  tasks.o
+  .bss.uxCurrentNumberOfTasks
+                           Data  20000154       0x4      4  tasks.o
+  .bss.xTickCount          Data  20000158       0x4      4  tasks.o
+  .bss.uxTopReadyPriority  Data  2000015c       0x4      4  tasks.o
+  .bss.xSchedulerRunning   Data  20000160       0x4      4  tasks.o
+  .bss.uxPendedTicks       Data  20000164       0x4      4  tasks.o
+  .bss.xYieldPending       Data  20000168       0x4      4  tasks.o
+  .bss.xNumOfOverflows     Data  2000016c       0x4      4  tasks.o
+  .bss.uxTaskNumber        Data  20000170       0x4      4  tasks.o
+  .bss.xNextTaskUnblockTime
+                           Data  20000174       0x4      4  tasks.o
+  .bss.xIdleTaskHandle     Data  20000178       0x4      4  tasks.o
+  .bss.uxSchedulerSuspended
+                           Data  2000017c       0x4      4  tasks.o
+  .bss.pxCurrentTimerList  Data  20000180       0x4      4  timers.o
+  .bss.pxOverflowTimerList
+                           Data  20000184       0x4      4  timers.o
+  .bss.xTimerQueue         Data  20000188       0x4      4  timers.o
+  .bss.xTimerTaskHandle    Data  2000018c       0x4      4  timers.o
+  .bss.xLastTime.4684      Data  20000190       0x4      4  timers.o
+  .bss.xNextFreeByte       Data  20000194       0x4      4  heap_1.o
+  .bss.pucAlignedHeap.4400
+                           Data  20000198       0x4      4  heap_1.o
+
+place in [0x20000000 to 0x20003fff] with auto order
+
+  Section                  Type  Address       Size  Align  Object
+  -------                  ----  -------       ----  -----  ------
+
+
+***************************************************************************************
+***                                                                                 ***
+***                                 MODULE SUMMARY                                  ***
+***                                                                                 ***
+***************************************************************************************
+
+                                            Object      Code  RO Data  RW Data  ZI Data
+---------------------------------------------------------------------------------------
+                                            main.o       230        4                   
+                                Cortex_M_Startup.o       292                            
+                            SEGGER_THUMB_Startup.o       100                            
+                                system_stm32l1xx.o       380                            
+                                            list.o       310                            
+                                            port.o       302                 4          
+                                           queue.o      2002                         80 
+                                           tasks.o      2824       23               260 
+                                          timers.o      1232       13                60 
+                                          heap_1.o       146                      16392 
+                libc2_asm.o (libc_v7m_t_le_eabi.a)       184                            
+                                                    ===================================
+                                            Total:      8002       40        4    16792
+                                                    ===================================
+
+
+***************************************************************************************
+***                                                                                 ***
+***                                  LINK SUMMARY                                   ***
+***                                                                                 ***
+***************************************************************************************
+
+Link complete: 0 errors, 0 warnings, 0 remarks
+
+  Name             Range           Size       Allocated         Used   Loading  (Alignment loss)
+  ---------- -------- -------- --------   -------- -------- --------   -------  ----------------
+  FLASH      08000000 0803ffff   262144   08000000 08001f6b     8044     3.07%         2   0.02%
+  RAM        20000000 20003fff    16384   20000000 20003fff    16384   100.00%     13924  84.99%
+
+Section composition:
+
+      8002  RX         4  RW
+        40  RO     18840  ZI
+  ------------   -----------
+      8042 ROM     18844 RAM
