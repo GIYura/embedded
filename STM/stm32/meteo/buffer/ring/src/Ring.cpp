@@ -4,7 +4,7 @@
 #include <assert.h>
 
 
-Lib::Ring::Ring(uint16_t size){
+Buffer::Ring::Ring(uint16_t size){
     assert(size);
     buff = (uint8_t*)malloc(sizeof(uint8_t) * size);
     if(NULL == buff){
@@ -15,35 +15,35 @@ Lib::Ring::Ring(uint16_t size){
     this->size = size;
 }
 
-Lib::Ring::~Ring(){
+Buffer::Ring::~Ring(){
 
 }
 
-void Lib::Ring::nextHead(void){
+void Buffer::Ring::nextHead(void){
     head = (head + 1) % size;
 }
 
-void Lib::Ring::nextTail(void){
+void Buffer::Ring::nextTail(void){
     tail = (tail + 1) % size;
 }
 
-bool Lib::Ring::isEmpty(void){
+bool Buffer::Ring::isEmpty(void){
     return head == tail;
 }
 
-bool Lib::Ring::isFull(void){
+bool Buffer::Ring::isFull(void){
     nextHead();
     return head == tail;
 }
 
-void Lib::Ring::pop(uint8_t* data){
+void Buffer::Ring::pop(uint8_t* data){
     if(!isEmpty()){
 	*data = buff[tail];
 	nextTail();
     }
 }
 
-void Lib::Ring::push(uint8_t data){
+void Buffer::Ring::push(uint8_t data){
     buff[head] = data;
     if(isFull()){
 	nextTail();

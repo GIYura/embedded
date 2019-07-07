@@ -15,7 +15,7 @@
       arm_simulator_memory_simulation_parameter="RX 08000000,00040000,FFFFFFFF;RWX 20000000,00004000,CDCDCDCD"
       arm_target_device_name="STM32L100RC"
       arm_target_interface_type="SWD"
-      c_user_include_directories="/home/jura/embedded/STM/stm32/meteo/cmsis/inc/;/home/jura/embedded/STM/stm32/meteo/spl/inc/;/home/jura/embedded/STM/stm32/meteo/driver/1wire/inc/;/home/jura/embedded/STM/stm32/meteo/driver/i2c/inc/;/home/jura/embedded/STM/stm32/meteo/driver/spi/inc/;/home/jura/embedded/STM/stm32/meteo/driver/uart/inc/;/home/jura/embedded/STM/stm32/meteo/module/esp/inc/;/home/jura/embedded/STM/stm32/meteo/module/dh11/inc/;/home/jura/embedded/STM/stm32/meteo/module/ds18b20/inc/;/home/jura/embedded/STM/stm32/meteo/module/lcd/inc/;/home/jura/embedded/STM/stm32/meteo/module/nrf/inc/;/home/jura/embedded/STM/stm32/meteo/lib/fifo/inc/;/home/jura/embedded/STM/stm32/meteo/lib/ring/inc/"
+      c_user_include_directories="/home/jura/embedded/STM/stm32/meteo/cmsis/inc/;/home/jura/embedded/STM/stm32/meteo/spl/inc/;/home/jura/embedded/STM/stm32/meteo/driver/1wire/inc/;/home/jura/embedded/STM/stm32/meteo/driver/i2c/inc/;/home/jura/embedded/STM/stm32/meteo/driver/spi/inc/;/home/jura/embedded/STM/stm32/meteo/driver/uart/inc/;/home/jura/embedded/STM/stm32/meteo/module/esp/inc/;/home/jura/embedded/STM/stm32/meteo/module/dh11/inc/;/home/jura/embedded/STM/stm32/meteo/module/ds18b20/inc/;/home/jura/embedded/STM/stm32/meteo/module/lcd/inc/;/home/jura/embedded/STM/stm32/meteo/module/nrf/inc/;/home/jura/embedded/STM/stm32/meteo/buffer/fifo/inc/;/home/jura/embedded/STM/stm32/meteo/buffer/ring/inc/"
       debug_target_connection="J-Link"
       link_linker_script_file="$(ProjectDir)/SEGGER_Flash.icf"
       linker_output_format="hex"
@@ -69,12 +69,12 @@
         <file file_name="module/lcd/src/Lcd.cpp" />
       </folder>
     </folder>
-    <folder Name="lib">
+    <folder Name="buffer">
       <folder Name="fifo">
-        <file file_name="lib/fifo/src/Fifo.cpp" />
+        <file file_name="buffer/fifo/src/Fifo.cpp" />
       </folder>
       <folder Name="ring">
-        <file file_name="lib/ring/src/Ring.cpp" />
+        <file file_name="buffer/ring/src/Ring.cpp" />
       </folder>
     </folder>
   </project>

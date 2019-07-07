@@ -9,8 +9,8 @@
 #define RING_SIZE   256
 #define FIFO_SIZE   256
 
-static Lib::Ring *ring = new Lib::Ring(RING_SIZE);
-static Lib::Fifo *fifo = new Lib::Fifo(FIFO_SIZE);
+static Buffer::Ring *ring = new Buffer::Ring(RING_SIZE);
+static Buffer::Fifo *fifo = new Buffer::Fifo(FIFO_SIZE);
 static uint8_t data;
 
 Driver::Uart::Uart(){

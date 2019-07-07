@@ -1,10 +1,10 @@
-#ifndef _FIFO_H
-#define _FIFO_H
+#ifndef _RING_H
+#define _RING_H
 
 #include <stdint.h>
 
-namespace Lib{
-    class Fifo{
+namespace Buffer{
+    class Ring{
 
 	    uint16_t head;
 	    uint16_t tail;
@@ -17,8 +17,8 @@ namespace Lib{
 	    bool isEmpty(void);
 
 	public:
-	    Fifo(uint16_t);
-	    virtual ~Fifo();
+	    Ring(uint16_t);
+	    virtual ~Ring();
 
 	    void pop(uint8_t*);
 	    void push(uint8_t);
