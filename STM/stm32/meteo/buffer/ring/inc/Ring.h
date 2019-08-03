@@ -20,7 +20,7 @@ namespace Buffer{
 	    Ring(uint16_t);
 	    virtual ~Ring();
 
-	    void pop(uint8_t*);
+	    bool pop(uint8_t*);
 	    void push(uint8_t);
     };
 }

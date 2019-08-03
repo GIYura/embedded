@@ -31,8 +31,8 @@ namespace Driver{
 	    Uart();
 	    virtual ~Uart();
 	    uart_state_t init(uart_number_t, uart_speed_t);
-	    uart_state_t sendData(uint8_t*, uint16_t);
-	    uart_state_t receiveData(uint8_t*, uint16_t);
+	    uart_state_t sendData(uint8_t* data, uint16_t len);
+	    uart_state_t receiveData(uint8_t*, uint16_t*);
             uart_state_t setBaudRate(uart_speed_t);
     };
 }

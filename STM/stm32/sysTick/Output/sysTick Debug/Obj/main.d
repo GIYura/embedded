@@ -8,4 +8,5 @@ Output/sysTick\ Debug/Obj/main.o: \
  /home/jura/embedded/STM/stm32/sysTick/cmsis/inc/system_stm32l1xx.h \
  /home/jura/embedded/STM/stm32/sysTick/cmsis/inc/stm32l1xx_conf.h \
  /home/jura/embedded/STM/stm32/sysTick/stdPeriphiral/inc/stm32l1xx_gpio.h \
- /home/jura/embedded/STM/stm32/sysTick/stdPeriphiral/inc/stm32l1xx_rcc.h
+ /home/jura/embedded/STM/stm32/sysTick/stdPeriphiral/inc/stm32l1xx_rcc.h \
+ /usr/share/segger_embedded_studio_for_arm_4.16/include/stdbool.h

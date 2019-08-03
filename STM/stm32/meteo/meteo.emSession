@@ -30,7 +30,11 @@
   <ProjectSessionItem path="meteo;meteo;driver;spi"/>
   <ProjectSessionItem path="meteo;meteo;driver;uart"/>
   <ProjectSessionItem path="meteo;meteo;module"/>
+  <ProjectSessionItem path="meteo;meteo;module;at_parser"/>
+  <ProjectSessionItem path="meteo;meteo;module;dh11"/>
+  <ProjectSessionItem path="meteo;meteo;module;ds18b20"/>
   <ProjectSessionItem path="meteo;meteo;module;esp"/>
+  <ProjectSessionItem path="meteo;meteo;Source Files"/>
   <ProjectSessionItem path="meteo;meteo;spl"/>
  </Project>
  <Register1>
@@ -64,10 +68,12 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="35" y="34" useTextEdit="1" useBinaryEdit="0" left="0" path="module/esp/src/Esp.cpp" selected="1" top="10" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="32" y="49" useTextEdit="1" useBinaryEdit="0" left="0" path="module/esp/inc/Esp.h" selected="0" top="27" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="driver/uart/src/Uart.cpp" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="driver/uart/inc/Uart.h" selected="0" top="9" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="33" useTextEdit="1" useBinaryEdit="0" left="0" path="module/ds18b20/src/Ds18b20.cpp" selected="1" top="24" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="19" y="3" useTextEdit="1" useBinaryEdit="0" left="0" path="module/ds18b20/inc/Ds18b20.h" selected="0" top="75" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="module/at_parser/src/At_parser.cpp" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="3" useTextEdit="1" useBinaryEdit="0" left="0" path="module/at_parser/inc/At_parser.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="spl/src/stm32l1xx_gpio.c" selected="0" top="276" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="main.cpp" selected="0" top="0" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="meteo" fileDialogDefaultFilter="*.c;*.cpp;*.cxx;*.cc;*.h;*.hpp;*.hxx" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="/home/jura/embedded/STM/stm32/meteo/buffer/ring/src" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="meteo" fileDialogDefaultFilter="*.c;*.cpp;*.cxx;*.cc;*.h;*.hpp;*.hxx" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="/home/jura/embedded/STM/stm32/meteo/module/at_parser/src" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

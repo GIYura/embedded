@@ -51,6 +51,7 @@ Command line:
   Output/meteo Debug/Obj/Dh11.o
   Output/meteo Debug/Obj/Nrf.o
   Output/meteo Debug/Obj/Lcd.o
+  Output/meteo Debug/Obj/At_parser.o
   Output/meteo Debug/Obj/Fifo.o
   Output/meteo Debug/Obj/Ring.o
   /usr/share/segger_embedded_studio_for_arm_4.16/lib/libdebugio_mempoll_v7m_t_le_eabi.a
@@ -210,28 +211,31 @@ place in [0x08000000 to 0x0803ffff] with maximum packing
   .text._Z41__static_initialization_and_destruction_0ii
                            Code  080007d8      0x58      4  Uart.o
   .text._ZN6Module3EspC2Ev
-                           Code  08000830      0x3c      4  Esp.o
+                           Code  08000830      0x6c      4  Esp.o
   .text._ZN6Module3EspD2Ev
-                           Code  0800086c      0x18      4  Esp.o
+                           Code  0800089c      0x18      4  Esp.o
+  .text._ZN6Module3Esp11setEspStateENS0_11esp_state_tE
+                           Code  080008b4      0x58      4  Esp.o
   .text._Z41__static_initialization_and_destruction_0ii
-                           Code  08000884      0x50      4  Esp.o
+                           Code  0800090c      0x50      4  Esp.o
+  .text._Z41__static_initialization_and_destruction_0ii
+                           Code  0800095c      0x38      4  At_parser.o
   .text._ZN6Buffer4FifoC2Et
-                           Code  080008d4      0x70      4  Fifo.o
+                           Code  08000994      0x70      4  Fifo.o
   .text._ZN6Buffer4FifoD2Ev
-                           Code  08000944      0x18      4  Fifo.o
+                           Code  08000a04      0x18      4  Fifo.o
   .text._ZN6Buffer4RingC2Et
-                           Code  0800095c      0x70      4  Ring.o
+                           Code  08000a1c      0x70      4  Ring.o
   .text._ZN6Buffer4RingD2Ev
-                           Code  080009cc      0x18      4  Ring.o
+                           Code  08000a8c      0x18      4  Ring.o
   .text.libdebugio.__do_debug_operation
-                           Code  080009e4      0x30      4  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
-  .text.libc.malloc        Code  08000a14      0x94      4  libc2.o (libc_v7m_t_le_eabi.a)
-  .text.libc.free          Code  08000aa8      0xb4      4  libc2.o (libc_v7m_t_le_eabi.a)
-  .text.libc.printf        Code  08000b5c      0x40      4  libc2.o (libc_v7m_t_le_eabi.a)
-  .text.libcpp._Znwj       Code  08000b9c      0x30      4  new.o (libcpp_v7m_t_le_eabi.a)
+                           Code  08000aa4      0x30      4  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
+  .text.libc.malloc        Code  08000ad4      0x94      4  libc2.o (libc_v7m_t_le_eabi.a)
+  .text.libc.free          Code  08000b68      0xb4      4  libc2.o (libc_v7m_t_le_eabi.a)
+  .text.libc.printf        Code  08000c1c      0x40      4  libc2.o (libc_v7m_t_le_eabi.a)
+  .text.libcpp._Znwj       Code  08000c5c      0x30      4  new.o (libcpp_v7m_t_le_eabi.a)
   .text.libc.__vfprintf_int_nwp
-                           Code  08000bcc     0x4f0      4  libvfprintf_v7m_t_le_eabi.o
-  .rodata                  Cnst  080010bc      0xc0      4  Esp.o
+                           Code  08000c8c     0x4f0      4  libvfprintf_v7m_t_le_eabi.o
   .rodata._ZTVN6Driver4UartE
                            Cnst  0800117c      0x10      4  Uart.o
   .rodata._ZTVN6Module3EspE
@@ -244,51 +248,61 @@ place in [0x08000000 to 0x0803ffff] with maximum packing
                            Cnst  080011bc      0x10      4  libc2.o (libc_v7m_t_le_eabi.a)
   .rodata.libc.__RAL_hex_uc
                            Cnst  080011cc      0x10      4  libc2.o (libc_v7m_t_le_eabi.a)
-  .init_array              ----  08001580       0x4      4  Uart.o
-  .init_array              ----  08001584       0x4      4  Esp.o
-  .segger.init.table       Cnst  08001588      0x30      4  - Linker created -
+  .init_array              ----  08001738       0x4      4  Uart.o
+  .init_array              ----  0800173c       0x4      4  Esp.o
+  .init_array              ----  08001740       0x4      4  At_parser.o
+  .segger.init.table       Cnst  08001744      0x30      4  - Linker created -
   .rodata                  Cnst  080011dc      0x76      4  Fifo.o
   .text.__assert           Code  08001252       0x2      2  SEGGER_THUMB_Startup.o
   .rodata                  Cnst  08001254      0x76      4  Ring.o
   .text.GPIO_PinAFConfig   Code  080012ca      0x9a      2  stm32l1xx_gpio.o
   .rodata                  Cnst  08001364      0xa5      4  Uart.o
   .text.USART_Cmd          Code  0800140a      0x3a      2  stm32l1xx_usart.o
-  .segger.init.data        Cnst  080015b8      0x1d      4  - Linker created -
+  .segger.init.data        Cnst  08001774      0x1d      4  - Linker created -
   .text.USART_OverSampling8Cmd
-                           Code  08001444      0x3e      2  stm32l1xx_usart.o
+                           Code  08001574      0x3e      2  stm32l1xx_usart.o
+  .rodata                  Cnst  08001444     0x12f      4  Esp.o
   .text._GLOBAL__sub_I__ZN6Driver4UartC2Ev
-                           Code  08001482       0xe      2  Uart.o
+                           Code  080015b2       0xe      2  Uart.o
+  .text._ZN6Module3Esp11setEspStageENS0_11esp_stage_tE
+                           Code  080015c0      0x32      2  Esp.o
   .text._GLOBAL__sub_I__ZN6Module3EspC2Ev
-                           Code  08001490       0xe      2  Esp.o
-  .text.libc.__heap_lock   Code  0800149e       0x2      2  libc.o (libc_v7m_t_le_eabi.a)
+                           Code  080015f2       0xe      2  Esp.o
+  .text._GLOBAL__sub_I__ZN6Parser9At_parserC2Ev
+                           Code  08001600       0xe      2  At_parser.o
+  .text.libc.__heap_lock   Code  0800160e       0x2      2  libc.o (libc_v7m_t_le_eabi.a)
   .text.libc.__heap_unlock
-                           Code  080014a0       0x2      2  libc.o (libc_v7m_t_le_eabi.a)
+                           Code  08001610       0x2      2  libc.o (libc_v7m_t_le_eabi.a)
   .text.libc.__printf_lock
-                           Code  080014a2       0x2      2  libc.o (libc_v7m_t_le_eabi.a)
+                           Code  08001612       0x2      2  libc.o (libc_v7m_t_le_eabi.a)
   .text.libc.__printf_unlock
-                           Code  080014a4       0x2      2  libc.o (libc_v7m_t_le_eabi.a)
+                           Code  08001614       0x2      2  libc.o (libc_v7m_t_le_eabi.a)
   .text.libdebugio.__debug_io_lock
-                           Code  080014a6       0x2      2  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
+                           Code  08001616       0x2      2  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
   .text.libdebugio.__debug_io_unlock
-                           Code  080014a8       0x2      2  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
+                           Code  08001618       0x2      2  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
   .segger.init.__SEGGER_init_zero
-                           Code  080015d6      0x16      2  SEGGER_THUMB_Startup.o
+                           Code  08001792      0x16      2  SEGGER_THUMB_Startup.o
   .segger.init.__SEGGER_init_copy
-                           Code  080015ec      0x1a      2  SEGGER_THUMB_Startup.o
-  .text.main               Code  080014aa       0x8      2  main.o
-  .text.__putchar          Code  080014b2       0x4      2  SEGGER_THUMB_Startup.o
+                           Code  080017a8      0x1a      2  SEGGER_THUMB_Startup.o
+  .text.main               Code  0800161a       0x8      2  main.o
+  .text.__putchar          Code  08001622       0x4      2  SEGGER_THUMB_Startup.o
   .text._ZN6Driver4UartD0Ev
-                           Code  080014b6      0x1c      2  Uart.o
+                           Code  08001626      0x1c      2  Uart.o
   .text._ZN6Module3EspD0Ev
-                           Code  080014d2      0x1c      2  Esp.o
+                           Code  08001642      0x1c      2  Esp.o
+  .text._ZN6Module3Esp13setAtResponceENS0_13at_responce_tE
+                           Code  0800165e      0x24      2  Esp.o
+  .text._ZN6Module3Esp12setAtCommandENS0_12at_command_tE
+                           Code  08001682      0x24      2  Esp.o
   .text._ZN6Buffer4FifoD0Ev
-                           Code  080014ee      0x1c      2  Fifo.o
+                           Code  080016a6      0x1c      2  Fifo.o
   .text._ZN6Buffer4RingD0Ev
-                           Code  0800150a      0x1c      2  Ring.o
-  .text.libc.__putc        Code  08001526      0x34      2  libc2.o (libc_v7m_t_le_eabi.a)
-  .text.libcpp._ZdlPv      Code  0800155a       0xc      2  new.o (libcpp_v7m_t_le_eabi.a)
+                           Code  080016c2      0x1c      2  Ring.o
+  .text.libc.__putc        Code  080016de      0x34      2  libc2.o (libc_v7m_t_le_eabi.a)
+  .text.libcpp._ZdlPv      Code  08001712       0xc      2  new.o (libcpp_v7m_t_le_eabi.a)
   .text.libdebugio.debug_putchar
-                           Code  08001566      0x18      2  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
+                           Code  0800171e      0x18      2  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
   .rodata.block.tdata.copy
                            Cnst  08001409                1  - Linker created -
 
@@ -313,14 +327,15 @@ place in [0x20000000 to 0x20003fff] with auto order
   .bss._ZL4fifo            Zero  20000024       0x4      4  Uart.o
   .bss._ZL4uart            Zero  20000028       0x4      4  Esp.o
   .bss._ZL3esp             Zero  2000002c       0x4      4  Esp.o
+  .bss._ZL4uart            Zero  20000030       0x4      4  At_parser.o
   .bss.libdebugio.dbgCntrlWord_mempoll
-                           Zero  20000030       0x4      4  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
-  .bss.libdebugio.dbgCommWord
                            Zero  20000034       0x4      4  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
+  .bss.libdebugio.dbgCommWord
+                           Zero  20000038       0x4      4  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
   .bss.libc.__user_format_extender
-                           Zero  20000038       0x4      4  libc2.o (libc_v7m_t_le_eabi.a)
+                           Zero  2000003c       0x4      4  libc2.o (libc_v7m_t_le_eabi.a)
   .bss.libcpp._ZL10newHandler
-                           Zero  2000003c       0x4      4  new.o (libcpp_v7m_t_le_eabi.a)
+                           Zero  20000040       0x4      4  new.o (libcpp_v7m_t_le_eabi.a)
 
 place in [0x20000000 to 0x20003fff] with auto order
 
@@ -335,21 +350,22 @@ place in [0x20000000 to 0x20003fff] with auto order
 ***************************************************************************************
 
 Zero (__SEGGER_init_zero)
-    1 destination range, total size 0x20
-          [0x20000020 to 0x2000003f]
-    8 initialized sections:
+    1 destination range, total size 0x24
+          [0x20000020 to 0x20000043]
+    9 initialized sections:
           [0x20000020 to 0x20000023]  section .bss._ZL4ring from Uart.o, align=4
           [0x20000024 to 0x20000027]  section .bss._ZL4fifo from Uart.o, align=4
           [0x20000028 to 0x2000002b]  section .bss._ZL4uart from Esp.o, align=4
           [0x2000002c to 0x2000002f]  section .bss._ZL3esp from Esp.o, align=4
-          [0x20000030 to 0x20000033]  section .bss.libdebugio.dbgCntrlWord_mempoll from mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a), align=4
-          [0x20000034 to 0x20000037]  section .bss.libdebugio.dbgCommWord from mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a), align=4
-          [0x20000038 to 0x2000003b]  section .bss.libc.__user_format_extender from libc2.o (libc_v7m_t_le_eabi.a), align=4
-          [0x2000003c to 0x2000003f]  section .bss.libcpp._ZL10newHandler from new.o (libcpp_v7m_t_le_eabi.a), align=4
+          [0x20000030 to 0x20000033]  section .bss._ZL4uart from At_parser.o, align=4
+          [0x20000034 to 0x20000037]  section .bss.libdebugio.dbgCntrlWord_mempoll from mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a), align=4
+          [0x20000038 to 0x2000003b]  section .bss.libdebugio.dbgCommWord from mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a), align=4
+          [0x2000003c to 0x2000003f]  section .bss.libc.__user_format_extender from libc2.o (libc_v7m_t_le_eabi.a), align=4
+          [0x20000040 to 0x20000043]  section .bss.libcpp._ZL10newHandler from new.o (libcpp_v7m_t_le_eabi.a), align=4
 
 Copy packing=copy (__SEGGER_init_copy)
     1 source range, total size 0x19 (100% of destination)
-          [0x080015b8 to 0x080015d0]
+          [0x08001774 to 0x0800178c]
     1 destination range, total size 0x19
           [0x20000000 to 0x20000018]
     2 initialized sections:
@@ -358,7 +374,7 @@ Copy packing=copy (__SEGGER_init_copy)
 
 Copy packing=copy (__SEGGER_init_copy)
     1 source range, total size 0x4 (100% of destination)
-          [0x080015d1 to 0x080015d4]
+          [0x0800178d to 0x08001790]
     1 destination range, total size 0x4
           [0x2000001c to 0x2000001f]
     1 initialized sections:
@@ -386,7 +402,8 @@ Totals:
                                    stm32l1xx_rcc.o       484                25          
                                  stm32l1xx_usart.o       476                            
                                             Uart.o       526      181                 8 
-                                             Esp.o       206      208                 8 
+                                             Esp.o       464      319                 8 
+                                       At_parser.o        70                          4 
                                             Fifo.o       164      134                   
                                             Ring.o       164      134                   
 mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
@@ -397,7 +414,7 @@ mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
          libdebugio.o (libdebugio_v7m_t_le_eabi.a)        28                            
                        libvfprintf_v7m_t_le_eabi.o      1264                            
                                                     ===================================
-                                            Total:      4860      689       29       32
+                                            Total:      5188      800       29       36
                                                     ===================================
 
 
@@ -430,9 +447,9 @@ Symbols by value
   tdata_load$$Length       00000000                   ----  Gb  - Linker created -
   __tdata_load_size__      00000000                   ----  Gb  - Linker created -
   __tdata_load_size        00000000                   ----  Gb  - Linker created -
-  ctors$$Length            00000008                   ----  Gb  - Linker created -
-  __ctors_size__           00000008                   ----  Gb  - Linker created -
-  __ctors_size             00000008                   ----  Gb  - Linker created -
+  ctors$$Length            0000000c                   ----  Gb  - Linker created -
+  __ctors_size__           0000000c                   ----  Gb  - Linker created -
+  __ctors_size             0000000c                   ----  Gb  - Linker created -
   __STACKSIZE__            00000400                   ----  Gb  - Linker created -
   __HEAPSIZE__             00000400                   ----  Gb  - Linker created -
   heap$$Length             00000400                   ----  Gb  - Linker created -
@@ -442,7 +459,7 @@ Symbols by value
   __stack_size__           00000400                   ----  Gb  - Linker created -
   __stack_size             00000400                   ----  Gb  - Linker created -
   __FLASH_segment_used_size__
-                           00001606                   ----  Gb  - Linker created -
+                           000017c2                   ----  Gb  - Linker created -
   __RAM_segment_size__     00004000                   ----  Gb  - Linker created -
   __RAM_segment_used_size__
                            00004000                   ----  Gb  - Linker created -
@@ -516,27 +533,31 @@ Symbols by value
                            080006e1      0xf8      4  Code  Gb  Uart.o
   _Z41__static_initialization_and_destruction_0ii
                            080007d9      0x58      4  Code  Lc  Uart.o
-  _ZN6Module3EspC2Ev       08000831      0x3c      4  Code  Gb  Esp.o
-  _ZN6Module3EspC1Ev       08000831      0x3c      4  Code  Gb  Esp.o
-  _ZN6Module3EspD2Ev       0800086d      0x18      4  Code  Gb  Esp.o
-  _ZN6Module3EspD1Ev       0800086d      0x18      4  Code  Gb  Esp.o
+  _ZN6Module3EspC2Ev       08000831      0x6c      4  Code  Gb  Esp.o
+  _ZN6Module3EspC1Ev       08000831      0x6c      4  Code  Gb  Esp.o
+  _ZN6Module3EspD2Ev       0800089d      0x18      4  Code  Gb  Esp.o
+  _ZN6Module3EspD1Ev       0800089d      0x18      4  Code  Gb  Esp.o
+  _ZN6Module3Esp11setEspStateENS0_11esp_state_tE
+                           080008b5      0x58      4  Code  Gb  Esp.o
   _Z41__static_initialization_and_destruction_0ii
-                           08000885      0x50      4  Code  Lc  Esp.o
-  _ZN6Buffer4FifoC2Et      080008d5      0x70      4  Code  Gb  Fifo.o
-  _ZN6Buffer4FifoC1Et      080008d5      0x70      4  Code  Gb  Fifo.o
-  _ZN6Buffer4FifoD2Ev      08000945      0x18      4  Code  Gb  Fifo.o
-  _ZN6Buffer4FifoD1Ev      08000945      0x18      4  Code  Gb  Fifo.o
-  _ZN6Buffer4RingC2Et      0800095d      0x70      4  Code  Gb  Ring.o
-  _ZN6Buffer4RingC1Et      0800095d      0x70      4  Code  Gb  Ring.o
-  _ZN6Buffer4RingD2Ev      080009cd      0x18      4  Code  Gb  Ring.o
-  _ZN6Buffer4RingD1Ev      080009cd      0x18      4  Code  Gb  Ring.o
-  __do_debug_operation     080009e5      0x30      4  Code  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
-  malloc                   08000a15      0x94      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
-  free                     08000aa9      0xb4      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
-  printf                   08000b5d      0x40      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
-  _Znwj                    08000b9d      0x30      4  Code  Wk  new.o (libcpp_v7m_t_le_eabi.a)
-  __vfprintf_int_nwp       08000bcd     0x4f0      4  Code  Gb  libvfprintf_v7m_t_le_eabi.o
-  __vfprintf               08000bcd     0x4f0      4  Code  Gb  libvfprintf_v7m_t_le_eabi.o
+                           0800090d      0x50      4  Code  Lc  Esp.o
+  _Z41__static_initialization_and_destruction_0ii
+                           0800095d      0x38      4  Code  Lc  At_parser.o
+  _ZN6Buffer4FifoC2Et      08000995      0x70      4  Code  Gb  Fifo.o
+  _ZN6Buffer4FifoC1Et      08000995      0x70      4  Code  Gb  Fifo.o
+  _ZN6Buffer4FifoD2Ev      08000a05      0x18      4  Code  Gb  Fifo.o
+  _ZN6Buffer4FifoD1Ev      08000a05      0x18      4  Code  Gb  Fifo.o
+  _ZN6Buffer4RingC2Et      08000a1d      0x70      4  Code  Gb  Ring.o
+  _ZN6Buffer4RingC1Et      08000a1d      0x70      4  Code  Gb  Ring.o
+  _ZN6Buffer4RingD2Ev      08000a8d      0x18      4  Code  Gb  Ring.o
+  _ZN6Buffer4RingD1Ev      08000a8d      0x18      4  Code  Gb  Ring.o
+  __do_debug_operation     08000aa5      0x30      4  Code  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
+  malloc                   08000ad5      0x94      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
+  free                     08000b69      0xb4      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
+  printf                   08000c1d      0x40      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
+  _Znwj                    08000c5d      0x30      4  Code  Wk  new.o (libcpp_v7m_t_le_eabi.a)
+  __vfprintf_int_nwp       08000c8d     0x4f0      4  Code  Gb  libvfprintf_v7m_t_le_eabi.o
+  __vfprintf               08000c8d     0x4f0      4  Code  Gb  libvfprintf_v7m_t_le_eabi.o
   _ZTVN6Driver4UartE       0800117c      0x10      4  Cnst  Gb  Uart.o
   _ZTVN6Module3EspE        0800118c      0x10      4  Cnst  Gb  Esp.o
   _ZTVN6Buffer4FifoE       0800119c      0x10      4  Cnst  Gb  Fifo.o
@@ -564,43 +585,48 @@ Symbols by value
   __tdata_load_start       08001409                   ----  Gb  - Linker created -
   __tdata_load_end         08001409                   ----  Gb  - Linker created -
   USART_Cmd                0800140b      0x3a      2  Code  Gb  stm32l1xx_usart.o
-  USART_OverSampling8Cmd   08001445      0x3e      2  Code  Gb  stm32l1xx_usart.o
+  USART_OverSampling8Cmd   08001575      0x3e      2  Code  Gb  stm32l1xx_usart.o
   _GLOBAL__sub_I__ZN6Driver4UartC2Ev
-                           08001483       0xe      2  Code  Lc  Uart.o
+                           080015b3       0xe      2  Code  Lc  Uart.o
+  _ZN6Module3Esp11setEspStageENS0_11esp_stage_tE
+                           080015c1      0x32      2  Code  Gb  Esp.o
   _GLOBAL__sub_I__ZN6Module3EspC2Ev
-                           08001491       0xe      2  Code  Lc  Esp.o
-  __heap_lock              0800149f       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
-  __heap_unlock            080014a1       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
-  __printf_lock            080014a3       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
-  __printf_unlock          080014a5       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
-  __debug_io_lock          080014a7       0x2      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
-  __debug_io_unlock        080014a9       0x2      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
-  main                     080014ab       0x8      2  Code  Gb  main.o
-  __putchar                080014b3       0x4      2  Code  Wk  SEGGER_THUMB_Startup.o
-  _ZN6Driver4UartD0Ev      080014b7      0x1c      2  Code  Gb  Uart.o
-  _ZN6Module3EspD0Ev       080014d3      0x1c      2  Code  Gb  Esp.o
-  _ZN6Buffer4FifoD0Ev      080014ef      0x1c      2  Code  Gb  Fifo.o
-  _ZN6Buffer4RingD0Ev      0800150b      0x1c      2  Code  Gb  Ring.o
-  __putc                   08001527      0x34      2  Code  Gb  libc2.o (libc_v7m_t_le_eabi.a)
-  _ZdlPv                   0800155b       0xc      2  Code  Wk  new.o (libcpp_v7m_t_le_eabi.a)
-  debug_putchar            08001567      0x18      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
-  ctors$$Base              08001580                   ----  Gb  - Linker created -
-  __ctors_start__          08001580                   ----  Gb  - Linker created -
-  __ctors_start            08001580                   ----  Gb  - Linker created -
-  ctors$$Limit             08001588                   ----  Gb  - Linker created -
-  __ctors_end__            08001588                   ----  Gb  - Linker created -
-  __ctors_end              08001588                   ----  Gb  - Linker created -
-  __SEGGER_init_table__    08001588      0x30      4  Cnst  Lc  - Linker created -
-  __SEGGER_init_data__     080015b8      0x1d      4  Cnst  Lc  - Linker created -
-  __SEGGER_init_zero       080015d7      0x16      2  Code  Gb  SEGGER_THUMB_Startup.o
-  __SEGGER_init_copy       080015ed      0x1a      2  Code  Gb  SEGGER_THUMB_Startup.o
+                           080015f3       0xe      2  Code  Lc  Esp.o
+  _GLOBAL__sub_I__ZN6Parser9At_parserC2Ev
+                           08001601       0xe      2  Code  Lc  At_parser.o
+  __heap_lock              0800160f       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
+  __heap_unlock            08001611       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
+  __printf_lock            08001613       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
+  __printf_unlock          08001615       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
+  __debug_io_lock          08001617       0x2      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
+  __debug_io_unlock        08001619       0x2      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
+  main                     0800161b       0x8      2  Code  Gb  main.o
+  __putchar                08001623       0x4      2  Code  Wk  SEGGER_THUMB_Startup.o
+  _ZN6Driver4UartD0Ev      08001627      0x1c      2  Code  Gb  Uart.o
+  _ZN6Module3EspD0Ev       08001643      0x1c      2  Code  Gb  Esp.o
+  _ZN6Module3Esp13setAtResponceENS0_13at_responce_tE
+                           0800165f      0x24      2  Code  Gb  Esp.o
+  _ZN6Module3Esp12setAtCommandENS0_12at_command_tE
+                           08001683      0x24      2  Code  Gb  Esp.o
+  _ZN6Buffer4FifoD0Ev      080016a7      0x1c      2  Code  Gb  Fifo.o
+  _ZN6Buffer4RingD0Ev      080016c3      0x1c      2  Code  Gb  Ring.o
+  __putc                   080016df      0x34      2  Code  Gb  libc2.o (libc_v7m_t_le_eabi.a)
+  _ZdlPv                   08001713       0xc      2  Code  Wk  new.o (libcpp_v7m_t_le_eabi.a)
+  debug_putchar            0800171f      0x18      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
+  ctors$$Base              08001738                   ----  Gb  - Linker created -
+  __ctors_start__          08001738                   ----  Gb  - Linker created -
+  __ctors_start            08001738                   ----  Gb  - Linker created -
+  ctors$$Limit             08001744                   ----  Gb  - Linker created -
+  __ctors_end__            08001744                   ----  Gb  - Linker created -
+  __ctors_end              08001744                   ----  Gb  - Linker created -
+  __SEGGER_init_table__    08001744      0x30      4  Cnst  Lc  - Linker created -
+  __SEGGER_init_data__     08001774      0x1d      4  Cnst  Lc  - Linker created -
+  __SEGGER_init_zero       08001793      0x16      2  Code  Gb  SEGGER_THUMB_Startup.o
+  __SEGGER_init_copy       080017a9      0x1a      2  Code  Gb  SEGGER_THUMB_Startup.o
   __FLASH_segment_used_end__
-                           08001606                   ----  Gb  - Linker created -
+                           080017c2                   ----  Gb  - Linker created -
   __FLASH_segment_end__    08040000                   ----  Gb  - Linker created -
   APBAHBPrescTable         20000000      0x10      4  Data  Lc  stm32l1xx_rcc.o
-  __RAM_segment_start__    20000000                   ----  Gb  - Linker created -
-  __RAM_segment_used_start__
-                           20000000                   ----  Gb  - Linker created -
   tbss$$Base               20000000                   ----  Gb  - Linker created -
   tbss$$Limit              20000000                   ----  Gb  - Linker created -
   __tbss_start__           20000000                   ----  Gb  - Linker created -
@@ -619,31 +645,35 @@ Symbols by value
   __tls_end__              20000000                   ----  Gb  - Linker created -
   __tls_start              20000000                   ----  Gb  - Linker created -
   __tls_end                20000000                   ----  Gb  - Linker created -
+  __RAM_segment_start__    20000000                   ----  Gb  - Linker created -
+  __RAM_segment_used_start__
+                           20000000                   ----  Gb  - Linker created -
   PLLMulTable              20000010       0x9      4  Data  Lc  stm32l1xx_rcc.o
   heap                     2000001c       0x4      4  Data  Lc  libc2.o (libc_v7m_t_le_eabi.a)
   _ZL4ring                 20000020       0x4      4  Data  Lc  Uart.o
   _ZL4fifo                 20000024       0x4      4  Data  Lc  Uart.o
   _ZL4uart                 20000028       0x4      4  Data  Lc  Esp.o
   _ZL3esp                  2000002c       0x4      4  Data  Lc  Esp.o
-  dbgCntrlWord_mempoll     20000030       0x4      4  Data  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
-  dbgCommWord              20000034       0x4      4  Data  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
-  __user_format_extender   20000038       0x4      4  Data  Gb  libc2.o (libc_v7m_t_le_eabi.a)
-  _ZL10newHandler          2000003c       0x4      4  Data  Lc  new.o (libcpp_v7m_t_le_eabi.a)
-  heap$$Base               20000040                   ----  Gb  - Linker created -
-  __heap_start__           20000040                   ----  Gb  - Linker created -
-  __heap_start             20000040                   ----  Gb  - Linker created -
-  heap$$Limit              20000440                   ----  Gb  - Linker created -
-  __heap_end__             20000440                   ----  Gb  - Linker created -
-  __heap_end               20000440                   ----  Gb  - Linker created -
+  _ZL4uart                 20000030       0x4      4  Data  Lc  At_parser.o
+  dbgCntrlWord_mempoll     20000034       0x4      4  Data  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
+  dbgCommWord              20000038       0x4      4  Data  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
+  __user_format_extender   2000003c       0x4      4  Data  Gb  libc2.o (libc_v7m_t_le_eabi.a)
+  _ZL10newHandler          20000040       0x4      4  Data  Lc  new.o (libcpp_v7m_t_le_eabi.a)
+  heap$$Base               20000048                   ----  Gb  - Linker created -
+  __heap_start__           20000048                   ----  Gb  - Linker created -
+  __heap_start             20000048                   ----  Gb  - Linker created -
+  heap$$Limit              20000448                   ----  Gb  - Linker created -
+  __heap_end__             20000448                   ----  Gb  - Linker created -
+  __heap_end               20000448                   ----  Gb  - Linker created -
   stack$$Base              20003c00                   ----  Gb  - Linker created -
   __stack_start__          20003c00                   ----  Gb  - Linker created -
   __stack_start            20003c00                   ----  Gb  - Linker created -
-  __RAM_segment_end__      20004000                   ----  Gb  - Linker created -
-  __RAM_segment_used_end__
-                           20004000                   ----  Gb  - Linker created -
   stack$$Limit             20004000                   ----  Gb  - Linker created -
   __stack_end__            20004000                   ----  Gb  - Linker created -
   __stack_end              20004000                   ----  Gb  - Linker created -
+  __RAM_segment_end__      20004000                   ----  Gb  - Linker created -
+  __RAM_segment_used_end__
+                           20004000                   ----  Gb  - Linker created -
 
 Symbols by name
 
@@ -701,56 +731,69 @@ Symbols by name
   SystemInit               08000189      0x64      4  Code  Gb  system_stm32l1xx.o
   USART_Cmd                0800140b      0x3a      2  Code  Gb  stm32l1xx_usart.o
   USART_Init               080004e9     0x164      4  Code  Gb  stm32l1xx_usart.o
-  USART_OverSampling8Cmd   08001445      0x3e      2  Code  Gb  stm32l1xx_usart.o
+  USART_OverSampling8Cmd   08001575      0x3e      2  Code  Gb  stm32l1xx_usart.o
   UsageFault_Handler       080000c9      0x64      4  Code  Wk  Cortex_M_Startup.o
   _GLOBAL__sub_I__ZN6Driver4UartC2Ev
-                           08001483       0xe      2  Code  Lc  Uart.o
+                           080015b3       0xe      2  Code  Lc  Uart.o
   _GLOBAL__sub_I__ZN6Module3EspC2Ev
-                           08001491       0xe      2  Code  Lc  Esp.o
+                           080015f3       0xe      2  Code  Lc  Esp.o
+  _GLOBAL__sub_I__ZN6Parser9At_parserC2Ev
+                           08001601       0xe      2  Code  Lc  At_parser.o
   _Z41__static_initialization_and_destruction_0ii
                            080007d9      0x58      4  Code  Lc  Uart.o
   _Z41__static_initialization_and_destruction_0ii
-                           08000885      0x50      4  Code  Lc  Esp.o
-  _ZL10newHandler          2000003c       0x4      4  Data  Lc  new.o (libcpp_v7m_t_le_eabi.a)
+                           0800090d      0x50      4  Code  Lc  Esp.o
+  _Z41__static_initialization_and_destruction_0ii
+                           0800095d      0x38      4  Code  Lc  At_parser.o
+  _ZL10newHandler          20000040       0x4      4  Data  Lc  new.o (libcpp_v7m_t_le_eabi.a)
   _ZL3esp                  2000002c       0x4      4  Data  Lc  Esp.o
   _ZL4fifo                 20000024       0x4      4  Data  Lc  Uart.o
   _ZL4ring                 20000020       0x4      4  Data  Lc  Uart.o
   _ZL4uart                 20000028       0x4      4  Data  Lc  Esp.o
-  _ZN6Buffer4FifoC1Et      080008d5      0x70      4  Code  Gb  Fifo.o
-  _ZN6Buffer4FifoC2Et      080008d5      0x70      4  Code  Gb  Fifo.o
-  _ZN6Buffer4FifoD0Ev      080014ef      0x1c      2  Code  Gb  Fifo.o
-  _ZN6Buffer4FifoD1Ev      08000945      0x18      4  Code  Gb  Fifo.o
-  _ZN6Buffer4FifoD2Ev      08000945      0x18      4  Code  Gb  Fifo.o
-  _ZN6Buffer4RingC1Et      0800095d      0x70      4  Code  Gb  Ring.o
-  _ZN6Buffer4RingC2Et      0800095d      0x70      4  Code  Gb  Ring.o
-  _ZN6Buffer4RingD0Ev      0800150b      0x1c      2  Code  Gb  Ring.o
-  _ZN6Buffer4RingD1Ev      080009cd      0x18      4  Code  Gb  Ring.o
-  _ZN6Buffer4RingD2Ev      080009cd      0x18      4  Code  Gb  Ring.o
+  _ZL4uart                 20000030       0x4      4  Data  Lc  At_parser.o
+  _ZN6Buffer4FifoC1Et      08000995      0x70      4  Code  Gb  Fifo.o
+  _ZN6Buffer4FifoC2Et      08000995      0x70      4  Code  Gb  Fifo.o
+  _ZN6Buffer4FifoD0Ev      080016a7      0x1c      2  Code  Gb  Fifo.o
+  _ZN6Buffer4FifoD1Ev      08000a05      0x18      4  Code  Gb  Fifo.o
+  _ZN6Buffer4FifoD2Ev      08000a05      0x18      4  Code  Gb  Fifo.o
+  _ZN6Buffer4RingC1Et      08000a1d      0x70      4  Code  Gb  Ring.o
+  _ZN6Buffer4RingC2Et      08000a1d      0x70      4  Code  Gb  Ring.o
+  _ZN6Buffer4RingD0Ev      080016c3      0x1c      2  Code  Gb  Ring.o
+  _ZN6Buffer4RingD1Ev      08000a8d      0x18      4  Code  Gb  Ring.o
+  _ZN6Buffer4RingD2Ev      08000a8d      0x18      4  Code  Gb  Ring.o
   _ZN6Driver4Uart4initENS0_13uart_number_tENS0_12uart_speed_tE
                            080006e1      0xf8      4  Code  Gb  Uart.o
   _ZN6Driver4UartC1Ev      08000679      0x50      4  Code  Gb  Uart.o
   _ZN6Driver4UartC2Ev      08000679      0x50      4  Code  Gb  Uart.o
-  _ZN6Driver4UartD0Ev      080014b7      0x1c      2  Code  Gb  Uart.o
+  _ZN6Driver4UartD0Ev      08001627      0x1c      2  Code  Gb  Uart.o
   _ZN6Driver4UartD1Ev      080006c9      0x18      4  Code  Gb  Uart.o
   _ZN6Driver4UartD2Ev      080006c9      0x18      4  Code  Gb  Uart.o
-  _ZN6Module3EspC1Ev       08000831      0x3c      4  Code  Gb  Esp.o
-  _ZN6Module3EspC2Ev       08000831      0x3c      4  Code  Gb  Esp.o
-  _ZN6Module3EspD0Ev       080014d3      0x1c      2  Code  Gb  Esp.o
-  _ZN6Module3EspD1Ev       0800086d      0x18      4  Code  Gb  Esp.o
-  _ZN6Module3EspD2Ev       0800086d      0x18      4  Code  Gb  Esp.o
+  _ZN6Module3Esp11setEspStageENS0_11esp_stage_tE
+                           080015c1      0x32      2  Code  Gb  Esp.o
+  _ZN6Module3Esp11setEspStateENS0_11esp_state_tE
+                           080008b5      0x58      4  Code  Gb  Esp.o
+  _ZN6Module3Esp12setAtCommandENS0_12at_command_tE
+                           08001683      0x24      2  Code  Gb  Esp.o
+  _ZN6Module3Esp13setAtResponceENS0_13at_responce_tE
+                           0800165f      0x24      2  Code  Gb  Esp.o
+  _ZN6Module3EspC1Ev       08000831      0x6c      4  Code  Gb  Esp.o
+  _ZN6Module3EspC2Ev       08000831      0x6c      4  Code  Gb  Esp.o
+  _ZN6Module3EspD0Ev       08001643      0x1c      2  Code  Gb  Esp.o
+  _ZN6Module3EspD1Ev       0800089d      0x18      4  Code  Gb  Esp.o
+  _ZN6Module3EspD2Ev       0800089d      0x18      4  Code  Gb  Esp.o
   _ZTVN6Buffer4FifoE       0800119c      0x10      4  Cnst  Gb  Fifo.o
   _ZTVN6Buffer4RingE       080011ac      0x10      4  Cnst  Gb  Ring.o
   _ZTVN6Driver4UartE       0800117c      0x10      4  Cnst  Gb  Uart.o
   _ZTVN6Module3EspE        0800118c      0x10      4  Cnst  Gb  Esp.o
-  _ZdlPv                   0800155b       0xc      2  Code  Wk  new.o (libcpp_v7m_t_le_eabi.a)
-  _Znwj                    08000b9d      0x30      4  Code  Wk  new.o (libcpp_v7m_t_le_eabi.a)
+  _ZdlPv                   08001713       0xc      2  Code  Wk  new.o (libcpp_v7m_t_le_eabi.a)
+  _Znwj                    08000c5d      0x30      4  Code  Wk  new.o (libcpp_v7m_t_le_eabi.a)
   __FLASH_segment_end__    08040000                   ----  Gb  - Linker created -
   __FLASH_segment_size__   00040000                   ----  Gb  - Linker created -
   __FLASH_segment_start__  08000000                   ----  Gb  - Linker created -
   __FLASH_segment_used_end__
-                           08001606                   ----  Gb  - Linker created -
+                           080017c2                   ----  Gb  - Linker created -
   __FLASH_segment_used_size__
-                           00001606                   ----  Gb  - Linker created -
+                           000017c2                   ----  Gb  - Linker created -
   __FLASH_segment_used_start__
                            08000000                   ----  Gb  - Linker created -
   __HEAPSIZE__             00000400                   ----  Gb  - Linker created -
@@ -765,22 +808,22 @@ Symbols by name
                            00004000                   ----  Gb  - Linker created -
   __RAM_segment_used_start__
                            20000000                   ----  Gb  - Linker created -
-  __SEGGER_init_copy       080015ed      0x1a      2  Code  Gb  SEGGER_THUMB_Startup.o
-  __SEGGER_init_data__     080015b8      0x1d      4  Cnst  Lc  - Linker created -
-  __SEGGER_init_table__    08001588      0x30      4  Cnst  Lc  - Linker created -
-  __SEGGER_init_zero       080015d7      0x16      2  Code  Gb  SEGGER_THUMB_Startup.o
+  __SEGGER_init_copy       080017a9      0x1a      2  Code  Gb  SEGGER_THUMB_Startup.o
+  __SEGGER_init_data__     08001774      0x1d      4  Cnst  Lc  - Linker created -
+  __SEGGER_init_table__    08001744      0x30      4  Cnst  Lc  - Linker created -
+  __SEGGER_init_zero       08001793      0x16      2  Code  Gb  SEGGER_THUMB_Startup.o
   __STACKSIZE_PROCESS__    00000000                   ----  Gb  - Linker created -
   __STACKSIZE__            00000400                   ----  Gb  - Linker created -
   __assert                 08001253       0x2      2  Code  Wk  SEGGER_THUMB_Startup.o
-  __ctors_end              08001588                   ----  Gb  - Linker created -
-  __ctors_end__            08001588                   ----  Gb  - Linker created -
-  __ctors_size             00000008                   ----  Gb  - Linker created -
-  __ctors_size__           00000008                   ----  Gb  - Linker created -
-  __ctors_start            08001580                   ----  Gb  - Linker created -
-  __ctors_start__          08001580                   ----  Gb  - Linker created -
-  __debug_io_lock          080014a7       0x2      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
-  __debug_io_unlock        080014a9       0x2      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
-  __do_debug_operation     080009e5      0x30      4  Code  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
+  __ctors_end              08001744                   ----  Gb  - Linker created -
+  __ctors_end__            08001744                   ----  Gb  - Linker created -
+  __ctors_size             0000000c                   ----  Gb  - Linker created -
+  __ctors_size__           0000000c                   ----  Gb  - Linker created -
+  __ctors_start            08001738                   ----  Gb  - Linker created -
+  __ctors_start__          08001738                   ----  Gb  - Linker created -
+  __debug_io_lock          08001617       0x2      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
+  __debug_io_unlock        08001619       0x2      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
+  __do_debug_operation     08000aa5      0x30      4  Code  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
   __dtors_end              08001409                   ----  Gb  - Linker created -
   __dtors_end__            08001409                   ----  Gb  - Linker created -
   __dtors_size             00000000                   ----  Gb  - Linker created -
@@ -793,18 +836,18 @@ Symbols by name
   __exidx_size__           00000000                   ----  Gb  - Linker created -
   __exidx_start            08001409                   ----  Gb  - Linker created -
   __exidx_start__          08001409                   ----  Gb  - Linker created -
-  __heap_end               20000440                   ----  Gb  - Linker created -
-  __heap_end__             20000440                   ----  Gb  - Linker created -
-  __heap_lock              0800149f       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
+  __heap_end               20000448                   ----  Gb  - Linker created -
+  __heap_end__             20000448                   ----  Gb  - Linker created -
+  __heap_lock              0800160f       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
   __heap_size              00000400                   ----  Gb  - Linker created -
   __heap_size__            00000400                   ----  Gb  - Linker created -
-  __heap_start             20000040                   ----  Gb  - Linker created -
-  __heap_start__           20000040                   ----  Gb  - Linker created -
-  __heap_unlock            080014a1       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
-  __printf_lock            080014a3       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
-  __printf_unlock          080014a5       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
-  __putc                   08001527      0x34      2  Code  Gb  libc2.o (libc_v7m_t_le_eabi.a)
-  __putchar                080014b3       0x4      2  Code  Wk  SEGGER_THUMB_Startup.o
+  __heap_start             20000048                   ----  Gb  - Linker created -
+  __heap_start__           20000048                   ----  Gb  - Linker created -
+  __heap_unlock            08001611       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
+  __printf_lock            08001613       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
+  __printf_unlock          08001615       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
+  __putc                   080016df      0x34      2  Code  Gb  libc2.o (libc_v7m_t_le_eabi.a)
+  __putchar                08001623       0x4      2  Code  Wk  SEGGER_THUMB_Startup.o
   __stack_end              20004000                   ----  Gb  - Linker created -
   __stack_end__            20004000                   ----  Gb  - Linker created -
   __stack_size             00000400                   ----  Gb  - Linker created -
@@ -835,20 +878,20 @@ Symbols by name
   __tls_size__             00000000                   ----  Gb  - Linker created -
   __tls_start              20000000                   ----  Gb  - Linker created -
   __tls_start__            20000000                   ----  Gb  - Linker created -
-  __user_format_extender   20000038       0x4      4  Data  Gb  libc2.o (libc_v7m_t_le_eabi.a)
-  __vfprintf               08000bcd     0x4f0      4  Code  Gb  libvfprintf_v7m_t_le_eabi.o
-  __vfprintf_int_nwp       08000bcd     0x4f0      4  Code  Gb  libvfprintf_v7m_t_le_eabi.o
+  __user_format_extender   2000003c       0x4      4  Data  Gb  libc2.o (libc_v7m_t_le_eabi.a)
+  __vfprintf               08000c8d     0x4f0      4  Code  Gb  libvfprintf_v7m_t_le_eabi.o
+  __vfprintf_int_nwp       08000c8d     0x4f0      4  Code  Gb  libvfprintf_v7m_t_le_eabi.o
   _start                   08000125      0x64      4  Code  Gb  SEGGER_THUMB_Startup.o
   _vectors                 08000000      0xc0      2  Code  Gb  Cortex_M_Startup.o
   _vectors_end             080000c0      0xc0      2  Code  Lc  Cortex_M_Startup.o
   ctor_end                 0800015c      0x64      4  Code  Lc  SEGGER_THUMB_Startup.o
   ctor_loop                0800014c      0x64      4  Code  Lc  SEGGER_THUMB_Startup.o
-  ctors$$Base              08001580                   ----  Gb  - Linker created -
-  ctors$$Length            00000008                   ----  Gb  - Linker created -
-  ctors$$Limit             08001588                   ----  Gb  - Linker created -
-  dbgCntrlWord_mempoll     20000030       0x4      4  Data  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
-  dbgCommWord              20000034       0x4      4  Data  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
-  debug_putchar            08001567      0x18      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
+  ctors$$Base              08001738                   ----  Gb  - Linker created -
+  ctors$$Length            0000000c                   ----  Gb  - Linker created -
+  ctors$$Limit             08001744                   ----  Gb  - Linker created -
+  dbgCntrlWord_mempoll     20000034       0x4      4  Data  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
+  dbgCommWord              20000038       0x4      4  Data  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
+  debug_putchar            0800171f      0x18      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
   dtors$$Base              08001409                   ----  Gb  - Linker created -
   dtors$$Length            00000000                   ----  Gb  - Linker created -
   dtors$$Limit             08001409                   ----  Gb  - Linker created -
@@ -857,14 +900,14 @@ Symbols by name
   exidx$$Limit             08001409                   ----  Gb  - Linker created -
   exit                     0800016b      0x64      4  Code  Wk  SEGGER_THUMB_Startup.o
   exit_loop                0800016a      0x64      4  Code  Lc  SEGGER_THUMB_Startup.o
-  free                     08000aa9      0xb4      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
+  free                     08000b69      0xb4      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
   heap                     2000001c       0x4      4  Data  Lc  libc2.o (libc_v7m_t_le_eabi.a)
-  heap$$Base               20000040                   ----  Gb  - Linker created -
+  heap$$Base               20000048                   ----  Gb  - Linker created -
   heap$$Length             00000400                   ----  Gb  - Linker created -
-  heap$$Limit              20000440                   ----  Gb  - Linker created -
-  main                     080014ab       0x8      2  Code  Gb  main.o
-  malloc                   08000a15      0x94      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
-  printf                   08000b5d      0x40      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
+  heap$$Limit              20000448                   ----  Gb  - Linker created -
+  main                     0800161b       0x8      2  Code  Gb  main.o
+  malloc                   08000ad5      0x94      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
+  printf                   08000c1d      0x40      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
   reset_handler            08000113      0x64      4  Code  Gb  Cortex_M_Startup.o
   stack$$Base              20003c00                   ----  Gb  - Linker created -
   stack$$Length            00000400                   ----  Gb  - Linker created -
@@ -891,9 +934,9 @@ Symbols by file then by name
   __FLASH_segment_size__   00040000                   ----  Gb  - Linker created -
   __FLASH_segment_start__  08000000                   ----  Gb  - Linker created -
   __FLASH_segment_used_end__
-                           08001606                   ----  Gb  - Linker created -
+                           080017c2                   ----  Gb  - Linker created -
   __FLASH_segment_used_size__
-                           00001606                   ----  Gb  - Linker created -
+                           000017c2                   ----  Gb  - Linker created -
   __FLASH_segment_used_start__
                            08000000                   ----  Gb  - Linker created -
   __HEAPSIZE__             00000400                   ----  Gb  - Linker created -
@@ -906,16 +949,16 @@ Symbols by file then by name
                            00004000                   ----  Gb  - Linker created -
   __RAM_segment_used_start__
                            20000000                   ----  Gb  - Linker created -
-  __SEGGER_init_data__     080015b8      0x1d      4  Cnst  Lc  - Linker created -
-  __SEGGER_init_table__    08001588      0x30      4  Cnst  Lc  - Linker created -
+  __SEGGER_init_data__     08001774      0x1d      4  Cnst  Lc  - Linker created -
+  __SEGGER_init_table__    08001744      0x30      4  Cnst  Lc  - Linker created -
   __STACKSIZE_PROCESS__    00000000                   ----  Gb  - Linker created -
   __STACKSIZE__            00000400                   ----  Gb  - Linker created -
-  __ctors_end              08001588                   ----  Gb  - Linker created -
-  __ctors_end__            08001588                   ----  Gb  - Linker created -
-  __ctors_size             00000008                   ----  Gb  - Linker created -
-  __ctors_size__           00000008                   ----  Gb  - Linker created -
-  __ctors_start            08001580                   ----  Gb  - Linker created -
-  __ctors_start__          08001580                   ----  Gb  - Linker created -
+  __ctors_end              08001744                   ----  Gb  - Linker created -
+  __ctors_end__            08001744                   ----  Gb  - Linker created -
+  __ctors_size             0000000c                   ----  Gb  - Linker created -
+  __ctors_size__           0000000c                   ----  Gb  - Linker created -
+  __ctors_start            08001738                   ----  Gb  - Linker created -
+  __ctors_start__          08001738                   ----  Gb  - Linker created -
   __dtors_end              08001409                   ----  Gb  - Linker created -
   __dtors_end__            08001409                   ----  Gb  - Linker created -
   __dtors_size             00000000                   ----  Gb  - Linker created -
@@ -928,12 +971,12 @@ Symbols by file then by name
   __exidx_size__           00000000                   ----  Gb  - Linker created -
   __exidx_start            08001409                   ----  Gb  - Linker created -
   __exidx_start__          08001409                   ----  Gb  - Linker created -
-  __heap_end               20000440                   ----  Gb  - Linker created -
-  __heap_end__             20000440                   ----  Gb  - Linker created -
+  __heap_end               20000448                   ----  Gb  - Linker created -
+  __heap_end__             20000448                   ----  Gb  - Linker created -
   __heap_size              00000400                   ----  Gb  - Linker created -
   __heap_size__            00000400                   ----  Gb  - Linker created -
-  __heap_start             20000040                   ----  Gb  - Linker created -
-  __heap_start__           20000040                   ----  Gb  - Linker created -
+  __heap_start             20000048                   ----  Gb  - Linker created -
+  __heap_start__           20000048                   ----  Gb  - Linker created -
   __stack_end              20004000                   ----  Gb  - Linker created -
   __stack_end__            20004000                   ----  Gb  - Linker created -
   __stack_size             00000400                   ----  Gb  - Linker created -
@@ -964,18 +1007,18 @@ Symbols by file then by name
   __tls_size__             00000000                   ----  Gb  - Linker created -
   __tls_start              20000000                   ----  Gb  - Linker created -
   __tls_start__            20000000                   ----  Gb  - Linker created -
-  ctors$$Base              08001580                   ----  Gb  - Linker created -
-  ctors$$Length            00000008                   ----  Gb  - Linker created -
-  ctors$$Limit             08001588                   ----  Gb  - Linker created -
+  ctors$$Base              08001738                   ----  Gb  - Linker created -
+  ctors$$Length            0000000c                   ----  Gb  - Linker created -
+  ctors$$Limit             08001744                   ----  Gb  - Linker created -
   dtors$$Base              08001409                   ----  Gb  - Linker created -
   dtors$$Length            00000000                   ----  Gb  - Linker created -
   dtors$$Limit             08001409                   ----  Gb  - Linker created -
   exidx$$Base              08001409                   ----  Gb  - Linker created -
   exidx$$Length            00000000                   ----  Gb  - Linker created -
   exidx$$Limit             08001409                   ----  Gb  - Linker created -
-  heap$$Base               20000040                   ----  Gb  - Linker created -
+  heap$$Base               20000048                   ----  Gb  - Linker created -
   heap$$Length             00000400                   ----  Gb  - Linker created -
-  heap$$Limit              20000440                   ----  Gb  - Linker created -
+  heap$$Limit              20000448                   ----  Gb  - Linker created -
   stack$$Base              20003c00                   ----  Gb  - Linker created -
   stack$$Length            00000400                   ----  Gb  - Linker created -
   stack$$Limit             20004000                   ----  Gb  - Linker created -
@@ -991,6 +1034,11 @@ Symbols by file then by name
   tls$$Base                20000000                   ----  Gb  - Linker created -
   tls$$Length              00000000                   ----  Gb  - Linker created -
   tls$$Limit               20000000                   ----  Gb  - Linker created -
+  _GLOBAL__sub_I__ZN6Parser9At_parserC2Ev
+                           08001601       0xe      2  Code  Lc  At_parser.o
+  _Z41__static_initialization_and_destruction_0ii
+                           0800095d      0x38      4  Code  Lc  At_parser.o
+  _ZL4uart                 20000030       0x4      4  Data  Lc  At_parser.o
   BusFault_Handler         080000c7      0x64      4  Code  Wk  Cortex_M_Startup.o
   DebugMon_Handler         080000cd      0x64      4  Code  Wk  Cortex_M_Startup.o
   ExternalISR0             080000d3      0x64      4  Code  Wk  Cortex_M_Startup.o
@@ -1038,33 +1086,41 @@ Symbols by file then by name
   _vectors_end             080000c0      0xc0      2  Code  Lc  Cortex_M_Startup.o
   reset_handler            08000113      0x64      4  Code  Gb  Cortex_M_Startup.o
   _GLOBAL__sub_I__ZN6Module3EspC2Ev
-                           08001491       0xe      2  Code  Lc  Esp.o
+                           080015f3       0xe      2  Code  Lc  Esp.o
   _Z41__static_initialization_and_destruction_0ii
-                           08000885      0x50      4  Code  Lc  Esp.o
+                           0800090d      0x50      4  Code  Lc  Esp.o
   _ZL3esp                  2000002c       0x4      4  Data  Lc  Esp.o
   _ZL4uart                 20000028       0x4      4  Data  Lc  Esp.o
-  _ZN6Module3EspC1Ev       08000831      0x3c      4  Code  Gb  Esp.o
-  _ZN6Module3EspC2Ev       08000831      0x3c      4  Code  Gb  Esp.o
-  _ZN6Module3EspD0Ev       080014d3      0x1c      2  Code  Gb  Esp.o
-  _ZN6Module3EspD1Ev       0800086d      0x18      4  Code  Gb  Esp.o
-  _ZN6Module3EspD2Ev       0800086d      0x18      4  Code  Gb  Esp.o
+  _ZN6Module3Esp11setEspStageENS0_11esp_stage_tE
+                           080015c1      0x32      2  Code  Gb  Esp.o
+  _ZN6Module3Esp11setEspStateENS0_11esp_state_tE
+                           080008b5      0x58      4  Code  Gb  Esp.o
+  _ZN6Module3Esp12setAtCommandENS0_12at_command_tE
+                           08001683      0x24      2  Code  Gb  Esp.o
+  _ZN6Module3Esp13setAtResponceENS0_13at_responce_tE
+                           0800165f      0x24      2  Code  Gb  Esp.o
+  _ZN6Module3EspC1Ev       08000831      0x6c      4  Code  Gb  Esp.o
+  _ZN6Module3EspC2Ev       08000831      0x6c      4  Code  Gb  Esp.o
+  _ZN6Module3EspD0Ev       08001643      0x1c      2  Code  Gb  Esp.o
+  _ZN6Module3EspD1Ev       0800089d      0x18      4  Code  Gb  Esp.o
+  _ZN6Module3EspD2Ev       0800089d      0x18      4  Code  Gb  Esp.o
   _ZTVN6Module3EspE        0800118c      0x10      4  Cnst  Gb  Esp.o
-  _ZN6Buffer4FifoC1Et      080008d5      0x70      4  Code  Gb  Fifo.o
-  _ZN6Buffer4FifoC2Et      080008d5      0x70      4  Code  Gb  Fifo.o
-  _ZN6Buffer4FifoD0Ev      080014ef      0x1c      2  Code  Gb  Fifo.o
-  _ZN6Buffer4FifoD1Ev      08000945      0x18      4  Code  Gb  Fifo.o
-  _ZN6Buffer4FifoD2Ev      08000945      0x18      4  Code  Gb  Fifo.o
+  _ZN6Buffer4FifoC1Et      08000995      0x70      4  Code  Gb  Fifo.o
+  _ZN6Buffer4FifoC2Et      08000995      0x70      4  Code  Gb  Fifo.o
+  _ZN6Buffer4FifoD0Ev      080016a7      0x1c      2  Code  Gb  Fifo.o
+  _ZN6Buffer4FifoD1Ev      08000a05      0x18      4  Code  Gb  Fifo.o
+  _ZN6Buffer4FifoD2Ev      08000a05      0x18      4  Code  Gb  Fifo.o
   _ZTVN6Buffer4FifoE       0800119c      0x10      4  Cnst  Gb  Fifo.o
-  _ZN6Buffer4RingC1Et      0800095d      0x70      4  Code  Gb  Ring.o
-  _ZN6Buffer4RingC2Et      0800095d      0x70      4  Code  Gb  Ring.o
-  _ZN6Buffer4RingD0Ev      0800150b      0x1c      2  Code  Gb  Ring.o
-  _ZN6Buffer4RingD1Ev      080009cd      0x18      4  Code  Gb  Ring.o
-  _ZN6Buffer4RingD2Ev      080009cd      0x18      4  Code  Gb  Ring.o
+  _ZN6Buffer4RingC1Et      08000a1d      0x70      4  Code  Gb  Ring.o
+  _ZN6Buffer4RingC2Et      08000a1d      0x70      4  Code  Gb  Ring.o
+  _ZN6Buffer4RingD0Ev      080016c3      0x1c      2  Code  Gb  Ring.o
+  _ZN6Buffer4RingD1Ev      08000a8d      0x18      4  Code  Gb  Ring.o
+  _ZN6Buffer4RingD2Ev      08000a8d      0x18      4  Code  Gb  Ring.o
   _ZTVN6Buffer4RingE       080011ac      0x10      4  Cnst  Gb  Ring.o
-  __SEGGER_init_copy       080015ed      0x1a      2  Code  Gb  SEGGER_THUMB_Startup.o
-  __SEGGER_init_zero       080015d7      0x16      2  Code  Gb  SEGGER_THUMB_Startup.o
+  __SEGGER_init_copy       080017a9      0x1a      2  Code  Gb  SEGGER_THUMB_Startup.o
+  __SEGGER_init_zero       08001793      0x16      2  Code  Gb  SEGGER_THUMB_Startup.o
   __assert                 08001253       0x2      2  Code  Wk  SEGGER_THUMB_Startup.o
-  __putchar                080014b3       0x4      2  Code  Wk  SEGGER_THUMB_Startup.o
+  __putchar                08001623       0x4      2  Code  Wk  SEGGER_THUMB_Startup.o
   _start                   08000125      0x64      4  Code  Gb  SEGGER_THUMB_Startup.o
   ctor_end                 0800015c      0x64      4  Code  Lc  SEGGER_THUMB_Startup.o
   ctor_loop                0800014c      0x64      4  Code  Lc  SEGGER_THUMB_Startup.o
@@ -1073,7 +1129,7 @@ Symbols by file then by name
   start                    08000163      0x64      4  Code  Lc  SEGGER_THUMB_Startup.o
   NVIC_EnableIRQ           0800064d      0x2c      4  Code  Lc  Uart.o
   _GLOBAL__sub_I__ZN6Driver4UartC2Ev
-                           08001483       0xe      2  Code  Lc  Uart.o
+                           080015b3       0xe      2  Code  Lc  Uart.o
   _Z41__static_initialization_and_destruction_0ii
                            080007d9      0x58      4  Code  Lc  Uart.o
   _ZL4fifo                 20000024       0x4      4  Data  Lc  Uart.o
@@ -1082,34 +1138,34 @@ Symbols by file then by name
                            080006e1      0xf8      4  Code  Gb  Uart.o
   _ZN6Driver4UartC1Ev      08000679      0x50      4  Code  Gb  Uart.o
   _ZN6Driver4UartC2Ev      08000679      0x50      4  Code  Gb  Uart.o
-  _ZN6Driver4UartD0Ev      080014b7      0x1c      2  Code  Gb  Uart.o
+  _ZN6Driver4UartD0Ev      08001627      0x1c      2  Code  Gb  Uart.o
   _ZN6Driver4UartD1Ev      080006c9      0x18      4  Code  Gb  Uart.o
   _ZN6Driver4UartD2Ev      080006c9      0x18      4  Code  Gb  Uart.o
   _ZTVN6Driver4UartE       0800117c      0x10      4  Cnst  Gb  Uart.o
-  __heap_lock              0800149f       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
-  __heap_unlock            080014a1       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
-  __printf_lock            080014a3       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
-  __printf_unlock          080014a5       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
+  __heap_lock              0800160f       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
+  __heap_unlock            08001611       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
+  __printf_lock            08001613       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
+  __printf_unlock          08001615       0x2      2  Code  Wk  libc.o (libc_v7m_t_le_eabi.a)
   __RAL_hex_lc             080011bc      0x10      4  Cnst  Gb  libc2.o (libc_v7m_t_le_eabi.a)
   __RAL_hex_uc             080011cc      0x10      4  Cnst  Gb  libc2.o (libc_v7m_t_le_eabi.a)
-  __putc                   08001527      0x34      2  Code  Gb  libc2.o (libc_v7m_t_le_eabi.a)
-  __user_format_extender   20000038       0x4      4  Data  Gb  libc2.o (libc_v7m_t_le_eabi.a)
-  free                     08000aa9      0xb4      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
+  __putc                   080016df      0x34      2  Code  Gb  libc2.o (libc_v7m_t_le_eabi.a)
+  __user_format_extender   2000003c       0x4      4  Data  Gb  libc2.o (libc_v7m_t_le_eabi.a)
+  free                     08000b69      0xb4      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
   heap                     2000001c       0x4      4  Data  Lc  libc2.o (libc_v7m_t_le_eabi.a)
-  malloc                   08000a15      0x94      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
-  printf                   08000b5d      0x40      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
-  __debug_io_lock          080014a7       0x2      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
-  __debug_io_unlock        080014a9       0x2      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
-  debug_putchar            08001567      0x18      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
-  __vfprintf               08000bcd     0x4f0      4  Code  Gb  libvfprintf_v7m_t_le_eabi.o
-  __vfprintf_int_nwp       08000bcd     0x4f0      4  Code  Gb  libvfprintf_v7m_t_le_eabi.o
-  main                     080014ab       0x8      2  Code  Gb  main.o
-  __do_debug_operation     080009e5      0x30      4  Code  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
-  dbgCntrlWord_mempoll     20000030       0x4      4  Data  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
-  dbgCommWord              20000034       0x4      4  Data  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
-  _ZL10newHandler          2000003c       0x4      4  Data  Lc  new.o (libcpp_v7m_t_le_eabi.a)
-  _ZdlPv                   0800155b       0xc      2  Code  Wk  new.o (libcpp_v7m_t_le_eabi.a)
-  _Znwj                    08000b9d      0x30      4  Code  Wk  new.o (libcpp_v7m_t_le_eabi.a)
+  malloc                   08000ad5      0x94      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
+  printf                   08000c1d      0x40      4  Code  Wk  libc2.o (libc_v7m_t_le_eabi.a)
+  __debug_io_lock          08001617       0x2      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
+  __debug_io_unlock        08001619       0x2      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
+  debug_putchar            0800171f      0x18      2  Code  Wk  libdebugio.o (libdebugio_v7m_t_le_eabi.a)
+  __vfprintf               08000c8d     0x4f0      4  Code  Gb  libvfprintf_v7m_t_le_eabi.o
+  __vfprintf_int_nwp       08000c8d     0x4f0      4  Code  Gb  libvfprintf_v7m_t_le_eabi.o
+  main                     0800161b       0x8      2  Code  Gb  main.o
+  __do_debug_operation     08000aa5      0x30      4  Code  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
+  dbgCntrlWord_mempoll     20000034       0x4      4  Data  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
+  dbgCommWord              20000038       0x4      4  Data  Gb  mempoll_debug_operations.o (libdebugio_mempoll_v7m_t_le_eabi.a)
+  _ZL10newHandler          20000040       0x4      4  Data  Lc  new.o (libcpp_v7m_t_le_eabi.a)
+  _ZdlPv                   08001713       0xc      2  Code  Wk  new.o (libcpp_v7m_t_le_eabi.a)
+  _Znwj                    08000c5d      0x30      4  Code  Wk  new.o (libcpp_v7m_t_le_eabi.a)
   GPIO_PinAFConfig         080012cb      0x9a      2  Code  Gb  stm32l1xx_gpio.o
   APBAHBPrescTable         20000000      0x10      4  Data  Lc  stm32l1xx_rcc.o
   PLLMulTable              20000010       0x9      4  Data  Lc  stm32l1xx_rcc.o
@@ -1117,7 +1173,7 @@ Symbols by file then by name
   RCC_GetClocksFreq        08000305     0x1ac      4  Code  Gb  stm32l1xx_rcc.o
   USART_Cmd                0800140b      0x3a      2  Code  Gb  stm32l1xx_usart.o
   USART_Init               080004e9     0x164      4  Code  Gb  stm32l1xx_usart.o
-  USART_OverSampling8Cmd   08001445      0x3e      2  Code  Gb  stm32l1xx_usart.o
+  USART_OverSampling8Cmd   08001575      0x3e      2  Code  Gb  stm32l1xx_usart.o
   SetSysClock              080001ed     0x118      4  Code  Lc  system_stm32l1xx.o
   SystemInit               08000189      0x64      4  Code  Gb  system_stm32l1xx.o
 
@@ -1132,12 +1188,12 @@ Link complete: 0 errors, 0 warnings, 0 remarks
 
   Name             Range           Size       Allocated         Used   Loading  (Alignment loss)
   ---------- -------- -------- --------   -------- -------- --------   -------  ----------------
-  FLASH      08000000 0803ffff   262144   08000000 08001605     5638     2.15%         4   0.07%
-  RAM        20000000 20003fff    16384   20000000 20003fff    16384   100.00%     14275  87.13%
+  FLASH      08000000 0803ffff   262144   08000000 080017c1     6082     2.32%         5   0.08%
+  RAM        20000000 20003fff    16384   20000000 20003fff    16384   100.00%     14271  87.10%
 
 Section composition:
 
-      4860  RX        29  RW
-       766  RO      2080  ZI
+      5188  RX        29  RW
+       877  RO      2084  ZI
   ------------   -----------
-      5626 ROM      2109 RAM
+      6065 ROM      2113 RAM

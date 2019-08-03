@@ -47,6 +47,8 @@ Purpose : Generic application start
 
 */
 #include "stm32l1xx.h"
+
+#include <stdbool.h>
 /*********************************************************************
 *
 *       main()
@@ -60,6 +62,39 @@ Purpose : Generic application start
 #define  F_CPU    72000000UL
 #define  TIMER_F  F_CPU/10 - 1
 
+void task_blink_led_green(void);
+void task_blink_led_blue(void);
+
+typedef enum{
+    INACTIVE = 0,
+    ACTIVE
+}timer_state_t; 
+
+typedef enum{
+    TIMER0 = 0,
+    TIMER1,
+    TIMER2,
+    TIMER3,
+    TIMER4,
+    TIMER_NUMBER
+}timer_number_t; 
+
+typedef struct{
+    uint8_t active;
+    uint32_t ticks;
+    void (*callback)(void);
+}timer_t;
+
+void timer_enable(timer_number_t, uint32_t);
+void timer_disable(timer_number_t);
+bool is_timeout(timer_number_t);
+void timer_process();
+
+static timer_t sw_timer[TIMER_NUMBER] = {  
+					  INACTIVE, 0, task_blink_led_blue,
+					  INACTIVE, 0, task_blink_led_green
+					};
+//
 void main(void) {
     GPIO_InitTypeDef gpioInit;
 
@@ -77,13 +112,60 @@ void main(void) {
 
     SysTick_Config(TIMER_F);
 
+    timer_enable(TIMER0, 1);
+    timer_enable(TIMER1, 1);
+
     while(1){
 
     }
 }
 
 void SysTick_Handler(){
-    GPIO_ToggleBits(GPIOC, LED_BLUE);
-    GPIO_ToggleBits(GPIOC, LED_GREEN);
+    timer_process();
 }
 /*************************** End of file ****************************/
+void timer_enable(timer_number_t t, uint32_t time){
+    if(sw_timer[t].active == INACTIVE){
+	sw_timer[t].active = ACTIVE;
+	sw_timer[t].ticks = time;
+    }
+}
+
+void timer_disable(timer_number_t t){
+    if(sw_timer[t].active == ACTIVE){
+	sw_timer[t].active = INACTIVE;
+	sw_timer[t].ticks = 0;
+    }
+}
+
+bool is_timeout(timer_number_t t){
+    if(sw_timer[t].active == ACTIVE){
+	if(sw_timer[t].ticks == 0){
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+    return false;
+}
+
+
+void timer_process(){
+    for(uint8_t i = 0; i < TIMER_NUMBER; i++){
+	if(sw_timer[i].active == ACTIVE){
+	    if(is_timeout(i)){
+		sw_timer[i].callback();
+	    } else {
+		sw_timer[i].ticks--;
+	    }
+	}
+    }
+}
+
+void task_blink_led_green(void){
+    GPIO_ToggleBits(GPIOC, LED_GREEN);
+}
+
+void task_blink_led_blue(void){
+    GPIO_ToggleBits(GPIOC, LED_BLUE);
+}

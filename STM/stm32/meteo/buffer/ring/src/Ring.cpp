@@ -36,11 +36,13 @@ bool Buffer::Ring::isFull(void){
     return head == tail;
 }
 
-void Buffer::Ring::pop(uint8_t* data){
-    if(!isEmpty()){
-	*data = buff[tail];
-	nextTail();
+bool Buffer::Ring::pop(uint8_t* data){
+    if(isEmpty()){
+	return false;
     }
+    *data = buff[tail];
+    nextTail();
+    return true;
 }
 
 void Buffer::Ring::push(uint8_t data){

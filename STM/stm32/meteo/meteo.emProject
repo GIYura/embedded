@@ -15,7 +15,8 @@
       arm_simulator_memory_simulation_parameter="RX 08000000,00040000,FFFFFFFF;RWX 20000000,00004000,CDCDCDCD"
       arm_target_device_name="STM32L100RC"
       arm_target_interface_type="SWD"
-      c_user_include_directories="/home/jura/embedded/STM/stm32/meteo/cmsis/inc/;/home/jura/embedded/STM/stm32/meteo/spl/inc/;/home/jura/embedded/STM/stm32/meteo/driver/1wire/inc/;/home/jura/embedded/STM/stm32/meteo/driver/i2c/inc/;/home/jura/embedded/STM/stm32/meteo/driver/spi/inc/;/home/jura/embedded/STM/stm32/meteo/driver/uart/inc/;/home/jura/embedded/STM/stm32/meteo/module/esp/inc/;/home/jura/embedded/STM/stm32/meteo/module/dh11/inc/;/home/jura/embedded/STM/stm32/meteo/module/ds18b20/inc/;/home/jura/embedded/STM/stm32/meteo/module/lcd/inc/;/home/jura/embedded/STM/stm32/meteo/module/nrf/inc/;/home/jura/embedded/STM/stm32/meteo/buffer/fifo/inc/;/home/jura/embedded/STM/stm32/meteo/buffer/ring/inc/"
+      c_preprocessor_definitions="DEBUG_INFO"
+      c_user_include_directories="/home/jura/embedded/STM/stm32/meteo/cmsis/inc/;/home/jura/embedded/STM/stm32/meteo/spl/inc/;/home/jura/embedded/STM/stm32/meteo/driver/1wire/inc/;/home/jura/embedded/STM/stm32/meteo/driver/i2c/inc/;/home/jura/embedded/STM/stm32/meteo/driver/spi/inc/;/home/jura/embedded/STM/stm32/meteo/driver/uart/inc/;/home/jura/embedded/STM/stm32/meteo/module/esp/inc/;/home/jura/embedded/STM/stm32/meteo/module/dh11/inc/;/home/jura/embedded/STM/stm32/meteo/module/ds18b20/inc/;/home/jura/embedded/STM/stm32/meteo/module/lcd/inc/;/home/jura/embedded/STM/stm32/meteo/module/nrf/inc/;/home/jura/embedded/STM/stm32/meteo/buffer/fifo/inc/;/home/jura/embedded/STM/stm32/meteo/buffer/ring/inc/;/home/jura/embedded/STM/stm32/meteo/module/at_parser/inc/"
       debug_target_connection="J-Link"
       gcc_cplusplus_language_standard="gnu++11"
       link_linker_script_file="$(ProjectDir)/SEGGER_Flash.icf"
@@ -68,6 +69,9 @@
       </folder>
       <folder Name="lcd">
         <file file_name="module/lcd/src/Lcd.cpp" />
+      </folder>
+      <folder Name="at_parser">
+        <file file_name="module/at_parser/src/At_parser.cpp" />
       </folder>
     </folder>
     <folder Name="buffer">
