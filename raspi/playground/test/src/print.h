@@ -2,6 +2,7 @@
 #define PRINT_H
 
 #include <stdint.h>
+#include <stdio.h>
 
 void PrintMessage(const char* const message);
 

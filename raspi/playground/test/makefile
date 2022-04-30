@@ -1,7 +1,7 @@
 CC = gcc
 DIALECT = c99
 OPTIMIZATION = -O0
-CFLAGS = -std=$(DIALECT) $(OPTIMIZATION) -Wall
+CFLAGS = -std=$(DIALECT) $(OPTIMIZATION) -g -Wall
 RM = rm -rf
 TARGET = hello
 
@@ -42,6 +42,5 @@ $(OBJDIR)/%.o: %.c
 .PHONY: all clean
 
 clean:
-	@echo 'Cleaning...Done!'
-	@$(RM) $(OBJDIR) $(BUILD)
+	$(RM) $(OBJDIR) $(BUILD)
 
