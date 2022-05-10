@@ -1,16 +1,17 @@
-RM = rm -rf
 ASM = as
-LD = ld
+ASM_FLAGS = -g
+LINKER = ld
+RM = rm -rf
+TARGET = hello
 
-all: hello
+all: $(TARGET)
 
-hello: hello.o
+$(TARGET): hello.o
 	$(LD) $^ -o $@
 
-%.o: %.asm
-#hello.o: hello.asm
-	$(ASM) -g $^ -o $@
+%.o: %.S
+	$(ASM) $(ASM_FLAGS) $^ -o $@
 
 clean:
 	$(RM) *.o
-	$(RM) hello
+	$(RM) $(TARGET)
