@@ -42,6 +42,7 @@
 	iface [interface-name] inet manual
 
 **Example:**
+
 	allow-hotplug wlan0
 
 	iface wlan0 inet manual
