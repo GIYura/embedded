@@ -42,10 +42,11 @@
 	iface [interface-name] inet manual
 
 **Example:**
-
+```
 	allow-hotplug wlan0
 
 	iface wlan0 inet manual
+```
 
 #### Необходимо задать статический адрес для интерфейса:
 - sudo vim /etc/dhcpcd.conf
