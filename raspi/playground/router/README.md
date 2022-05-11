@@ -20,8 +20,10 @@
 ### 3. Сетевые настройки
 
 #### Для разрешения пересылки ipv4 пакетов между сетеями, + запрет ipv6 нужно:
-- sudo vim /etc/sysctl.conf
 
+	sudo vim /etc/sysctl.conf
+
+```
 	net.ipv4.ip_forward=1
 
 	net.ipv6.conf.all.disable_ipv6 = 1
@@ -33,6 +35,7 @@
 	net.ipv4.conf.default.rp_filter = 1
 
 	net.ipv4.conf.all.rp_filter = 1
+```
 
 #### Для "горячего" подключения нужно:
 - sudo vim /etc/network/interfaces
