@@ -259,7 +259,7 @@ sudo vim /etc/crontab
 # Restart ISC DHCP-server
 1  *    * * *   root    /bin/systemctl restart isc-dhcp-server
 ```
-Таким образом демон **isc-dhcp-server** будет запускаться каждый час.
+Таким образом демон **isc-dhcp-server** будет запускаться с периодои **60** секунд.
 
 ### 8 Reference:
 
