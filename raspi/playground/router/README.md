@@ -206,7 +206,59 @@ INTERFACESv6=""
 sudo systemctl start isc-dhcp-server
 sudo systemctl status isc-dhcp-server
 ```
+### 7 Решение проблемы старта isc-dhcpd
 
-### 7 Reference:
+Проблема состоит в том что демон dhcpcd стартует раньше чем интерфейс получит статический IP.
+
+Решение:
+Создать файл **sudo vim /usr/local/sbin/systemd-isc-watchdog.sh**
+
+NOTE: скрипт приведен в файле **systemd-isc-watchdog.sh**
+
+Сделать скрипт исполняемым:
+
+```
+sudo chmod +x /usr/local/sbin/systemd-isc-watchdog.sh
+```
+
+Создать сервис для запуска при старте ОС:
+
+```
+sudo vim /etc/systemd/system/isc-watchdog.service
+```
+
+Содержимое юнита:
+
+```
+[Unit]
+Description=Watchdog for isc-dhcp-server.
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/systemd-isc-watchdog.sh
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target
+```
+Разрешить работу юнита:
+
+```
+sudo systemctl enable isc-watchdog.service
+```
+Переодический запуск в скрипта ч/з crontab:
+
+```
+sudo nano /etc/crontab
+```
+Добавить:
+
+```
+# Restart ISC DHCP-server
+1  *    * * *   root    /bin/systemctl restart isc-dhcp-server
+```
+
+### 8 Reference:
 
 [origin](https://ph0en1x.net/105-raspberry-pi-handmade-server-router-software.html#raspberry-pi-start-config)
