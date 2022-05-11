@@ -12,42 +12,41 @@
 ### 2. Установка
 
 - sudo apt-get install iw iptables hostapd isc-dhcp wvdial
-NOTE: перед установкой необходимо поверить наличие вышеуказанных пакетов:
-- <packet-name> --version
-- dpkg -s <packet-name>
+
+**NOTE:** перед установкой необходимо поверить наличие вышеуказанных пакетов:
+- [packet-name] --version
+- dpkg -s [packet-name]
 
 ### 3. Сетевые настройки
 
 Для разрешения пересылки ipv4 пакетов между сетеями, + запрет ipv6 нужно:
 - sudo vim /etc/sysctl.conf
-- # Network packets forwarding for IPv4
-		net.ipv4.ip_forward=1
-- # Disable IPv6
-		net.ipv6.conf.all.disable_ipv6 = 1
-		net.ipv6.conf.default.disable_ipv6 = 1
-		net.ipv6.conf.lo.disable_ipv6 = 1
-- # Spoofing attacks protection
-		net.ipv4.conf.default.rp_filter=1
-		net.ipv4.conf.all.rp_filter=1
+	net.ipv4.ip_forward=1
+	net.ipv6.conf.all.disable_ipv6 = 1
+	net.ipv6.conf.default.disable_ipv6 = 1
+	net.ipv6.conf.lo.disable_ipv6 = 1
+	net.ipv4.conf.default.rp_filter=1
+	net.ipv4.conf.all.rp_filter=1
 
 Для "горячего" подключения нужно:
 - sudo vim /etc/network/interfaces
-		allow-hotplug <interface-name>
-		iface <interface-name> inet manual
+	allow-hotplug [interface-name]
+	iface [interface-name] inet manual
 
-Example:
-		allow-hotplug wlan0
-		iface wlan0 inet manual
+**Example:**
+	allow-hotplug wlan0
+	iface wlan0 inet manual
 
 Необходимо задать статический адрес для интерфейса:
 - sudo vim /etc/dhcpcd.conf
-		interface <interface-name>
-		static ip_address=192.168.1.1/24
+	interface [interface-name]
+	static ip_address=192.168.1.1/24
 
-Example:
-		interface wlan0
-		static ip_address=192.168.2.1/24
-NOTE: для wlan0 нужно отключить механизм WPA-авторизации для создания 
+**Example:**
+	interface wlan0
+	static ip_address=192.168.2.1/24
+
+**NOTE:** для wlan0 нужно отключить механизм WPA-авторизации для создания 
 Wireless Access Point: nohook wpa_supplicant
 
 Перезагрузка и проверка состояния службы dhcp:
@@ -101,30 +100,22 @@ NOTE: В списке должно быть AP (access point).
 
 - Для настройки нужно следующее:
 - sudo vim /etc/hostapd/hostapd.conf
-		interface=wlan0
-		driver=nl80211
-		ssid=<network-name>
-		# Use the 2.4GHz band
-		hw_mode=g
-		channel=6
-		# Enable 802.11n
-		ieee80211n=1
-		wmm_enabled=1
-		# Enable 40MHz channels with 20ns guard interval
-		ht_capab=[HT40][SHORT-GI-20][DSSS_CCK-40]
-		# Accept all MAC addresses
-		macaddr_acl=0
-		# Use WPA authentication
-		auth_algs=1
-		# Require clients to know the network name
-		ignore_broadcast_ssid=0
-		wpa=2
-		wpa_key_mgmt=WPA-PSK
-		wpa_passphrase=<password>
-		# Use AES, instead of TKIP
-		rsn_pairwise=CCMP
-		# 0 - disabled
-		wps_state=0
+	interface=wlan0
+	driver=nl80211
+	ssid=<network-name>
+	hw_mode=g
+	channel=6n
+	ieee80211n=1
+	wmm_enabled=1
+	ht_capab=[HT40][SHORT-GI-20][DSSS_CCK-40]
+	macaddr_acl=0
+	auth_algs=1
+	ignore_broadcast_ssid=0
+	wpa=2
+	wpa_key_mgmt=WPA-PSK
+	wpa_passphrase=<password>
+	rsn_pairwise=CCMP
+	wps_state=0
 
 - Указать путь к конфиг файлу:
 - sudo nano /etc/default/hostapd
