@@ -208,12 +208,13 @@ sudo systemctl status isc-dhcp-server
 ```
 ### 7 Решение проблемы старта isc-dhcpd
 
-Проблема состоит в том что демон dhcpcd стартует раньше чем интерфейс получит статический IP.
+Проблема состоит в том что демон **dhcpcd** стартует раньше чем интерфейс получит статический IP.
 
-Решение:
+**Решение:**
+
 Создать файл **sudo vim /usr/local/sbin/systemd-isc-watchdog.sh**
 
-NOTE: скрипт приведен в файле **systemd-isc-watchdog.sh**
+**NOTE:** скрипт приведен в файле **systemd-isc-watchdog.sh**
 
 Сделать скрипт исполняемым:
 
