@@ -19,7 +19,7 @@
 
 ### 3. Сетевые настройки
 
-#### Для разрешения пересылки IPv4 пакетов между сетеями, а также запрет IPv6 нужно в
+Для разрешения пересылки IPv4 пакетов между сетеями, а также запрет IPv6 нужно в
 файле **sudo vim /etc/sysctl.conf** добавить:
 
 ```
@@ -30,38 +30,42 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 net.ipv4.conf.default.rp_filter = 1
 net.ipv4.conf.all.rp_filter = 1
 ```
+Для "горячего" подключения нужно в файле **sudo vim /etc/network/interfaces** добавить:
 
-#### Для "горячего" подключения нужно в файле **sudo vim /etc/network/interfaces** 
-добавить:
+- allow-hotplug [interface-name]
+- iface [interface-name] inet manual
 
-```
-allow-hotplug [interface-name]
-iface [interface-name] inet manual
-```
 **Example:**
 
 ```
 allow-hotplug wlan0
 iface wlan0 inet manual
 ```
-#### Необходимо задать статический адрес для интерфейса:
-- sudo vim /etc/dhcpcd.conf
+Необходимо задать статический адрес для интерфейса в файле **sudo vim /etc/dhcpcd.conf**:
 
-	interface [interface-name]
-
-	static ip_address=192.168.1.1/24
+- interface [interface-name]
+- static ip_address=192.168.1.1/24
 
 **Example:**
-	interface wlan0
 
-	static ip_address=192.168.2.1/24
+```
+interface wlan0
+static ip_address=192.168.2.1/24
+```
 
 **NOTE:** для wlan0 нужно отключить механизм WPA-авторизации для создания 
-Wireless Access Point: nohook wpa_supplicant
+Wireless Access Point:
 
-#### Перезагрузка и проверка состояния службы dhcp:
-- sudo reboot
-- sudo systemctl status dhcpcd.service
+``` 
+nohook wpa_supplicant
+```
+
+Перезагрузка и проверка состояния службы dhcp:
+
+```
+sudo reboot
+sudo systemctl status dhcpcd.service
+```
 
 ### 4. Настройка роутинга (packet forwarder)
 
