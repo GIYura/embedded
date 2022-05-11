@@ -248,10 +248,10 @@ WantedBy=multi-user.target
 ```
 sudo systemctl enable isc-watchdog.service
 ```
-Переодический запуск в скрипта ч/з crontab:
+Переодический запуск скрипта ч/з **crontab**:
 
 ```
-sudo nano /etc/crontab
+sudo vim /etc/crontab
 ```
 Добавить:
 
@@ -259,6 +259,7 @@ sudo nano /etc/crontab
 # Restart ISC DHCP-server
 1  *    * * *   root    /bin/systemctl restart isc-dhcp-server
 ```
+Таким образом демон **isc-dhcp-server** будет запускаться каждый час.
 
 ### 8 Reference:
 
