@@ -121,6 +121,7 @@ sudo systemctl status iptables.service
 ### 5. Беспроводная точка доступа
 
 - iw list - информация о беспроводных интерфейсах
+
 **NOTE:** В списке должно быть AP (access point).
 
 Для настройки нужно следующее в файле **sudo vim /etc/hostapd/hostapd.conf**:
@@ -175,28 +176,28 @@ sudo systemctl status hostapd
 ```
 subnet 192.168.2.0 netmask 255.255.255.0
 {
-	range 192.168.2.10 192.168.2.100;
- 	option broadcast-address 192.168.2.255;
- 	option routers 192.168.2.1;
- 	default-lease-time 600; 
- 	max-lease-time 7200;
- 	option domain-name "local-network";
- 	# OpenDNS
- 	option domain-name-servers 208.67.222.222, 208.67.220.220;
+ range 192.168.2.10 192.168.2.100;
+ option broadcast-address 192.168.2.255;
+ option routers 192.168.2.1;
+ default-lease-time 600; 
+ max-lease-time 7200;
+ option domain-name "local-network";
+ # OpenDNS
+ option domain-name-servers 208.67.222.222, 208.67.220.220;
 }
 ```
 
 Проверка синтаксиса:
 
 ```
- sudo dhcpd -t
+sudo dhcpd -t
 ```
 Разрешим работу dhcp на интерфейсе (имена интерфейсов ч/з пробел).
 Для этого в файле **sudo vim /etc/default/isc-dhcp-server**:
 
 ```
-	INTERFACESv4="eth0 wlan0"
-	INTERFACESv6=""
+INTERFACESv4="eth0 wlan0"
+INTERFACESv6=""
 ```
 
 Перезапуск и проверка статуса:
