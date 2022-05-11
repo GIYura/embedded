@@ -11,7 +11,7 @@
 
 ### 2. Установка
 
-- sudo apt-get install iw iptables hostapd isc-dhcp wvdial
+**sudo apt-get install iw iptables hostapd isc-dhcp wvdial**
 
 **NOTE:** перед установкой необходимо поверить наличие вышеуказанных пакетов:
 - [packet-name] --version
@@ -31,20 +31,19 @@ net.ipv4.conf.default.rp_filter = 1
 net.ipv4.conf.all.rp_filter = 1
 ```
 
-#### Для "горячего" подключения нужно:
-- sudo vim /etc/network/interfaces
+#### Для "горячего" подключения нужно в файле **sudo vim /etc/network/interfaces** 
+добавить:
 
-	allow-hotplug [interface-name]
-
-	iface [interface-name] inet manual
-
+```
+allow-hotplug [interface-name]
+iface [interface-name] inet manual
+```
 **Example:**
-```
-	allow-hotplug wlan0
 
-	iface wlan0 inet manual
 ```
-
+allow-hotplug wlan0
+iface wlan0 inet manual
+```
 #### Необходимо задать статический адрес для интерфейса:
 - sudo vim /etc/dhcpcd.conf
 
