@@ -83,11 +83,18 @@ sudo chmod +x /usr/local/sbin/systemd-iptables.sh
 ```
 
 Запуск скрипта вручную:
-- sudo /usr/local/sbin/systemd-iptables.sh start
-- sudo /usr/local/sbin/systemd-iptables.sh stop
-- sudo /usr/local/sbin/systemd-iptables.sh restart
+
+```
+sudo /usr/local/sbin/systemd-iptables.sh start
+sudo /usr/local/sbin/systemd-iptables.sh stop
+sudo /usr/local/sbin/systemd-iptables.sh restart
+```
 
 Создадим юнит для systemd для запуска скрипта при старте ОС:
+
+```
+sudo vim /etc/systemd/system/iptables.service
+```
 
 ```
 [Unit]
@@ -120,9 +127,13 @@ sudo systemctl status iptables.service
 
 ### 5. Беспроводная точка доступа
 
-- iw list - информация о беспроводных интерфейсах
+Информация о беспроводных интерфейсах
 
-**NOTE:** В списке должно быть AP (access point).
+```
+iw list
+```
+
+**NOTE:** В списке должно быть AP (Access Point).
 
 Для настройки нужно следующее в файле **sudo vim /etc/hostapd/hostapd.conf**:
 
