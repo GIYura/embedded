@@ -1,0 +1,1 @@
+cmd_/home/jura/embedded/stepik/linux-kernel/2-1-modules/src-2/Module.symvers := sed 's/ko$$/o/' /home/jura/embedded/stepik/linux-kernel/2-1-modules/src-2/modules.order | scripts/mod/modpost -m -a   -o /home/jura/embedded/stepik/linux-kernel/2-1-modules/src-2/Module.symvers -e -i Module.symvers   -T -
