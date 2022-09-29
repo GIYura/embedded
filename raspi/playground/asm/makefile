@@ -13,5 +13,7 @@ $(TARGET): hello.o
 	$(ASM) $(ASM_FLAGS) $^ -o $@
 
 clean:
-	$(RM) *.o
-	$(RM) $(TARGET)
+	@$(RM) *.o
+	@$(RM) $(TARGET)
+	@echo 'Cleaning ... Done!'
+
