@@ -1,0 +1,1 @@
+cmd_/home/jura/embedded/stepik/linux-kernel/2-1-modules/src-3/dev.ko := ld -r  -EL  --build-id=sha1  -T scripts/module.lds -o /home/jura/embedded/stepik/linux-kernel/2-1-modules/src-3/dev.ko /home/jura/embedded/stepik/linux-kernel/2-1-modules/src-3/dev.o /home/jura/embedded/stepik/linux-kernel/2-1-modules/src-3/dev.mod.o;  true
