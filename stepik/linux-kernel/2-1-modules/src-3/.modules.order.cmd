@@ -1,1 +1,0 @@
-cmd_/home/jura/embedded/stepik/linux-kernel/2-1-modules/src-3/modules.order := {   echo /home/jura/embedded/stepik/linux-kernel/2-1-modules/src-3/dev.ko; :; } | awk '!x[$$0]++' - > /home/jura/embedded/stepik/linux-kernel/2-1-modules/src-3/modules.order

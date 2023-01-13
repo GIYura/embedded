@@ -1,1 +1,0 @@
-cmd_/home/jura/embedded/stepik/linux-kernel/2-1-modules/src-3/dev.mod := { echo  /home/jura/embedded/stepik/linux-kernel/2-1-modules/src-3/dev.o;  echo; } > /home/jura/embedded/stepik/linux-kernel/2-1-modules/src-3/dev.mod
