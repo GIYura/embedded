@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # path for gpio
-GPIO=/dev/my-gpio-driver
+DEV_FILE=/dev/my-gpio-driver
 
 # names of states
 ON="1"
@@ -12,21 +12,18 @@ ledState()
 	echo $2 > $1
 }
 
-if [ ! -f "$GPIO" ]; 
-then	
-{	
+if [ ! -e "$DEV_FILE" ]; then	
 	echo "Device file does not exit"
-	exit 
-}
+	exit
 fi
  
 echo "LED is Blinking ... Press 'CNTL+C' to terminate"
 while [ 1 ]
 do
-	ledState $GPIO $ON
+	ledState $DEV_FILE $ON
 	sleep 1
 
-	ledState $GPIO $OFF
+	ledState $DEV_FILE $OFF
 	sleep 1
 done
 

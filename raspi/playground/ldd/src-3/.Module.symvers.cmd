@@ -1,1 +1,0 @@
-cmd_/home/jura/embedded/raspi/playground/ldd/src-3/Module.symvers := sed 's/ko$$/o/' /home/jura/embedded/raspi/playground/ldd/src-3/modules.order | scripts/mod/modpost -m -a   -o /home/jura/embedded/raspi/playground/ldd/src-3/Module.symvers -e -i Module.symvers   -T -
