@@ -16,9 +16,9 @@ static struct class* devClass;
 static struct cdev device;
 
 #define DRIVER_NAME "ds18b20"
-#define DRIVER_CLASS "ModuleClass"
+#define DRIVER_CLASS "DS-Class"
 
-#define DS18B20_PIN	4
+#define DS18B20_PIN	16
 
 unsigned int gpio_num = DS18B20_PIN;
 

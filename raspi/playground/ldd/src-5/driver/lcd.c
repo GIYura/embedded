@@ -18,7 +18,7 @@ static struct cdev device;
 static const char text[] = "Hello Linux!";
 
 #define DRIVER_NAME "lcd-driver"
-#define DRIVER_CLASS "ModuleClass"
+#define DRIVER_CLASS "LCD-Class"
 
 /* LCD char buffer */
 static char lcdBuffer[17];
@@ -109,7 +109,7 @@ static ssize_t driver_write(struct file *File, const char *user_buffer, size_t c
 	{
 		lcdData(lcdBuffer[i]);
 	}
-
+	printk("Write called\n");
 	return delta;
 }
 
