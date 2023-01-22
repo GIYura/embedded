@@ -1,1 +1,0 @@
-cmd_/home/jura/embedded/raspi/playground/ldd/src-4/modules.order := {   echo /home/jura/embedded/raspi/playground/ldd/src-4/lcd.ko; :; } | awk '!x[$$0]++' - > /home/jura/embedded/raspi/playground/ldd/src-4/modules.order
