@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/select.h>
+#include <stdint.h>
 
 static float getTemp(const char* const dev);
 
@@ -26,7 +27,8 @@ float getTemp(const char* const devName)
     int fd;  
     uint8_t result[2] = {0};  
     uint8_t high = 0;  
-    uint8_t low = 0;  
+    uint8_t low = 0; 
+	float value = 0.0; 
 
     fd = open(devName, 0);  
     if (fd >= 0) 
