@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 
 	if (getTemperature(argv[1], tempBuff, sizeof(tempBuff)) == 0)
 	{
-		printf("Temperature: %s\n", tempBuff);
+		printf("Temperature: %s", tempBuff);
 	}
 
 	return 0;
