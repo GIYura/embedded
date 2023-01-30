@@ -150,7 +150,7 @@ static int __init ModuleInit(void)
 
 	printk("Hello, Kernel!\n");
 	
-	if(alloc_chrdev_region(&deviceNumber, 0, 1, DRIVER_NAME) < 0)
+	if (alloc_chrdev_region(&deviceNumber, 0, 1, DRIVER_NAME) < 0)
 	{
 		printk("Device Number could not be allocated!\n");
 		return -1;
