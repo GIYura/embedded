@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE=$(pwd)/.led-config
+FILE=$(pwd)/.config
 
 if [ ! -f $FILE ]; then
 	echo ".config file not found"
