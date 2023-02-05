@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
     char value[4];
     int n;
 
-    f = open("/sys/class/gpio/gpio20", O_RDONLY);
+    f = open("/sys/class/gpio/gpio4", O_RDONLY);
     if (f < 0 )
     {
         printf("Can't open file\n");
