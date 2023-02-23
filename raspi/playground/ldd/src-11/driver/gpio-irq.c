@@ -70,7 +70,7 @@ static int __init ModuleInit(void)
 
 static void __exit ModuleExit(void)
 {
-    printk("gpio_irq: Unloading module... ");
+    printk("gpio_irq: Unloading module...\n");
     free_irq(irq_number, NULL);
     gpio_free(GPIO_IRQ);
 
