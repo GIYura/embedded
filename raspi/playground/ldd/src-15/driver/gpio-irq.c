@@ -9,6 +9,9 @@
 
 #define MYMAJOR 64
 
+#define BUTTON_GPIO 17
+#define BUTTON_DEBOUNCE 200 /* ms */
+
 /* Meta Information */
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Jura");
@@ -82,29 +85,33 @@ static int __init ModuleInit(void)
     printk("qpio_irq: Loading module... ");
 
     /* Setup the gpio */
-    if (gpio_request(17, "rpi-gpio-17"))
+    if (gpio_request(BUTTON_GPIO, "rpi-gpio-17"))
     {
         printk("Error!\nCan not allocate GPIO 17\n");
         return -1;
     }
 
     /* Set GPIO 17 direction */
-    if (gpio_direction_input(17))
+    if (gpio_direction_input(BUTTON_GPIO))
     {
         printk("Error!\nCan not set GPIO 17 to input!\n");
         gpio_free(17);
         return -1;
     }
 
-    gpio_set_debounce(17, 300);
+    gpio_set_debounce(BUTTON_GPIO, BUTTON_DEBOUNCE);
 
     /* Setup the interrupt */
-    irq_number = gpio_to_irq(17);
+    irq_number = gpio_to_irq(BUTTON_GPIO);
 
-    if (request_irq(irq_number, (irq_handler_t) gpio_irq_signal_handler, IRQF_TRIGGER_RISING, "my_gpio_irq_signal", NULL) != 0)
+    if (request_irq(irq_number, 
+        (irq_handler_t) gpio_irq_signal_handler, 
+        IRQF_TRIGGER_RISING, 
+        "my_gpio_irq_signal", 
+        NULL) != 0)
     {
         printk("Error!\nCan not request interrupt nr.: %d\n", irq_number);
-        gpio_free(17);
+        gpio_free(BUTTON_GPIO);
         return -1;
     }
 
@@ -127,7 +134,7 @@ static void __exit ModuleExit(void)
 {
     printk("gpio_irq_signal: Unloading module... ");
     free_irq(irq_number, NULL);
-    gpio_free(17);
+    gpio_free(BUTTON_GPIO);
     unregister_chrdev(MYMAJOR, "gpio_irq_signal");
     printk("Done!\n");
 }
