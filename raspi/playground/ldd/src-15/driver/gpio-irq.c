@@ -95,7 +95,7 @@ static int __init ModuleInit(void)
     if (gpio_direction_input(BUTTON_GPIO))
     {
         printk("Error!\nCan not set GPIO 17 to input!\n");
-        gpio_free(17);
+        gpio_free(BUTTON_GPIO);
         return -1;
     }
 
@@ -118,7 +118,7 @@ static int __init ModuleInit(void)
     if (register_chrdev(MYMAJOR, "gpio_irq_signal", &fops) < 0)
     {
         printk("Error!\n Can't register device Number!\n");
-        gpio_free(17);
+        gpio_free(BUTTON_GPIO);
         free_irq(irq_number, NULL);
     }
 
