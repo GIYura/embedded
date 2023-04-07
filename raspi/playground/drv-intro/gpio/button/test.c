@@ -7,13 +7,14 @@
 
 int main(int argc, char* argv[])
 {
+    static int counter = 0;
     int f;
     struct pollfd poll_fds[1];
     int ret;
     char value[4];
     int n;
 
-    f = open("/sys/class/gpio/gpio4", O_RDONLY);
+    f = open("/sys/class/gpio/gpio17/value", O_RDONLY);
     if (f < 0 )
     {
         printf("Can't open file\n");
@@ -21,7 +22,7 @@ int main(int argc, char* argv[])
     }
 	
     poll_fds[0].fd = f;
-    poll_fds[0].events = POLLPRI | POLLERR;
+    poll_fds[0].events = POLLERR | POLLPRI;
 
     while (1)
     {
@@ -31,7 +32,7 @@ int main(int argc, char* argv[])
         if (ret > 0)
         {
             n = read(f, &value, sizeof(value));
-            printf("Button pressed: read %d bytes, value = %c\n", n, value[0]);
+            printf("%d Button pressed: read %d bytes, value = %c\n", ++counter, n, value[0]);
         }
     }
 
