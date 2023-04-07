@@ -13,7 +13,7 @@ make
 ```
 make load
 ```
-3. Create interface to the driver.
+3. Create interface to the driver (device file).
 ```
 sudo mknod /dev/irq-sig c 64 0
 ```
@@ -26,4 +26,13 @@ gcc test.c -o test
 ./test
 ```
 6. Press the button
+
+7. Unload the driver.
+```
+make unload
+```
+8. Delete device file
+```
+rm /dev/irq-sig
+```
 
