@@ -17,10 +17,10 @@ module_param_string()
 
 3. Передача параметров
 
-```
 sudo insmod <module-name.ko> [param-name=value]
-```
 
 **Example:**
 
+```
 sudo insmod params.ko valueInt=2222
+```
