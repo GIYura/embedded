@@ -11,9 +11,9 @@ module_param_string()
 
 2. Для просмотра информации o модуле:
 
-**modinfo -p <module-name.ko>** - Список возможных параметров.
-**modinfo -a <module-name.ko>** - Информация об авторе.
-**modinfo -d <module-name.ko>** - Описание модуля.
+* modinfo -p <module-name.ko> - Список возможных параметров.
+* modinfo -a <module-name.ko> - Информация об авторе.
+* modinfo -d <module-name.ko> - Описание модуля.
 
 3. Передача параметров
 
