@@ -1,16 +1,18 @@
+#!/usr/bin/python3
+
 import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(7, GPIO.OUT)
+GPIO.setup(21, GPIO.OUT)
 while True:
-	print "LED ON"
+	print ("LED ON")
 
-	GPIO.output(7, GPIO.HIGH)
+	GPIO.output(21, GPIO.HIGH)
 	time.sleep(1)
 
-	print "LED OFF"
+	print ("LED OFF")
 
-	GPIO.output(7, GPIO.LOW)
+	GPIO.output(21, GPIO.LOW)
 	time.sleep(1)
