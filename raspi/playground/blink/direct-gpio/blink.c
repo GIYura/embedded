@@ -28,12 +28,12 @@ int gpioInit(void)
 
     /* open /dev/mem */
     if ((mem_fd = open("/dev/mem", O_RDWR|O_SYNC) ) < 0)
-	{
+    {
         printf("can't open /dev/mem \n");
         return -1;
     }
-	else
-	{
+    else
+    {
         /* mmap GPIO */
         gpio_map = mmap(
             NULL,					/* Any adddress in our space will do */
@@ -45,18 +45,18 @@ int gpioInit(void)
         );
         
         close(mem_fd);
-        
+
         if (gpio_map == MAP_FAILED) 
-		{
+        {
             printf("mmap error %d\n", (int)gpio_map);
             return -2;
         }
     }
     
-	/* Always use volatile pointer! */
-	gpio = (volatile unsigned *)gpio_map;
+    /* Always use volatile pointer! */
+    gpio = (volatile unsigned *)gpio_map;
     printf ("%s\n", "Blinking...");
-	return 0;
+    return 0;
 }
 
 /**/
@@ -85,18 +85,18 @@ int main(int argc, char* argv[])
     }
     
     /* must use INP_GPIO before we can use OUT_GPIO */
-	INP_GPIO(GPIO_LED); 
+    INP_GPIO(GPIO_LED); 
     OUT_GPIO(GPIO_LED);
     
     for (;;)
     {
         GPIO_CLR = 1 << GPIO_LED;
 
-		usleep(blinkTimeout);
-
+        usleep(blinkTimeout);
+        
         GPIO_SET = 1 << GPIO_LED;
 
-		usleep(blinkTimeout);
+        usleep(blinkTimeout);
     }
     
     printf("- finished -\n");
