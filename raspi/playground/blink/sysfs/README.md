@@ -1,14 +1,14 @@
 ### Compile
 
 ```
-gcc led-test.c -o led-test
+make all
 ```
 
-### Run
+### Test
 
 ```
-./led-test setup
-./led-test close
-./led-test on
-./led-test off
+./blink setup
+./blink on
+./blink off
+./blink close
 ```

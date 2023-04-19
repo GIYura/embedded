@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <unistd.h>
@@ -6,11 +7,9 @@
 #define BCM2711_PERI_BASE   0xfe000000
 #define GPIO_BASE           (BCM2711_PERI_BASE + 0x200000) /* GPIO controller */
 
-#define LED_PIN_26			7 /* physical pin 26; gpio 7 */
+#define GPIO_LED			21
 
 #define BLOCK_SIZE			(4 * 1024)
-
-#define BLINK_TIMEOUT_US	200000	
 
 int mem_fd;
 void *gpio_map;
@@ -33,12 +32,10 @@ int init_io(void)
     if ((mem_fd = open("/dev/mem", O_RDWR|O_SYNC) ) < 0)
 	{
         printf("can't open /dev/mem \n");
-        return(-1);
+        return -1;
     }
 	else
 	{
-        printf("/dev/mem opened\n");
-        
         /* mmap GPIO */
         gpio_map = mmap(
             NULL,					/* Any adddress in our space will do */
@@ -50,51 +47,58 @@ int init_io(void)
         );
         
         close(mem_fd);
-        printf("/dev/mem closed\n");
         
         if (gpio_map == MAP_FAILED) 
 		{
             printf("mmap error %d\n", (int)gpio_map);
-            return(-1);
-        }
-		else
-		{
-            printf("mmap Success.\n");
+            return -2;
         }
     }
     
 	/* Always use volatile pointer! */
 	gpio = (volatile unsigned *)gpio_map;
-
+    printf ("%s\n", "Blinking...");
 	return 0;
 }
 
 /**/
-int main(void)
-{    
-    if(init_io() == -1) 
+int main(int argc, char* argv[])
+{
+    unsigned int blinkTimeout = 0;
+    
+    if (argc != 2)
+    {
+        printf("Invalid number of arguments\n");
+        return -1;
+    }
+
+    blinkTimeout = atoi(argv[1]) * 1000;
+
+    if (blinkTimeout == 0)
+    {
+        printf("Invalid timeout\n");
+        return -2;
+    }
+    
+    if (init_io() == -1) 
     {
         printf("Failed to map the physical GPIO registers into the virtual memory space.\n");
-        return -1;
+        return -3;
     }
     
     /* must use INP_GPIO before we can use OUT_GPIO */
-	INP_GPIO(LED_PIN_26); 
-    OUT_GPIO(LED_PIN_26);
+	INP_GPIO(GPIO_LED); 
+    OUT_GPIO(GPIO_LED);
     
     for (;;)
     {
-        GPIO_CLR = 1 << LED_PIN_26;
-#if 0
-        printf("LED OFF\n");
-#endif        
-		usleep(BLINK_TIMEOUT_US);
+        GPIO_CLR = 1 << GPIO_LED;
 
-        GPIO_SET = 1 << LED_PIN_26;
-#if 0
-        printf("LED ON\n");
-#endif        
-		usleep(BLINK_TIMEOUT_US);
+		usleep(blinkTimeout);
+
+        GPIO_SET = 1 << GPIO_LED;
+
+		usleep(blinkTimeout);
     }
     
     printf("- finished -\n");

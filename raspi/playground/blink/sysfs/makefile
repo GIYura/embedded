@@ -3,7 +3,7 @@ CC = gcc
 
 all: blink 
 
-blink: blink.o
+blink: led-test.o
 	@$(CC) $^ -o $@
 	@echo 'Build done !!!'
 
