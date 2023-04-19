@@ -7,9 +7,9 @@
 #define BCM2711_PERI_BASE   0xfe000000
 #define GPIO_BASE           (BCM2711_PERI_BASE + 0x200000) /* GPIO controller */
 
-#define GPIO_LED			21
+#define GPIO_LED            21
 
-#define BLOCK_SIZE			(4 * 1024)
+#define BLOCK_SIZE          (4 * 1024)
 
 static volatile unsigned *gpio;
 
