@@ -15,7 +15,7 @@ static volatile unsigned *gpio;
 
 static int gpioInit(void);
 
-/* GPIO setup macros. Always use INP_GPIO(x) before using OUT_GPIO(x) or SET_GPIO_ALT(x,y) */
+/* GPIO setup macros. Always use INP_GPIO(x) before using OUT_GPIO(x) */
 #define INP_GPIO(g) *(gpio+((g)/10)) &= ~(7<<(((g)%10)*3))
 #define OUT_GPIO(g) *(gpio+((g)/10)) |=  (1<<(((g)%10)*3))
 #define GPIO_SET *(gpio+7)  /* sets   bits which are 1 ignores bits which are 0 */
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
         return -1;
     }
 
-    blinkTimeout = atoi(argv[1]) * 1000;
+    blinkTimeout = atoi(argv[1]) * 1000; /*convert to us */
 
     if (blinkTimeout == 0)
     {
