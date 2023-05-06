@@ -24,4 +24,5 @@ systemctl start blink.service
 ```
 systemctl status blink.service
 ```
+**NOTE:** LED should be connected to GPIO7.
 
