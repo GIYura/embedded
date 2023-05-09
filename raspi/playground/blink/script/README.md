@@ -15,8 +15,8 @@ sudo cp blink.service /etc/systemd/system
 3. Run blink service
 
 ```
-systemctl enable blink.service
-systemctl start blink.service
+sudo systemctl enable blink.service
+sudo systemctl start blink.service
 ```
 
 4. Check blink service status
