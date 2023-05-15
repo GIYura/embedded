@@ -58,14 +58,14 @@ static u8 readSeconds(void)
 
 static u8 readMinutes(void)
 {
-	u8 minutes = i2c_smbus_read_byte_data(pcf8583_i2c_client, PCF_MINUTES_REG);
-	return minutes;
+    u8 minutes = i2c_smbus_read_byte_data(pcf8583_i2c_client, PCF_MINUTES_REG);
+    return minutes;
 }
 
 static u8 readHours(void)
 {
-	u8 hours = i2c_smbus_read_byte_data(pcf8583_i2c_client, PCF_HOURS_REG);
-	return hours;
+    u8 hours = i2c_smbus_read_byte_data(pcf8583_i2c_client, PCF_HOURS_REG);
+    return hours;
 }
 
 /**
@@ -73,24 +73,24 @@ static u8 readHours(void)
  */
 static ssize_t driver_read(struct file *File, char *user_buffer, size_t count, loff_t *offs)
 {
-	int to_copy, not_copied, delta;
-	u8 outBuff[20];
+    int to_copy, not_copied, delta;
+    u8 outBuff[20];
 
-	/* Get amount of bytes to copy */
-	to_copy = min(sizeof(outBuff), count);
+    /* Get amount of bytes to copy */
+    to_copy = min(sizeof(outBuff), count);
 
 	/* Get time */
     outBuff[0] = readHours();
     outBuff[1] = readMinutes();
     outBuff[2] = readSeconds();
 
-	/* Copy Data to user */
-	not_copied = copy_to_user(user_buffer, outBuff, to_copy);
+    /* Copy Data to user */
+    not_copied = copy_to_user(user_buffer, outBuff, to_copy);
 
-	/* Calculate delta */
-	delta = to_copy - not_copied;
+    /* Calculate delta */
+    delta = to_copy - not_copied;
 
-	return delta;
+    return delta;
 }
 
 /**
@@ -98,8 +98,8 @@ static ssize_t driver_read(struct file *File, char *user_buffer, size_t count, l
  */
 static int driver_open(struct inode *deviceFile, struct file *instance)
 {
-	printk("PCF8583 DeviceDriver -  Open was called\n");
-	return 0;
+    printk("PCF8583 DeviceDriver -  Open was called\n");
+    return 0;
 }
 
 /**
@@ -107,16 +107,16 @@ static int driver_open(struct inode *deviceFile, struct file *instance)
  */
 static int driver_close(struct inode *deviceFile, struct file *instance)
 {
-	printk("PCF8583 DeviceDriver -  Close was called\n");
-	return 0;
+    printk("PCF8583 DeviceDriver -  Close was called\n");
+    return 0;
 }
 
 /* Map the file operations */
 static struct file_operations fops = {
-	.owner = THIS_MODULE,
-	.open = driver_open,
-	.release = driver_close,
-	.read = driver_read,
+    .owner = THIS_MODULE,
+    .open = driver_open,
+    .release = driver_close,
+    .read = driver_read,
 };
 
 /**
@@ -124,66 +124,66 @@ static struct file_operations fops = {
  */
 static int __init ModuleInit(void)
 {
-	int ret = -1;
-	printk("PCF8583 DeviceDriver - Hello Kernel\n");
+    int ret = -1;
+    printk("PCF8583 DeviceDriver - Hello Kernel\n");
 
-	/* Allocate Device Nr */
-	if (alloc_chrdev_region(&deviceNumber, 0, 1, DRIVER_NAME) < 0)
-	{
-		printk("PCF8583 Device Number could not be allocated!\n");
-		return ret;
-	}
-	printk("PCF8583 DeviceDriver - Device Number %d was registered\n", deviceNumber);
+    /* Allocate Device Nr */
+    if (alloc_chrdev_region(&deviceNumber, 0, 1, DRIVER_NAME) < 0)
+    {
+        printk("PCF8583 Device Number could not be allocated!\n");
+        return ret;
+    }
+    printk("PCF8583 DeviceDriver - Device Number %d was registered\n", deviceNumber);
 
-	/* Create Device Class */
-	if ((devClass = class_create(THIS_MODULE, DRIVER_CLASS)) == NULL)
-	{
-		printk("PCF8583 Device Class can not be created!\n");
-		goto ClassError;
-	}
+    /* Create Device Class */
+    if ((devClass = class_create(THIS_MODULE, DRIVER_CLASS)) == NULL)
+    {
+        printk("PCF8583 Device Class can not be created!\n");
+        goto ClassError;
+    }
 
-	/* Create Device file */
-	if (device_create(devClass, NULL, deviceNumber, NULL, DRIVER_NAME) == NULL)
-	{
-		printk("PCF8583 Can not create device file!\n");
-		goto FileError;
-	}
+    /* Create Device file */
+    if (device_create(devClass, NULL, deviceNumber, NULL, DRIVER_NAME) == NULL)
+    {
+        printk("PCF8583 Can not create device file!\n");
+        goto FileError;
+    }
 
-	/* Initialize Device file */
-	cdev_init(&device, &fops);
+    /* Initialize Device file */
+    cdev_init(&device, &fops);
 
-	/* register device to kernel */
-	if (cdev_add(&device, deviceNumber, 1) == -1)
-	{
-		printk("PCF8583 Registering of device to kernel failed!\n");
-		goto AddError;
-	}
+    /* register device to kernel */
+    if (cdev_add(&device, deviceNumber, 1) == -1)
+    {
+        printk("PCF8583 Registering of device to kernel failed!\n");
+        goto AddError;
+    }
 
-	pcf_i2c_adapter = i2c_get_adapter(I2C_BUS_AVAILABLE);
+    pcf_i2c_adapter = i2c_get_adapter(I2C_BUS_AVAILABLE);
 
-	if (pcf_i2c_adapter != NULL)
-	{
-		pcf8583_i2c_client = i2c_new_client_device(pcf_i2c_adapter, &pcf_i2c_board_info);
-		if (pcf8583_i2c_client != NULL)
-		{
-			if (i2c_add_driver(&pcf_driver) != -1)
-				ret = 0;
-			else
-				printk("PCF8583 Can't add driver...\n");
-		}
-		i2c_put_adapter(pcf_i2c_adapter);
-	}
-	printk("PCF8583 Driver added!\n");
+    if (pcf_i2c_adapter != NULL)
+    {
+        pcf8583_i2c_client = i2c_new_client_device(pcf_i2c_adapter, &pcf_i2c_board_info);
+        if (pcf8583_i2c_client != NULL)
+        {
+            if (i2c_add_driver(&pcf_driver) != -1)
+                ret = 0;
+            else
+                printk("PCF8583 Can't add driver...\n");
+        }
+        i2c_put_adapter(pcf_i2c_adapter);
+    }
+    printk("PCF8583 Driver added!\n");
 
-	return ret;
+    return ret;
 
 AddError:
-	device_destroy(devClass, deviceNumber);
+    device_destroy(devClass, deviceNumber);
 FileError:
-	class_destroy(devClass);
+    class_destroy(devClass);
 ClassError:
-	unregister_chrdev(deviceNumber, DRIVER_NAME);
-	return (-1);
+    unregister_chrdev(deviceNumber, DRIVER_NAME); 
+    return -1;
 }
 
 /**
@@ -192,11 +192,11 @@ ClassError:
  */
 static void __exit ModuleExit(void)
 {
-	printk("PCF8583 DeviceDriver - Goodbye, Kernel!\n");
+    printk("PCF8583 DeviceDriver - Goodbye, Kernel!\n");
 
-	i2c_unregister_device(pcf8583_i2c_client);
-	i2c_del_driver(&pcf_driver);
-	cdev_del(&device);
+    i2c_unregister_device(pcf8583_i2c_client);
+    i2c_del_driver(&pcf_driver);
+    cdev_del(&device);
     device_destroy(devClass, deviceNumber);
     class_destroy(devClass);
     unregister_chrdev_region(deviceNumber, 1);
