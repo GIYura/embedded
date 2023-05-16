@@ -43,6 +43,7 @@ static struct i2c_board_info pcf_i2c_board_info = {
 static dev_t deviceNumber;
 static struct class* devClass;
 static struct cdev device;
+static char pcfBuffer[20];
 
 static u8 readSeconds(void)
 {
@@ -60,6 +61,51 @@ static u8 readHours(void)
 {
     u8 hours = i2c_smbus_read_byte_data(pcf8583_i2c_client, PCF_HOURS_REG);
     return hours;
+}
+
+static s32 writeSeconds(u8 seconds)
+{
+    s32 ret = i2c_smbus_write_byte_data(pcf8583_i2c_client, PCF_SECONDS_REG, seconds);
+    return (ret < 0) ? ret : 0;
+}
+
+static s32 writeMinutes(u8 minutes)
+{
+    s32 ret = i2c_smbus_write_byte_data(pcf8583_i2c_client, PCF_MINUTES_REG, minutes);
+    return (ret < 0) ? ret : 0;
+}
+
+static s32 writeHours(u8 hours)
+{
+    s32 ret = i2c_smbus_write_byte_data(pcf8583_i2c_client, PCF_HOURS_REG, hours);
+    return (ret < 0) ? ret : 0;
+}
+/**/
+static ssize_t driver_write(struct file *File, const char *user_buffer, size_t count, loff_t *offs)
+{
+    int to_copy, not_copied, delta;
+
+    /* Get amount of data to copy */
+    to_copy = min(count, (sizeof(pcfBuffer) - 1));
+
+    /* Copy data to user */
+    not_copied = copy_from_user(pcfBuffer, user_buffer, to_copy);
+
+    /* Calculate data */
+    delta = to_copy - not_copied;
+
+    /* set time */
+    if (writeSeconds(pcfBuffer[2]) < 0)
+        printk("Failed to set seconds\n");
+
+    if (writeMinutes(pcfBuffer[1]) < 0)
+        printk("Failed to set minutes\n");
+
+    if (writeHours(pcfBuffer[0]) < 0)
+        printk("Failed to set houts\n");
+
+    return delta; 
+
 }
 
 /**
@@ -111,6 +157,7 @@ static struct file_operations devOps = {
     .open = driver_open,
     .release = driver_close,
     .read = driver_read,
+    .write = driver_write,
 };
 
 /**
