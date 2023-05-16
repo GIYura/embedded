@@ -15,8 +15,8 @@
 #define PCF_MINUTES_REG 0x03
 #define PCF_HOURS_REG   0x04
 
-static struct i2c_adapter * pcf_i2c_adapter = NULL;
-static struct i2c_client * pcf8583_i2c_client = NULL;
+static struct i2c_adapter* pcf_i2c_adapter = NULL;
+static struct i2c_client* pcf8583_i2c_client = NULL;
 
 /* Meta Information */
 MODULE_AUTHOR("Jura");
@@ -29,20 +29,15 @@ MODULE_DESCRIPTION("A driver for reading out PCF8583 RTC");
 #define SLAVE_DEVICE_NAME		"PCF8583"	/* Device and Driver Name */
 #define PCF8583_SLAVE_ADDRESS	0x50		/* PCF8583 I2C address */
 
-static const struct i2c_device_id pcf_id[] = {
-		{ SLAVE_DEVICE_NAME, 0 }, 
-		{ }
-};
-
 static struct i2c_driver pcf_driver = {
-	.driver = {
-		.name = SLAVE_DEVICE_NAME,
-		.owner = THIS_MODULE
-	}
+    .driver = {
+        .name = SLAVE_DEVICE_NAME,
+        .owner = THIS_MODULE
+    }
 };
 
 static struct i2c_board_info pcf_i2c_board_info = {
-	I2C_BOARD_INFO(SLAVE_DEVICE_NAME, PCF8583_SLAVE_ADDRESS)
+    I2C_BOARD_INFO(SLAVE_DEVICE_NAME, PCF8583_SLAVE_ADDRESS)
 };
 
 /* Variables for Device and Deviceclass*/
