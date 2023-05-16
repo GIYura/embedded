@@ -18,19 +18,19 @@ typedef enum
 static int RtcGetTime(const char* const dev, char* const buff, int buffSize);
 static int RtcSetTime(const char* const dev, char* const buff, int buffSize);
 static void SystemTimeGet(struct tm* t);
-static int bcdToDec(unsigned char x);
+static int bcdToDec(unsigned char val);
 static void TimePrint(const char* const buff, TIME_T time);
 static struct tm systemTime;
 
 int main(int argc, char* argv[])
 {
-	char timeBuff[BUFF_SIZE];
+    char timeBuff[BUFF_SIZE];
 
-	if (argc < 2)
-	{
-		printf("Invalid argument\n");
-		return -1;
-	}
+    if (argc < 2)
+    {
+        printf("Invalid argument\n");
+        return -1;
+    }
 #if RTC_READ_ONLY
     SystemTimeGet(&systemTime);
 
@@ -48,10 +48,10 @@ int main(int argc, char* argv[])
         return -1;
     }
 #endif
-	if (RtcGetTime(argv[1], timeBuff, sizeof(timeBuff)) == 0)
-	{
+    if (RtcGetTime(argv[1], timeBuff, sizeof(timeBuff)) == 0)
+    {
         TimePrint(timeBuff, RTC);
-	}
+    }
 
     return 0;
 }
