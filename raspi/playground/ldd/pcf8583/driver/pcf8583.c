@@ -22,7 +22,6 @@ static struct i2c_client* pcf8583_i2c_client = NULL;
 MODULE_AUTHOR("Jura");
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("A driver for reading out PCF8583 RTC");
-//MODULE_SUPPORTED_DEVICE("NONE");
 
 /* Defines for device identification */ 
 #define I2C_BUS_AVAILABLE		1			/* The I2C Bus available on the raspberry */
@@ -107,7 +106,7 @@ static int driver_close(struct inode *deviceFile, struct file *instance)
 }
 
 /* Map the file operations */
-static struct file_operations fops = {
+static struct file_operations devOps = {
     .owner = THIS_MODULE,
     .open = driver_open,
     .release = driver_close,
@@ -145,7 +144,7 @@ static int __init ModuleInit(void)
     }
 
     /* Initialize Device file */
-    cdev_init(&device, &fops);
+    cdev_init(&device, &devOps);
 
     /* register device to kernel */
     if (cdev_add(&device, deviceNumber, 1) == -1)
