@@ -79,7 +79,7 @@ static ssize_t driver_read(struct file *File, char *user_buffer, size_t count, l
     /* Get amount of bytes to copy */
     to_copy = min(sizeof(outBuff), count);
 
-	/* Get time */
+    /* Get time */
     outBuff[0] = readHours();
     outBuff[1] = readMinutes();
     outBuff[2] = readSeconds();

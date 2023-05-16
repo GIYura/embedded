@@ -30,8 +30,8 @@ int main(int argc, char* argv[])
     {
         printf("File %s does not exist\n", argv[1]);
     }
-
-	return 0;
+	
+    return 0;
 }
 
 static int getTime(const char* const dev, char* const buff, int buffSize)
