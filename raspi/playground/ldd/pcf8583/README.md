@@ -6,7 +6,7 @@
 
 | PCF pin     | Raspberry pin |
 | :---        | :---          |
-| VDD         | +3.3          |
+| VDD         | +3.3V         |
 | GND         | GND           |
 | SCL         | SCL1          |
 | SDA         | SDA1          |
