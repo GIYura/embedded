@@ -4,12 +4,12 @@
 
 ##### Connection
 
-PCF pin ---------- Raspberry pin
-
-VDD                 3.3V
-GNG                 GND
-SCL                 SCL1
-SDA                 SDA1
+| PCF pin     | Raspberry pin |
+| :---        | :---          |
+| VDD         | Title         |
+| GND         | Text          |
+| SCL         | SCL1          |
+| SDA         | SDA1          |
 
 ##### Driver
 
