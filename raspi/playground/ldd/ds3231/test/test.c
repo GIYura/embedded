@@ -114,14 +114,17 @@ static int RtcTimeSet(const char* const dev, char* const buff, int buffSize)
 
 static void TimePrint(const char* const buff, TIME_T time)
 {
+    float t = 0.0;
     switch (time)
     {
         case RTC:
-            printf("RTC time:\t");
+            t = buff[3] + ((buff[4] >> 6) * 0.25);
+            printf("Temperature: %.2f\n", t);
+            printf("RTC time: ");
         break;
 
         case SYS:
-            printf("System time:\t");
+            printf("System time: ");
         break;
 
         default: break;

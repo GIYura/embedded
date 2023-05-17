@@ -14,6 +14,8 @@
 #define DS_SECONDS_ADDR 0x00
 #define DS_MINUTES_ADDR 0x01
 #define DS_HOURS_ADDR   0x02
+#define DS_TEMP_HIGH    0x11
+#define DS_TEMP_LOW     0x12 
 
 #define DEC_TO_BIN(x)   (((x / 10) << 4) | (x % 10))
 #define BIN_TO_DEC(x)   ((((x & 0xF0) >> 4) * 10) + (x & 0x0F))
@@ -47,6 +49,20 @@ static dev_t deviceNumber;
 static struct class* devClass;
 static struct cdev device;
 static char ds3231Buffer[20];
+
+struct temp
+{
+    u8 low;
+    u8 high;
+};
+
+static struct temp m_Temp;
+
+static void readTemperature(struct temp* t)
+{
+    t->high = i2c_smbus_read_byte_data(ds3231_i2c_client, DS_TEMP_HIGH);
+    t->low = i2c_smbus_read_byte_data(ds3231_i2c_client, DS_TEMP_LOW);
+}
 
 static u8 readSeconds(void)
 {
@@ -129,6 +145,11 @@ static ssize_t driver_read(struct file *File, char *user_buffer, size_t count, l
     outBuff[0] = readHours();
     outBuff[1] = readMinutes();
     outBuff[2] = readSeconds();
+
+    /* Get temperature */
+    readTemperature(&m_Temp);
+    outBuff[3] = m_Temp.high;
+    outBuff[4] = m_Temp.low;
 
     /* Copy Data to user */
     not_copied = copy_to_user(user_buffer, outBuff, to_copy);
