@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
 #include <string.h>
 
 #define BUFF_SIZE	20
@@ -30,7 +31,7 @@ int main(int argc, char* argv[])
         printf("Invalid argument\n");
         return -1;
     }
-    
+
     if (strcmp(argv[2], "SET") == 0)
     {
         SystemTimeGet(&systemTime);
@@ -42,7 +43,7 @@ int main(int argc, char* argv[])
         if (RtcTimeSet(argv[1], timeBuff, sizeof(timeBuff)) == 0)
         {
             TimePrint(timeBuff, SYS);
-        }
+        } 
         else
         {
             printf("File %s does not exist\n", argv[1]);
@@ -63,6 +64,7 @@ int main(int argc, char* argv[])
             return -1;
         }
     }
+
     return 0;
 }
 
@@ -124,6 +126,7 @@ static void TimePrint(const char* const buff, TIME_T time)
 
         default: break;
     }
-    /* format HH:MM:SS */
+    /* format: HH:MM:SS */
     printf("%02d:%02d:%02d\n", buff[0], buff[1], buff[2]);
 }
+

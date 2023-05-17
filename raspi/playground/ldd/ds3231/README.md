@@ -1,10 +1,10 @@
 #### HOW-TO start
 
-**NOTE:** The PCF8583 is a clock and calendar chip. 
+**NOTE:** The DS3231 is a clock and calendar chip. 
 
 ##### Connection
 
-| PCF pin     | Raspberry pin |
+| DS pin      | Raspberry pin |
 | :---        | :---          |
 | VDD         | +3.3V         |
 | GND         | GND           |
@@ -14,7 +14,7 @@
 ##### Driver
 
 - Enter driver dir;
-- Run make to build pcf driver;
+- Run make to build ds3231 driver;
 
 ```
 make
@@ -27,14 +27,14 @@ make load
 ##### Test
 
 - Enter test dir;
-- Run make to build executable
+- Run make build executable
 ```
 make
 ```
 - Run executable
 ```
-sudo ./test /dev/pcf8583 SET
-sudo ./test /dev/pcf8583 GET
+sudo ./test /dev/ds3231 SET
+sudo ./test /dev/ds3231 GET
 ```
 
 **NOTE:** SET allows write system time to RTC
