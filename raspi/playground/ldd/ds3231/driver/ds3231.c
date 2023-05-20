@@ -20,8 +20,11 @@
 #define DEC_TO_BIN(x)   (((x / 10) << 4) | (x % 10))
 #define BIN_TO_DEC(x)   ((((x & 0xF0) >> 4) * 10) + (x & 0x0F))
 
-static struct i2c_adapter* ds3231_i2c_adapter = NULL;
-static struct i2c_client* ds3231_i2c_client = NULL;
+/* adapter = master */
+static struct i2c_adapter* ds3231_i2c_adapter = NULL;   // I2C Adapter Structure
+
+/* client = slave */
+static struct i2c_client* ds3231_i2c_client = NULL;     // I2C Cient Structure
 
 /* Meta Information */
 MODULE_AUTHOR("Jura");
@@ -33,6 +36,9 @@ MODULE_DESCRIPTION("A driver for reading out DS3231 RTC");
 #define SLAVE_DEVICE_NAME		"DS3231"	/* Device and Driver Name */
 #define DS3231_SLAVE_ADDRESS	0x68		/* DS3231 I2C address */
 
+/* драйвер устройства на шине 
+I2C driver Structure that has to be added to linux
+*/
 static struct i2c_driver ds3231_driver = {
     .driver = {
         .name = SLAVE_DEVICE_NAME,
@@ -40,6 +46,7 @@ static struct i2c_driver ds3231_driver = {
     }
 };
 
+/* I2C Board Info strucutre */
 static struct i2c_board_info ds3231_i2c_board_info = {
     I2C_BOARD_INFO(SLAVE_DEVICE_NAME, DS3231_SLAVE_ADDRESS)
 };
@@ -227,18 +234,28 @@ static int __init ModuleInit(void)
         goto AddError;
     }
 
+    /* Get I2C controller
+    доступен ли на шине 1 i2c контроллер
+    */
     ds3231_i2c_adapter = i2c_get_adapter(I2C_BUS_AVAILABLE);
 
     if (ds3231_i2c_adapter != NULL)
     {
+        /* The interface is used to instantiate an I2C client device */
         ds3231_i2c_client = i2c_new_client_device(ds3231_i2c_adapter, &ds3231_i2c_board_info);
         if (ds3231_i2c_client != NULL)
         {
+            /* add driver to subsystem */
             if (i2c_add_driver(&ds3231_driver) != -1)
+            {
                 ret = 0;
+            }
             else
+            {
                 printk("DS3231 Can't add driver...\n");
+            }
         }
+        /* must call i2c_put_adapter() when done with returned i2c_adapter device */
         i2c_put_adapter(ds3231_i2c_adapter);
     }
     printk("DS3231 Driver added!\n");
