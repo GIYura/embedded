@@ -9,7 +9,7 @@ It supports 2 interfaces:
 
 **I2C**
 
-1. Enter directory **/adxl345/driver/i2c/**;
+1. Enter directory '/adxl345/driver/i2c/';
 
 2. Run make to compile kernel module;
 
@@ -29,12 +29,12 @@ make unload
 4. Verify device file:
 
 ```
-/dev/adxl345 -la
+ls /dev/adxl345 -la
 ```
 
 **TEST**
 
-1. Enter directory **/adxl345/test/**;
+1. Enter directory '/adxl345/test/';
 
 2. Run make to compile application:
 
