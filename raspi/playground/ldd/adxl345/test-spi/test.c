@@ -35,7 +35,8 @@ int main(int argc, char* argv[])
 
     if (AdxlSpiInit(file, &mode, &bits, &speed) == 0)
     {
-        printf("SPI mode: %d\n", mode);
+        printf ("SPI settings:\n");
+        printf("Mode: %d\n", mode);
         printf("Bits per word: %d\n", bits);
         printf("Speed: %d Hz\n", speed);
     }
