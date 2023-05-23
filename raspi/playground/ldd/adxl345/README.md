@@ -7,7 +7,7 @@ It supports 2 interfaces:
 - I2C;
 - SPI;
 
-**I2C**
+##### I2C
 
 1. Enter directory '/adxl345/driver/i2c/';
 
@@ -51,6 +51,25 @@ sudo ./text /dev/adxl345
 
 **NOTE:** ID is: 0xE5;
 
-**SPI**
+##### SPI
 
+**Connection**
 
+| ADXL345 pin | Raspi pin |
+| ----------- | --------- |
+| SDL         | SPICLK    |
+| SDA         | MOSI      |
+| SDO         | MISO      |
+| CS          | SPICEO    |
+
+1. Enter /adxl345/test/spi/
+2. Run make to compile
+
+```
+make
+```
+3. Run executable 
+
+```
+./test
+```

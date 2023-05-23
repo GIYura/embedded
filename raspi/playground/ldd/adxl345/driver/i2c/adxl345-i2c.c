@@ -5,44 +5,25 @@
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
 #include <linux/slab.h>
-#include <linux/spi/spi.h>
+#include <linux/i2c.h>
 #include <linux/kernel.h>
 
-#define DRIVER_NAME     "adxl345"
-#define DRIVER_CLASS    "adxl345Class"
+#define DRIVER_NAME     "adxl345-i2c"
+#define DRIVER_CLASS    "adxl345Class-i2c"
 
 #define ADXL_ID_ADDR    0x00
 
-#if 0
 /* adapter = master */
 static struct i2c_adapter* adxl345_i2c_adapter = NULL;   // I2C Adapter Structure
 
 /* client = slave */
 static struct i2c_client* adxl345_i2c_client = NULL;     // I2C Cient Structure
-#endif
-
-#define SPI_BUS_NUM     0
-
-static struct spi_device* adxl345_spi_device;
-
-/* Register information about your slave device */
-struct spi_board_info  adxl345_spi_device_info = 
-{
-  .modalias     = "adxl345-spi-driver",
-  .max_speed_hz = 4000000,              // speed your device (slave) can handle
-  .bus_num      = SPI_BUS_NUM,          // SPI 0
-  .chip_select  = 0,                    // /*TODO  */Use 0 Chip select (GPIO 18)
-  .mode         = SPI_MODE_0            // SPI mode 0
-};
-
-static struct spi_master* master;
 
 /* Meta Information */
 MODULE_AUTHOR("Jura");
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("A driver for reading out ID ADXL345 Accelerometer");
 
-#if 0
 /* Defines for device identification */ 
 #define I2C_BUS_AVAILABLE		1           /* The I2C Bus available on the raspberry */
 #define SLAVE_DEVICE_NAME		"ADXL345"   /* Device and Driver Name */
@@ -62,22 +43,19 @@ static struct i2c_driver adxl345_driver = {
 static struct i2c_board_info adxl345_i2c_board_info = {
     I2C_BOARD_INFO(SLAVE_DEVICE_NAME, ADXL345_SLAVE_ADDRESS)
 };
-#endif
 
 /* Variables for Device and Deviceclass*/
 static dev_t deviceNumber;
 static struct class* devClass;
 static struct cdev device;
-
-//static char adxl345Buffer[20];
+static char adxl345Buffer[20];
 
 static u8 readId(void)
 {
-    u8 id = spi_w8r8(adxl345_spi_device, ADXL_ID_ADDR);
+    u8 id = i2c_smbus_read_byte_data(adxl345_i2c_client, ADXL_ID_ADDR);
     return id;
 }
 
-#if 0
 /**/
 static ssize_t driver_write(struct file *File, const char *user_buffer, size_t count, loff_t *offs)
 {
@@ -94,7 +72,6 @@ static ssize_t driver_write(struct file *File, const char *user_buffer, size_t c
 
     return delta; 
 }
-#endif
 
 /**
  * @brief Get data out of buffer
@@ -143,9 +120,7 @@ static struct file_operations devOps = {
     .open = driver_open,
     .release = driver_close,
     .read = driver_read,
-#if 0
     .write = driver_write,
-#endif
 };
 
 /**
@@ -188,37 +163,6 @@ static int __init ModuleInit(void)
         goto AddError;
     }
 
-/* TODO: */
-#if 1
-    master = spi_busnum_to_master(adxl345_spi_device_info.bus_num);
-    if ( master == NULL )
-    {
-        printk("SPI Master not found.\n");
-        return -1;
-    }
-#endif   
-
-    // create a new slave device, given the master and device info
-    adxl345_spi_device = spi_new_device(master, &adxl345_spi_device_info);
-    if ( adxl345_spi_device == NULL ) 
-    {
-        printk("FAILED to create slave.\n");
-        return -1;
-    }
-  
-    // 8-bits in a word
-    adxl345_spi_device->bits_per_word = 8;
-
-    // setup the SPI slave device
-    ret = spi_setup( adxl345_spi_device );
-    if ( ret )
-    {
-        pr_err("FAILED to setup slave.\n");
-        spi_unregister_device( adxl345_spi_device );
-        return -1;
-    }
-
-#if 0
     /* Get I2C controller
     доступен ли на шине 1 i2c контроллер
     */
@@ -243,8 +187,6 @@ static int __init ModuleInit(void)
         /* must call i2c_put_adapter() when done with returned i2c_adapter device */
         i2c_put_adapter(adxl345_i2c_adapter);
     }
-#endif
-
     printk("ADXL345 Driver added!\n");
 
     return ret;
@@ -266,7 +208,8 @@ static void __exit ModuleExit(void)
 {
     printk("ADXL345 DeviceDriver - Goodbye, Kernel!\n");
 
-    spi_unregister_device(adxl345_spi_device);
+    i2c_unregister_device(adxl345_i2c_client);
+    i2c_del_driver(&adxl345_driver);
     cdev_del(&device);
     device_destroy(devClass, deviceNumber);
     class_destroy(devClass);

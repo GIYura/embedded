@@ -5,57 +5,60 @@
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
 #include <linux/slab.h>
-#include <linux/i2c.h>
+#include <linux/spi/spi.h>
 #include <linux/kernel.h>
 
-#define DRIVER_NAME     "adxl345"
-#define DRIVER_CLASS    "adxl345Class"
+#define DRIVER_NAME     "adxl345-spi"
+#define DRIVER_CLASS    "adxl345Class-spi"
 
 #define ADXL_ID_ADDR    0x00
 
-/* adapter = master */
-static struct i2c_adapter* adxl345_i2c_adapter = NULL;   // I2C Adapter Structure
+#define SPI_BUS_NUM     0
 
-/* client = slave */
-static struct i2c_client* adxl345_i2c_client = NULL;     // I2C Cient Structure
+#if 1
+/* Register information about your slave device */
+struct spi_board_info adxl_spi_board_info = 
+{
+  .modalias     = "adxl345-spi-driver",
+  .max_speed_hz = 5000000,              // speed your device (slave) can handle
+  .bus_num      = SPI_BUS_NUM,          // SPI 0
+  .chip_select  = 0,                    // /*TODO  */Use 0 Chip select (GPIO 18)
+  .mode         = SPI_MODE_3            // SPI mode 3
+};
+
+static struct spi_master* master = NULL;
+
+static struct spi_device* adxl_spi_device;
+static struct device adxl_device;
+#endif
+
+static struct spi_driver adxl_spi_driver = {
+    .driver = {
+        .name = DRIVER_NAME,
+        .owner = THIS_MODULE,
+    },
+};
+
 
 /* Meta Information */
 MODULE_AUTHOR("Jura");
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("A driver for reading out ID ADXL345 Accelerometer");
 
-/* Defines for device identification */ 
-#define I2C_BUS_AVAILABLE		1           /* The I2C Bus available on the raspberry */
-#define SLAVE_DEVICE_NAME		"ADXL345"   /* Device and Driver Name */
-#define ADXL345_SLAVE_ADDRESS	0x53        /* ADXL345 I2C address */
-
-/* драйвер устройства на шине 
-I2C driver Structure that has to be added to linux
-*/
-static struct i2c_driver adxl345_driver = {
-    .driver = {
-        .name = SLAVE_DEVICE_NAME,
-        .owner = THIS_MODULE
-    }
-};
-
-/* I2C Board Info strucutre */
-static struct i2c_board_info adxl345_i2c_board_info = {
-    I2C_BOARD_INFO(SLAVE_DEVICE_NAME, ADXL345_SLAVE_ADDRESS)
-};
-
 /* Variables for Device and Deviceclass*/
 static dev_t deviceNumber;
 static struct class* devClass;
 static struct cdev device;
-static char adxl345Buffer[20];
 
+#if 0
 static u8 readId(void)
 {
-    u8 id = i2c_smbus_read_byte_data(adxl345_i2c_client, ADXL_ID_ADDR);
+    u8 id = spi_w8r8(adxl345_spi_device, ADXL_ID_ADDR);
     return id;
 }
+#endif
 
+#if 0
 /**/
 static ssize_t driver_write(struct file *File, const char *user_buffer, size_t count, loff_t *offs)
 {
@@ -72,6 +75,7 @@ static ssize_t driver_write(struct file *File, const char *user_buffer, size_t c
 
     return delta; 
 }
+#endif
 
 /**
  * @brief Get data out of buffer
@@ -80,7 +84,7 @@ static ssize_t driver_read(struct file *File, char *user_buffer, size_t count, l
 {
     int to_copy, not_copied, delta;
     u8 outBuff[20];
-
+#if 0
     /* Get amount of bytes to copy */
     to_copy = min(sizeof(outBuff), count);
 
@@ -92,7 +96,7 @@ static ssize_t driver_read(struct file *File, char *user_buffer, size_t count, l
 
     /* Calculate delta */
     delta = to_copy - not_copied;
-
+#endif
     return delta;
 }
 
@@ -119,8 +123,12 @@ static struct file_operations devOps = {
     .owner = THIS_MODULE,
     .open = driver_open,
     .release = driver_close,
+#if 0
     .read = driver_read,
+#endif
+#if 0
     .write = driver_write,
+#endif
 };
 
 /**
@@ -128,7 +136,7 @@ static struct file_operations devOps = {
  */
 static int __init ModuleInit(void)
 {
-    int ret = -1;
+    int ret = 0;
     printk("ADXL345 DeviceDriver - Hello Kernel\n");
 
     /* Allocate Device Nr */
@@ -163,31 +171,57 @@ static int __init ModuleInit(void)
         goto AddError;
     }
 
-    /* Get I2C controller
-    доступен ли на шине 1 i2c контроллер
-    */
-    adxl345_i2c_adapter = i2c_get_adapter(I2C_BUS_AVAILABLE);
-
-    if (adxl345_i2c_adapter != NULL)
+#if 1
+/* TODO: */
+ /*
+    1. alloc master
+    2. register master
+    3. new device
+    4. register driver
+    5. spi setup
+  */
+    /*1*/
+    master = spi_alloc_master(&adxl_device, 0);
+    if (master == NULL)
     {
-        /* The interface is used to instantiate an I2C client device */
-        adxl345_i2c_client = i2c_new_client_device(adxl345_i2c_adapter, &adxl345_i2c_board_info);
-        if (adxl345_i2c_client != NULL)
-        {
-            /* add driver to subsystem */
-            if (i2c_add_driver(&adxl345_driver) != -1)
-            {
-                ret = 0;
-            }
-            else
-            {
-                printk("ADXL345 Can't add driver...\n");
-            }
-        }
-        /* must call i2c_put_adapter() when done with returned i2c_adapter device */
-        i2c_put_adapter(adxl345_i2c_adapter);
+        printk("Error alloc master\n");
+        return -1;
     }
+    /* TODO:
+    master->bus_num = ;
+     */
+
+    /*
+    ret = spi_register_master(master);
+    if (ret < 0)
+    {
+        spi_master_put(master);
+    }
+    */
+    
+    /* create a new slave device, given the master and device info */
+    adxl_spi_device = spi_new_device(master, &adxl_spi_board_info);
+    if (adxl_spi_device == NULL) 
+    {
+        printk("FAILED to create slave.\n");
+        return -1;
+    }
+
+    /* 8-bits in a word */
+    adxl_spi_device->bits_per_word = 8;
+
+    /* setup the SPI slave device */
+    ret = spi_setup(adxl_spi_device);
+    if (ret < 0)
+    {
+        printk("FAILED to setup slave.\n");
+        spi_unregister_device(adxl_spi_device);
+        return -1;
+    }
+    
+
     printk("ADXL345 Driver added!\n");
+#endif
 
     return ret;
 
@@ -208,8 +242,7 @@ static void __exit ModuleExit(void)
 {
     printk("ADXL345 DeviceDriver - Goodbye, Kernel!\n");
 
-    i2c_unregister_device(adxl345_i2c_client);
-    i2c_del_driver(&adxl345_driver);
+    spi_unregister_master(master);
     cdev_del(&device);
     device_destroy(devClass, deviceNumber);
     class_destroy(devClass);
