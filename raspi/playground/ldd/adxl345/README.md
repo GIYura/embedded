@@ -32,7 +32,7 @@ make unload
 ls /dev/adxl345 -la
 ```
 
-**TEST**
+##### TEST
 
 1. Enter directory '/adxl345/test/';
 
