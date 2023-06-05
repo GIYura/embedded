@@ -1,6 +1,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <netdb.h>  /* hostent struct, gethostbyname() */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -8,6 +9,9 @@
 #include <string.h>
 #include <sys/types.h>
 #include <time.h> 
+
+#define SERVER_PORT 12345
+#define QUEUE_SIZE  10
 
 int main(int argc, char *argv[])
 {
@@ -25,12 +29,15 @@ int main(int argc, char *argv[])
     memset(sendBuff, '0', sizeof(sendBuff));
 
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    serv_addr.sin_port = htons(5000);
+    serv_addr.sin_addr.s_addr = inet_addr("192.168.0.100");//htonl(INADDR_ANY);
+    serv_addr.sin_port = htons(SERVER_PORT);
+
+    printf("IP address is: %s\n", inet_ntoa(serv_addr.sin_addr));
+    printf("port is: %d\n", (int) ntohs(serv_addr.sin_port));
 
     bind(listenfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr));
 
-    listen(listenfd, 10);
+    listen(listenfd, QUEUE_SIZE);
 
     while(1)
 	{

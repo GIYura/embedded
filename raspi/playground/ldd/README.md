@@ -34,3 +34,30 @@ Code: [Repo](https://github.com/Johannes4Linux/Linux_Driver_Tutorial)
 
 Theory: [Reference](https://linux-kernel-labs.github.io/refs/heads/master/labs/device_drivers.html)
 
+
+#### Steps to implement char driver
+
+1. Allocate the device number (major:minor). This can be done in two ways:
+
+- static - **register_chrdev_region()**;
+- dynamic - **alloc_chrdev_region()**;
+
+**NOTE:** variable of type **dev_t** stores **major:minor** numbers.
+
+2. Impelement file operations (read, write, open, close etc);
+
+**NOTE:** these are callbacks registered in the structure to expose driver 
+functionality to user space.
+
+3. Register char driver in the kernel with **cdev_init()** and **cdev_add()**
+
+To get the major number run:
+
+```
+cat /proc/devices
+```
+
+
+
+
+
