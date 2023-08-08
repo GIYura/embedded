@@ -11,54 +11,54 @@ typedef struct
     int tail;
     int size;
     int buffer[BUFF_SIZE];
-} Ring_t;
+} Buffer_t;
 
-static Ring_t m_ring;
+static Buffer_t m_buffer;
 
-void RingInit(void)
+void BufferInit(void)
 {
-    m_ring.head = 0;
-    m_ring.tail = 0; 
-    m_ring.size = BUFF_SIZE;
-    memset(m_ring.buffer, 0, sizeof(m_ring.buffer));
+    m_buffer.head = 0;
+    m_buffer.tail = 0; 
+    m_buffer.size = BUFF_SIZE;
+    memset(m_buffer.buffer, 0, sizeof(m_buffer.buffer));
 }
 
-void RingDeinit(void)
+void BufferDeinit(void)
 {
-    m_ring.head = 0;
-    m_ring.tail = 0; 
+    m_buffer.head = 0;
+    m_buffer.tail = 0; 
 }
 
-bool RingEnqueue(int item)
+bool BufferPut(int item)
 {
     /* verify buffer full */
-    if (((m_ring.head + 1) % m_ring.size) == m_ring.tail)
+    if (((m_buffer.head + 1) % m_buffer.size) == m_buffer.tail)
     {
         return false;
     }
 
     /* put item in the buffer */
-    m_ring.buffer[m_ring.head] = item;    
+    m_buffer.buffer[m_buffer.head] = item;    
 
     /* advance head */
-    m_ring.head = (m_ring.head + 1) % m_ring.size;
+    m_buffer.head = (m_buffer.head + 1) % m_buffer.size;
 
     return true;
 }
 
-bool RingDequeue(int* item)
+bool BufferGet(int* item)
 {
     /* verify buffer empty */
-    if (m_ring.head == m_ring.tail)
+    if (m_buffer.head == m_buffer.tail)
     {
         return false;
     }
     
     /* retreive item  */
-    *item = m_ring.buffer[m_ring.tail];
+    *item = m_buffer.buffer[m_buffer.tail];
 
     /* advance tail */
-    m_ring.tail = (m_ring.tail + 1) % m_ring.size;
+    m_buffer.tail = (m_buffer.tail + 1) % m_buffer.size;
 
     return true;
 }
