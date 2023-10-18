@@ -1,9 +1,4 @@
-[**SOURCE_1**](https://www.programiz.com/dsa/queue)
-[**SOURCE_2**](https://www.geeksforgeeks.org/queue-set-1introduction-and-array-implementation/)
-[**SOURCE_3**](https://techvedas-learn.com/category/algorithm/)
-[**SOURCE_4**](https://dev.to/iuliagroza/complete-introduction-to-the-30-most-essential-data-structures-algorithms-43kd)
-
-In this doc some ADT described:
+**This page describes the following Abstract Data Type (ADT):**
 
 1. Ring buffer (circular buffer)
 2. Stack (LIFO)
@@ -231,5 +226,15 @@ It is the topmost node of a tree.
 #### Conditions:
 
 
+**Reference:**
+Please, refer to the following links for more details.
 
+[1](httpeeeeeees://www.programiz.com/dsa/queue)
 
+[2](https://www.geeksforgeeks.org/queue-set-1introduction-and-array-implementation/)
+
+[3](https://techvedas-learn.com/category/algorithm/)
+
+[4](https://dev.to/iuliagroza/complete-introduction-to-the-30-most-essential-data-structures-algorithms-43kd)
+
+[5](https://embedjournal.com/implementing-circular-buffer-embedded-c/)

@@ -3,9 +3,17 @@
 
 #include <stdbool.h>
 
-void RingInit(int* buff, int buffSize);
-void RingDeinit(void);
-bool RingEnqueue(int item);
-bool RingDequeue(int* item);
+void BufferInit(int* buff, int buffSize);
+void BufferDeinit(void);
+
+/*
+Put an item to the buffer
+*/
+bool BufferPut(int item);
+
+/*
+Get an item from the buffer
+*/
+bool BufferGet(int* item);
 
 #endif /* BUFFER_H */

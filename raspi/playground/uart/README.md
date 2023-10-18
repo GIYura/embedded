@@ -6,7 +6,7 @@
 ###### Settings
 
 1. Add **enable_uart=1** to /boot/config.txt;
-2. Delete **serisl0** in /boot/cmdline.txt;
+2. Delete **serial0** in /boot/cmdline.txt;
 
 ###### Run
 ```
